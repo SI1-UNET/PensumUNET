@@ -29,7 +29,8 @@ CREATE TABLE carrera (
 DROP TABLE IF EXISTS semestre CASCADE;
 CREATE TABLE semestre(
     id int,
-    semestre char(2) NOT NULL,
+    semestre char(3) NOT NULL,
+    num_semestre int NOT NULL,
 
     PRIMARY KEY(id)
 );
@@ -45,7 +46,7 @@ CREATE TABLE info_materia(
 
     PRIMARY KEY(codigo),
     FOREIGN KEY(id_departamento) REFERENCES departamento(id),
-    CHECK (uc_totales >= 0 AND horas_estudio >= 0)
+    CHECK (uc >= 0 AND horas_estudio >= 0)
 );
 
 DROP TABLE IF EXISTS materia CASCADE;

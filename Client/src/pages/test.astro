@@ -1,0 +1,89 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CourseGraph from '../components/diagram';
+// import { useEffect, useState } from "preact/hooks"; // Import from "preact/hooks"
+import transformar_info from '../utils';
+import type { Node, Edge } from '../types'; // Import types for client-side state
+
+// Example data (replace with your actual data fetching)
+// This data will be passed as JSON strings to transformar_info
+const materias = JSON.stringify([
+  {"codigo": "CJP000", "id_carrera": 1, "id_semestre": 1, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP001", "id_carrera": 1, "id_semestre": 1, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP002", "id_carrera": 1, "id_semestre": 2, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP003", "id_carrera": 1, "id_semestre": 2, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP004", "id_carrera": 1, "id_semestre": 3, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP005", "id_carrera": 1, "id_semestre": 3, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP006", "id_carrera": 1, "id_semestre": 4, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP007", "id_carrera": 1, "id_semestre": 4, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP008", "id_carrera": 1, "id_semestre": 5, "electiva": 0, "id_nucleo": 1},
+  {"codigo": "CJP009", "id_carrera": 1, "id_semestre": 5, "electiva": 0, "id_nucleo": 1},
+]);
+
+const prelaciones_mat = JSON.stringify([
+  {"codigo_mat": "CJP000", "codigo_mat_prela": "CJP002", "id_carrera": 1}, // CJP000 is prerequisite for CJP002
+  {"codigo_mat": "CJP001", "codigo_mat_prela": "CJP003", "id_carrera": 1},
+  {"codigo_mat": "CJP002", "codigo_mat_prela": "CJP004", "id_carrera": 1},
+  {"codigo_mat": "CJP003", "codigo_mat_prela": "CJP005", "id_carrera": 1},
+  {"codigo_mat": "CJP004", "codigo_mat_prela": "CJP006", "id_carrera": 1},
+  {"codigo_mat": "CJP005", "codigo_mat_prela": "CJP007", "id_carrera": 1},
+  {"codigo_mat": "CJP006", "codigo_mat_prela": "CJP008", "id_carrera": 1},
+  {"codigo_mat": "CJP006", "codigo_mat_prela": "CJP009", "id_carrera": 1},
+]);
+
+const prelaciones_uc = JSON.stringify([]);
+
+const semestres = JSON.stringify([
+  {"id": 1, "semestre": "Semestre I", "num_semestre": 1},
+  {"id": 2, "semestre": "Semestre II", "num_semestre": 2},
+  {"id": 3, "semestre": "Semestre III", "num_semestre": 3},
+  {"id": 4, "semestre": "Semestre IV", "num_semestre": 4},
+  {"id": 5, "semestre": "Semestre V", "num_semestre": 5},
+]);
+
+const departamentos = JSON.stringify([
+    {"id": 1, "nombre": "Ciencias Jurídicas y Políticas"},
+]);
+
+const info_materias = JSON.stringify([
+  {"codigo": "CJP000", "nombre": "Introducción al Derecho", "info": "Info 0", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
+  {"codigo": "CJP001", "nombre": "Derecho Romano", "info": "Info 1", "uc": 4, "horas_estudio": 8, "id_departamento": 1},
+  {"codigo": "CJP002", "nombre": "Teoría General del Proceso", "info": "Info 2", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
+  {"codigo": "CJP003", "nombre": "Derecho Civil I", "info": "Info 3", "uc": 4, "horas_estudio": 8, "id_departamento": 1},
+  {"codigo": "CJP004", "nombre": "Derecho Penal I", "info": "Info 4", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
+  {"codigo": "CJP005", "nombre": "Derecho Constitucional I", "info": "Info 5", "uc": 4, "horas_estudio": 8, "id_departamento": 1},
+  {"codigo": "CJP006", "nombre": "Derecho Administrativo I", "info": "Info 6", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
+  {"codigo": "CJP007", "nombre": "Derecho Laboral I", "info": "Info 7", "uc": 4, "horas_estudio": 8, "id_departamento": 1},
+  {"codigo": "CJP008", "nombre": "Derecho Mercantil I", "info": "Info 8", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
+  {"codigo": "CJP009", "nombre": "Derecho Internacional Público", "info": "Info 9", "uc": 4, "horas_estudio": 8, "id_departamento": 1},
+]);
+
+
+const [nodes, edges] = transformar_info( materias, prelaciones_mat, prelaciones_uc, semestres, departamentos, info_materias, 200, 100);
+
+//
+// useEffect(() => {
+//   const xSpacing = 200;
+//   const ySpacing = 60; // Adjusted for better visual separation
+//
+//   const [transformedNodes, transformedEdges] = transformar_info(
+//     materias,
+//     prelaciones_mat,
+//     prelaciones_uc,
+//     semestres,
+//     departamentos,
+//     info_materias,
+//     xSpacing,
+//     ySpacing
+//   );
+//   setGraphData({ nodes: transformedNodes, edges: transformedEdges });
+// }, []);
+---
+
+<Layout title="test">
+    <div id="myDiagram" class="bg-[#ffffff] size-full">
+        <CourseGraph client:load nodes={nodes} edges={edges} />
+    </div>
+</Layout>
+
+<!-- <script type="module" src="go-debug.js"> -->
