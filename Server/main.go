@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+
 	models.DropDB(config.PsqlDB)
 	models.InitDB(config.PsqlDB)
 	models.LoadSampleData(config.PsqlDB)
