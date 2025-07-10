@@ -59,25 +59,7 @@ const info_materias = JSON.stringify([
 ]);
 
 
-const [nodes, edges] = transformar_info( materias, prelaciones_mat, prelaciones_uc, semestres, departamentos, info_materias, 200, 100);
-
-//
-// useEffect(() => {
-//   const xSpacing = 200;
-//   const ySpacing = 60; // Adjusted for better visual separation
-//
-//   const [transformedNodes, transformedEdges] = transformar_info(
-//     materias,
-//     prelaciones_mat,
-//     prelaciones_uc,
-//     semestres,
-//     departamentos,
-//     info_materias,
-//     xSpacing,
-//     ySpacing
-//   );
-//   setGraphData({ nodes: transformedNodes, edges: transformedEdges });
-// }, []);
+const [nodes, edges] = transformar_info( materias, prelaciones_mat, prelaciones_uc, semestres, departamentos, info_materias);
 ---
 
 <Layout title="test">

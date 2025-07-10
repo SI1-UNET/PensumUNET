@@ -1,7 +1,6 @@
 import { useRef, useEffect } from "preact/hooks"; // Import from "preact/hooks"
 import type { Node, Edge } from '../types'; // Type imports are correct
 import * as d3 from "d3";
-import { number } from "astro:schema";
 
 interface CourseGraphProps {
     nodes: Node[];
@@ -26,44 +25,184 @@ function calculateTextSize(text: string,font_family: string, font_size: string, 
     return [width,height];
 }
 
-function calculateSVGSize(nodes: Node[], nodeXSpacing: number): [number, number] {
+function calculateSVGWidth(nodes: Node[], nodeXSpacing: number): number {
     const nodeWidth = 260;
-    const width = Math.max(...nodes.map(n => n.x)) * (nodeWidth + nodeXSpacing);
+    const width = (Math.max(...nodes.map(n => n.x)) + 1) * (nodeWidth + nodeXSpacing);
 
-    const cantSemestres = Math.max(...nodes.map(n => n.y)) + 1;
+    return width;
+}
 
-    const arr_temp: number[] = Array(cantSemestres).fill(0);
+function calculateNodesSizeAndPos(nodes: Node[], nodeXSpacing: number, nodeYSpacing: number) {
+    const nodesWidth = 260;
+    nodes.forEach((node, index) => {
+        const [_, height] = calculateTextSize(node.content,"Poppins", "12px", String(nodesWidth) + "px");
+        node.height = height;
+        node.width = nodesWidth;
+        if (node.x == 0) {
+            node.x = 0;
+        } else {
+            node.x = node.x * nodeXSpacing + node.x * nodesWidth;
+        }
 
-    nodes.forEach(node => {
-        const [_, tHeight] = calculateTextSize(node.content, "Poppins", "12px", String(nodeWidth) + "px");
-        arr_temp[node.x] = tHeight;
+        if (node.y == 0) {
+            node.y = 0;
+        } else {
+            node.y = nodes[index - 1].y + nodes[index - 1].height + nodeYSpacing;
+        }
 
-        node.x = node.x * (nodeWidth + nodeXSpacing);
+        // node.x = node.x * (nodesWidth + nodeXSpacing);
+        // node.y = node.y * (height + nodeYSpacing);
     });
-    var height = Math.max(...nodes.map(n => n.x));
-
-    nodes;
-    return [0,0];
 }
 
 // Correct way to define a functional component in TypeScript with props
 export default function CourseGraph({ nodes, edges }: CourseGraphProps) {
+    if (!nodes || nodes.length === 0) {
+        console.warn("No nodes provided to CourseGraph component.");
+        return;
+    }
+
     const svgRef = useRef<SVGSVGElement | null>(null);
 
     useEffect(() => {
-        if (!nodes || nodes.length === 0) {
-            console.warn("No nodes provided to CourseGraph component.");
-            return;
-        }
-
         const svgElement = svgRef.current;
-
         if (!svgElement) {
             return;
         }
 
+        nodes.sort((nodea, nodeb) => {
+            if (nodea !== nodeb) {
+                return nodea.x - nodeb.x;
+            }
+            return nodea.y - nodeb.y;
+        });
+
         const svg = d3.select(svgElement);
         svg.selectAll("*").remove();
+
+        const width = calculateSVGWidth(nodes, 20);
+        console.log(width);
+        const height = 1000;
+        svg.attr("width", width)
+           .attr("height", height);
+
+        calculateNodesSizeAndPos(nodes, 20, 20);
+
+        // nodes.forEach(node => {
+        //     console.log(`contenido = ${node.content}, x = ${node.x}, y = ${node.y}, width = ${node.width}, height = ${node.height}`)
+        // });
+        //
+        const g = svg.append("g");
+
+        const nodeElements = g.selectAll<SVGGElement, Node>(".node") // Specify types for selectAll
+                              .data(nodes)
+                              .enter()
+                              .append("g")
+                              .attr("class", "node");
+                              // .attr("transform", d => `translate(${d.x},${d.y})`); // Node's (x,y) is its top-left corner
+
+        nodeElements.append("rect")
+                    .attr("width", d => d.width)
+                    .attr("height", d => d.height)
+                    .attr("x", d => d.x)
+                    .attr("y", d => d.y)
+                    .attr("fill", "#1063ab")
+                    .attr("stroke", "#1063ab")
+                    .attr("stroke-width", 1.5)
+                    .attr("rx", 5)
+                    .attr("ry", 5);
+
+        nodeElements.append("text")
+                    // .attr("x", d => d.x + d.width / 2)
+                    .attr("x", d => d.x + 12)
+                    .attr("y", d => d.y + d.height / 2)
+                    .attr("dy", ".35em") // Fine-tune vertical alignment for text baseline
+                    // .attr("text-anchor", "middle") // Horizontally center the text based on its x coordinate
+                    // .attr("y", d => d.y + calculateTextSize(d.content, "Poppins", "12px", "260px")[1])
+                    .text(d => d.content)
+                    .attr("fill", "white")
+                    .style("font-size", "12px")
+                    .style("font-family", "Poppins")
+                    .style("pointer-events", "none");
+
+
+        // const nodesElements = g.selectAll(".node")
+        //                        .data(nodes)
+        //                        .enter()
+        //                        .append("rect")
+        //                        .attr("width", d => d.width)
+        //                        .attr("height", d => d.height)
+        //                        .attr("x", d => d.x)
+        //                        .attr("y", d => d.y)
+        //                        .attr("fill", "#1063ab")
+        //     //                 .attr("stroke", "#1063ab")
+        //     //                 .attr("stroke-width", 1.5)
+        //                        .attr("rx", 5) // Rounded corners
+        //                        .attr("ry", 5);
+        //
+        // nodesElements.append("text")
+        //     .attr("x", 3) // <--- Change this from d.x + 3 to just 3
+        //     .attr("y", 2) // <--- Change this from d.y + 2 to just 2
+        //     .text(d => d.content)
+        //     .attr("fill", "white")
+        //     .style("font-size", "12px")
+        //     .style("font-family", "Poppins")
+        //     .style("pointer-events", "none");
+
+
+        // // 2. Draw Nodes (Rectangles)
+        // const nodeElements = g.selectAll<SVGGElement, Node>(".node") // Specify types for selectAll
+        // .data(nodes)
+        // .enter()
+        // .append("g")
+        // .attr("class", "node");
+        // // .attr("transform", d => `translate(${d.x},${d.y})`); // Node's (x,y) is its top-left corner
+        // nodeElements.append("rect")
+        //     .attr("width", d => d.width)
+        //     .attr("height", d => d.height)
+        //     .attr("fill", "lightblue")
+        //     .attr("stroke", "steelblue")
+        //     .attr("stroke-width", 1.5)
+        //     .attr("rx", 5) // Rounded corners
+        //     .attr("ry", 5)
+        //     .attr("x", 0) // <--- Change this from d.x to 0
+        //     .attr("y", 0); // <--- Change this from d.y to 0
+        //
+        //
+        // nodeElements.append("text")
+        //     .attr("x", 3) // <--- Change this from d.x + 3 to just 3
+        //     .attr("y", 2) // <--- Change this from d.y + 2 to just 2
+        //     .text(d => d.content)
+        //     .attr("fill", "black")
+        //     .style("font-size", "12px")
+        //     .style("font-family", "Poppins")
+        //     .style("pointer-events", "none");
+
+        // nodeElements.append("rect")
+        //     .attr("width", d => d.width)
+        //     .attr("height", d => d.height)
+        //     .attr("fill", "lightblue")
+        //     .attr("stroke", "steelblue")
+        //     .attr("stroke-width", 1.5)
+        //     .attr("rx", 5) // Rounded corners
+        //     .attr("ry", 5)
+        //     .attr("x", d => d.x)
+        //     .attr("y", d => d.y);
+        //
+        //
+        // nodeElements.append("text")
+        //     .attr("x", d => d.x + 3) // Center text horizontally within the 120px width
+        //     .attr("y", d => d.y + 2) // Center text vertically within the 60px height
+        //     // .attr("dy", ".35em") // Fine-tune vertical alignment
+        //     // .attr("text-anchor", "middle") // Horizontally center text
+        //     .text(d => d.content)
+        //     .attr("fill", "black")
+        //     .style("font-size", "12px")
+        //     .style("font-family", "Poppins")
+        //     .style("pointer-events", "none"); // Prevent text from blocking mouse events on rect
+
+
+        // svg.data(nodes).attr('x', d=>d.x)
 
         // // Define dimensions and margins
         // const width = 1400; // You might want to make these props or calculate dynamically

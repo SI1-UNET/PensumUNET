@@ -3,6 +3,8 @@ export interface Node {
     content: string;
     x: number;
     y: number;
+    width: number;
+    height: number;
 }
 
 export interface Edge {
