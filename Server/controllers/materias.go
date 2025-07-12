@@ -24,10 +24,10 @@ func GetAllMaterias(w http.ResponseWriter, r *http.Request) {
 
 func GetMateriasDeDepartamento(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	id := vars["id"]
+	name := vars["name"]
 
 	var materia models.Materia
-	materia.Departamento = id
+	materia.Departamento = name
 	materias, err := materia.GetMateriasDeDepartamento(config.PsqlDB)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

@@ -1,11 +1,26 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { actions } from "astro:actions";
+import type { IMateriasObject } from "../schemas/materias";
+import { getMateriasByDepartamento, getMateriasByNucleo, getPrelacionesDeMateria } from "../utils/graph";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
----
 
-<Layout>
-	<Welcome />
-</Layout>
+const m = await Astro.callAction(actions.materias.getAll, {} );
+const materias = m.data as IMateriasObject;
+
+
+let prelaciones: string[] = [];
+let prelacionesFiltered: string[] = [];
+
+// console.log('Prelaciones de la materia:',materias['0425803T'].nombre);
+// getPrelacionesDeMateria(materias, '0425803T', prelaciones);
+// prelacionesFiltered = prelaciones.filter((codigo, index) => prelaciones.indexOf(codigo) === index);
+// console.log('Prelaciones filtradas:', prelacionesFiltered);
+console.log('Materias del Departamento de Ciencia Sociales:');
+console.log(getMateriasByDepartamento(materias, 'Departamento de Ciencia Sociales'));
+
+console.log('Materias del Nucleo de Ingeniería de la información')
+console.log(getMateriasByNucleo(materias,"Ingeniería de la información"))
+
+
+
+---	

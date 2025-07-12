@@ -17,7 +17,7 @@ type Materia struct {
 	Electiva      bool      `json:"electiva"`
 	Departamento  string    `json:"departamento"`
 	Nucleo        string    `json:"nucleo"`
-	Semestre      int       `json:"semester"`
+	Semestre      int       `json:"semestre"`
 	UC_requeridas *int      `json:"uc_requeridas"`
 	Prelaciones   []*string `json:"prelaciones"`
 }
