@@ -1,7 +1,7 @@
 ---
 import { actions } from "astro:actions";
 import type { IMateriasObject } from "../schemas/materias";
-import { getBestPath, getDesbloqueablesDeMateria, getMateriasByDepartamento, getMateriasByNucleo, getPrelacionesDeMateria, getRemainingSemestres } from "../utils/graph";
+import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getMateriasByDepartamento, getMateriasByNucleo, getPrelacionesDeMateria, getRemainingSemestres } from "../utils/graph";
 import { de } from "zod/v4/locales";
 
 
@@ -18,27 +18,34 @@ let desbloqueablesFiltered: string[] = [];
 // console.log('Prelaciones de la materia:',materias['0425803T'].nombre);
 // getPrelacionesDeMateria(materias, '0425803T', prelaciones);
 // prelacionesFiltered = prelaciones.filter((codigo, index) => prelaciones.indexOf(codigo) === index);
-// console.log('Prelaciones filtradas:', prelacionesFiltered);
+// console.log('Prelaciones:', prelacionesFiltered);
+
 // console.log('Materias del Departamento de Ciencia Sociales:');
 // console.log(getMateriasByDepartamento(materias, 'Departamento de Ciencia Sociales'));
 
-// console.log('Materias del Nucleo de Ingeniería de la información')
-// console.log(getMateriasByNucleo(materias,"Ingeniería de la información"))
+// console.log('Materias del Nucleo de Tecnología básicas')
+// console.log(getMateriasByNucleo(materias,"Tecnología básicas"))
 
 // console.log('Prelaciones de la materia:',materias['0135701T'].nombre);
 // getPrelacionesDeMateria(materias, '0135701T', prelaciones);
 // prelacionesFiltered = prelaciones.filter((codigo, index) => prelaciones.indexOf(codigo) === index)
 // console.log('Prelaciones filtradas:', prelacionesFiltered);
 
-console.log('Desbloqueables de la materia:',materias['0425501T'].nombre);
-getDesbloqueablesDeMateria(materias, '0425501T', desbloqueables);
+console.log('Desbloqueables de la materia:',materias['0826101T'].nombre);
+getDesbloqueablesDeMateria(materias, '0826101T', desbloqueables);
 desbloqueablesFiltered = desbloqueables.filter((codigo, index) => desbloqueables.indexOf(codigo) === index);
 console.log('Desbloqueables filtrados:', desbloqueablesFiltered);
 
-// console.log(`Mejor semestre tomando como materias base: \n${materias['0826301T'].nombre} \n${materias['0846302T'].nombre} \n${materias['0416304T'].nombre} \n${materias['1013401T'].nombre} \n${materias['1012207T'].nombre}  \ny un máximo de 16 UC`);
-// console.log(getBestPath(materias, ['0826301T','0846302T','0416304T','1013401T','1012207T'], 16));
+// console.log(`Mejor semestre tomando como materias base: \n${materias['0826301T'].nombre} \n${materias['0846302T'].nombre} \n${materias['0416304T'].nombre} \n${materias['1013401T'].nombre} \n${materias['1012207T'].nombre}  \ny un máximo de 17 UC`);
+// console.log(getBestPath(materias, ['0826301T','0846302T','0416304T','1013401T','1012207T'], 17));
 
-console.log('semestres restantes: ', getRemainingSemestres(materias, ['0914201T','0425501T','0135701T','0436505T']))
+// console.log(`Mejor semestre tomando como materias base: \n${materias['0412101T'].nombre} \n${materias['0415102T'].nombre} \n${materias['0826101T'].nombre} \n${materias['0834102T'].nombre} \n${materias['1023202T'].nombre}  \ny un máximo de 15 UC`);
+// console.log(getBestPath(materias, ['0412101T','0415102T','0826101T','0834102T','1023202T'], 15));
+
+// console.log(`Mejor intensivo tomando como materias base: \n${materias['0826301T'].nombre} \n${materias['0846302T'].nombre} \n${materias['0416304T'].nombre} \n${materias['1013401T'].nombre} \n${materias['1012207T'].nombre}  \n`);
+// console.log(getBestPathIntesivo(materias, ['0826301T','0846302T','0416304T','1013401T','1012207T'], 5));
+
+// console.log('semestres restantes: ', getRemainingSemestres(materias, ['0914201T','0425501T','0135701T','0436505T']))
 
 
 ---	

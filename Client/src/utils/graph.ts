@@ -6,7 +6,7 @@ export function getPrelacionesDeMateria(materias: IMateriasObject, codigo: strin
     }
 
     materias[codigo].prelaciones.forEach((prelacion) => {
-        prelaciones.push(prelacion)
+        prelaciones.push(materias[prelacion].nombre)
         getPrelacionesDeMateria(materias, prelacion, prelaciones);
     });
     return ;
@@ -18,7 +18,7 @@ export function getDesbloqueablesDeMateria(materias: IMateriasObject, codigo: st
     }
 
     materias[codigo].desbloqueables.forEach((desbloqueable) => {
-        desbloqueables.push(desbloqueable);
+        desbloqueables.push(materias[desbloqueable].nombre);
         getDesbloqueablesDeMateria(materias, desbloqueable, desbloqueables);
     });
     return ;
@@ -51,13 +51,14 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
     codigos.forEach((codigo) => {
         if (materias[codigo].desbloqueables[0] != null) {    
             materias[codigo].desbloqueables.forEach((desbloqueable) => {
-
+              
                 let materiasArray: string[] = []
                 getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);
                 
                 let materiasDes= materiasArray.filter((codigo, index) => materiasArray.indexOf(codigo) === index);
                 materiasWithDesbloqueables.push({
                     "codigo": desbloqueable,
+                    "nombre": materias[desbloqueable].nombre,
                     "desbloqueables": materiasDes.length, 
                     "uc": materias[desbloqueable].uc
                 } as IMateriasBest);
@@ -66,15 +67,29 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
     });
 
     materiasWithDesbloqueables.sort((a,b) => b.desbloqueables - a.desbloqueables)
+
+    let materiasWithDesbloqueablesFiltrada: IMateriasBest[] = materiasWithDesbloqueables.filter((o,index,arr) => 
+        arr.findIndex(item => JSON.stringify(item) === JSON.stringify(o)) === index);
+    
     let ucTotal = 0;
-    materiasWithDesbloqueables.forEach((materia) => {
+    materiasWithDesbloqueablesFiltrada.forEach((materia) => {
         if (ucTotal + materia.uc <= uc) {
             ucTotal += materia.uc;
             materiasBest.push(materia);
         }
     });
-
+    console.log('Runito gato pequeño');
     return materiasBest;
+}
+
+export function getBestPathIntesivo(materias: IMateriasObject, codigos: string[], uc: number): IMateriasBest[] {
+    if (uc > 10) {
+        throw new Error("No pueden ser mas de 10 uc");
+    }
+    let materiasWithDesbloqueables: IMateriasBest[] = getBestPath(materias, codigos, uc);
+    materiasWithDesbloqueables.sort((a,b) => b.desbloqueables - a.desbloqueables)
+
+    return materiasWithDesbloqueables.slice(0, 3)
 }
 
 export function getRemainingSemestres(materias: IMateriasObject, codigos: string[]): number {
@@ -92,9 +107,8 @@ export function getRemainingSemestres(materias: IMateriasObject, codigos: string
     });
     materiasPending.sort((a,b) => b.length - a.length)
     console.log('Materias pendientes:', materiasPending);
-
-  
     return materiasPending[0].length
 }
+
 
 

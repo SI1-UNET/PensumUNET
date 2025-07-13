@@ -35,7 +35,8 @@ export interface IMateriasObject {
 
 export interface IMateriasBest {
 		codigo: string;
+		nombre: string;
 		desbloqueables: number;
-		uc: number; // Optional, if you want to include uc in the best path
+		uc: number; 
 	
 }
