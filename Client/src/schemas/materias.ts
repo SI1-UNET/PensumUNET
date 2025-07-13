@@ -10,6 +10,7 @@
 	semestre:      number,      
 	uc_requeridas: number | null,
 	prelaciones:   string[] | [],
+	desbloqueables: string[] | []
   }
 
 	export interface IMateriasBySemester {
@@ -28,5 +29,13 @@ export interface IMateriasObject {
 		semestre: number;
 		uc_requeridas: number | null;
 		prelaciones: string[] | [];
+		desbloqueables: string[] | []
 	};
+}
+
+export interface IMateriasBest {
+		codigo: string;
+		desbloqueables: number;
+		uc: number; // Optional, if you want to include uc in the best path
+	
 }

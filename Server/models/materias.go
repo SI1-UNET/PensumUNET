@@ -20,6 +20,7 @@ type Materia struct {
 	Semestre      int       `json:"semestre"`
 	UC_requeridas *int      `json:"uc_requeridas"`
 	Prelaciones   []*string `json:"prelaciones"`
+	Debloqueables []*string `json:"desbloqueables"`
 }
 
 func GetAllMaterias() ([]Materia, error) {
@@ -35,13 +36,15 @@ func GetAllMaterias() ([]Materia, error) {
 		n.nombre,
 		s.semestre,
 		uc.min_uc,
-		ARRAY_AGG(prl.codigo_prel) AS prelaciones
+		ARRAY_AGG(DISTINCT prl.codigo_prel) AS prelaciones,
+		ARRAY_AGG(DISTINCT des.codigo_mat) AS debloqueables
 	FROM materia m
 	JOIN departamento d ON m.id_departamento = d.id
 	JOIN nucleo n ON m.id_nucleo = n.id
 	JOIN semestre_mat_carrera s ON m.codigo = s.codigo_materia
 	LEFT JOIN prelacion_uc uc ON m.codigo = uc.codigo_mat
 	LEFT JOIN prelacion_mat prl ON m.codigo = prl.codigo_mat
+	LEFT JOIN prelacion_mat des ON m.codigo = des.codigo_prel
 	GROUP BY s.semestre, m.codigo, d.nombre, n.nombre, uc.min_uc;`
 
 	rows, err := config.PsqlDB.Query(context.Background(), query)
@@ -54,7 +57,7 @@ func GetAllMaterias() ([]Materia, error) {
 	var materias []Materia
 	for rows.Next() {
 		var m Materia
-		err := rows.Scan(&m.Codigo, &m.Nombre, &m.Info, &m.Uc, &m.Horas_estudio, &m.Electiva, &m.Departamento, &m.Nucleo, &m.Semestre, &m.UC_requeridas, &m.Prelaciones)
+		err := rows.Scan(&m.Codigo, &m.Nombre, &m.Info, &m.Uc, &m.Horas_estudio, &m.Electiva, &m.Departamento, &m.Nucleo, &m.Semestre, &m.UC_requeridas, &m.Prelaciones, &m.Debloqueables)
 		if err != nil {
 			log.Printf("Error fetching Materias: %v", err)
 			return materias, err
