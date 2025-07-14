@@ -8,7 +8,7 @@
 	departamento:  string,   
 	nucleo:        string,    
 	semestre:      number,      
-	uc_requeridas: number | null,
+	uc_requeridas: number,
 	prelaciones:   string[] | [],
 	desbloqueables: string[] | []
   }
@@ -27,7 +27,7 @@ export interface IMateriasObject {
 		departamento: string;
 		nucleo: string;
 		semestre: number;
-		uc_requeridas: number | null;
+		uc_requeridas: number;
 		prelaciones: string[] | [];
 		desbloqueables: string[] | []
 	};
@@ -38,5 +38,6 @@ export interface IMateriasBest {
 		nombre: string;
 		desbloqueables: number;
 		uc: number; 
+		uc_min: number;
 	
 }

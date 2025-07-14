@@ -51,7 +51,7 @@ export const materias = {
                     nucleo: materia.nucleo,
                     departamento: materia.departamento,
                     semestre: materia.semestre,
-                    uc_requeridas: materia.uc_requeridas,
+                    uc_requeridas: (materia.uc_requeridas) ? materia.uc_requeridas : 0,
                     prelaciones: materia.prelaciones,
                     desbloqueables: materia.desbloqueables
                 }

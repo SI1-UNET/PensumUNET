@@ -69,7 +69,7 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
 ('0425801T', 'Sistemas De Información II', 3, FALSE, 6, 1, 3, ''),
 ('0425803T', 'Simulación De Sistemas', 3, FALSE, 6, 1, 3, ''),
 ('0843814T', 'Sistemas Distribuidos', 3, FALSE, 8, 1, 2, ''),
-('1113404T', 'Ecología Y Contaminación Ambiental', 4, FALSE, 4, 4, 4, ''),
+('1113404T', 'Ecología Y Contaminación Ambiental', 2, FALSE, 4, 4, 4, ''),
 ('0123614T', 'Gestión Tecnológica', 2, TRUE, 4, 1, 4, ''),
 ('0123801T', 'Organización', 2, TRUE, 4, 6, 4, ''),
 ('0423805T', 'Administración De Base De Datos', 2, TRUE, 4, 1, 3, ''),
@@ -87,6 +87,7 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
 
 INSERT INTO public.prelacion_uc (codigo_mat, min_uc, id_carrera) VALUES
 ('1023202T', 12, 1),
+('1000000T', 78, 1),
 ('1000003T', 78, 1),
 ('1000001T', 78, 1),
 ('0233809T', 90, 1),

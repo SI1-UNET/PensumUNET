@@ -1,12 +1,22 @@
 import type {IMateriasBest, IMateriasObject } from "../schemas/materias";
 
+export function getMateriasHuerfanas(materias: IMateriasObject): string[] {
+    let materiasHuerfanas: string[] = [];
+    for (const codigo in materias) {
+        if (materias[codigo].prelaciones[0] == null) {
+            materiasHuerfanas.push(codigo);
+        }
+    }
+    return materiasHuerfanas;
+}
+
 export function getPrelacionesDeMateria(materias: IMateriasObject, codigo: string, prelaciones: string[]) {
     if (materias[codigo].prelaciones[0] == null) {
         return;
     }
 
     materias[codigo].prelaciones.forEach((prelacion) => {
-        prelaciones.push(materias[prelacion].nombre)
+        prelaciones.push(prelacion)
         getPrelacionesDeMateria(materias, prelacion, prelaciones);
     });
     return ;
@@ -18,7 +28,7 @@ export function getDesbloqueablesDeMateria(materias: IMateriasObject, codigo: st
     }
 
     materias[codigo].desbloqueables.forEach((desbloqueable) => {
-        desbloqueables.push(materias[desbloqueable].nombre);
+        desbloqueables.push(desbloqueable);
         getDesbloqueablesDeMateria(materias, desbloqueable, desbloqueables);
     });
     return ;
@@ -44,10 +54,12 @@ export function getMateriasByNucleo(materias: IMateriasObject, nucleo: string): 
     return materiasFiltradas;
 }
 
-export function getBestPath(materias: IMateriasObject, codigos: string[], uc: number): IMateriasBest[] {
+export function getBestPath(materias: IMateriasObject, codigos: string[], uc: number, uc_aprobadas: number): IMateriasBest[] {
     let materiasWithDesbloqueables: IMateriasBest[] = [];
     let materiasBest: IMateriasBest[] = [];
-   
+
+    let materiasHuerfanas = getMateriasHuerfanas(materias);
+
     codigos.forEach((codigo) => {
         if (materias[codigo].desbloqueables[0] != null) {    
             materias[codigo].desbloqueables.forEach((desbloqueable) => {
@@ -60,33 +72,56 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
                     "codigo": desbloqueable,
                     "nombre": materias[desbloqueable].nombre,
                     "desbloqueables": materiasDes.length, 
-                    "uc": materias[desbloqueable].uc
+                    "uc": materias[desbloqueable].uc,
+                    "uc_min": materias[desbloqueable].uc_requeridas
+                    
                 } as IMateriasBest);
             });           
         }
     });
 
-    materiasWithDesbloqueables.sort((a,b) => b.desbloqueables - a.desbloqueables)
+    materiasHuerfanas.forEach((codigo) => {
+        let materiasArray: string[] = []
+        getDesbloqueablesDeMateria(materias, codigo, materiasArray);     
+        let materiasHuerfanasDes= materiasArray.filter((codigo, index) => materiasArray.indexOf(codigo) === index);
+   
+        if(!materiasHuerfanasDes.some(desbloqueable => codigos.includes(desbloqueable))){
+        
+            materiasWithDesbloqueables.push({
+                "codigo": codigo,
+                "nombre": materias[codigo].nombre,
+                "desbloqueables": materiasHuerfanasDes.length,
+                "uc": materias[codigo].uc,
+                "uc_min": materias[codigo].uc_requeridas
+                
+            } as IMateriasBest);}
+    });
 
+    materiasWithDesbloqueables.sort((a,b) => b.desbloqueables - a.desbloqueables)
+   
     let materiasWithDesbloqueablesFiltrada: IMateriasBest[] = materiasWithDesbloqueables.filter((o,index,arr) => 
         arr.findIndex(item => JSON.stringify(item) === JSON.stringify(o)) === index);
     
     let ucTotal = 0;
     materiasWithDesbloqueablesFiltrada.forEach((materia) => {
-        if (ucTotal + materia.uc <= uc) {
+        
+        if((materias[materia.codigo].prelaciones.every(prelacion => codigos.includes(prelacion)) || materias[materia.codigo].prelaciones[0] == null) 
+        && !codigos.includes(materia.codigo) 
+        && materias[materia.codigo].uc_requeridas <= uc_aprobadas
+        && ucTotal + materia.uc <= uc) {
+
             ucTotal += materia.uc;
             materiasBest.push(materia);
         }
     });
-    console.log('Runito gato pequeño');
     return materiasBest;
 }
 
-export function getBestPathIntesivo(materias: IMateriasObject, codigos: string[], uc: number): IMateriasBest[] {
+export function getBestPathIntesivo(materias: IMateriasObject, codigos: string[], uc: number, uc_aprobadas: number): IMateriasBest[] {
     if (uc > 10) {
         throw new Error("No pueden ser mas de 10 uc");
     }
-    let materiasWithDesbloqueables: IMateriasBest[] = getBestPath(materias, codigos, uc);
+    let materiasWithDesbloqueables: IMateriasBest[] = getBestPath(materias, codigos, uc, uc_aprobadas);
     materiasWithDesbloqueables.sort((a,b) => b.desbloqueables - a.desbloqueables)
 
     return materiasWithDesbloqueables.slice(0, 3)
