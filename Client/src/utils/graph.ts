@@ -1,9 +1,9 @@
 import type {IMateriasBest, IMateriasObject } from "../schemas/materias";
 
-export function getMateriasHuerfanas(materias: IMateriasObject): string[] {
+export function getMateriasHuerfanas(materias: IMateriasObject, uc_aprobadas: number): string[] {
     let materiasHuerfanas: string[] = [];
     for (const codigo in materias) {
-        if (materias[codigo].prelaciones[0] == null) {
+        if (materias[codigo].prelaciones[0] == null && materias[codigo].uc_requeridas <= uc_aprobadas) {
             materiasHuerfanas.push(codigo);
         }
     }
@@ -16,8 +16,9 @@ export function getPrelacionesDeMateria(materias: IMateriasObject, codigo: strin
     }
 
     materias[codigo].prelaciones.forEach((prelacion) => {
+    if(!prelacion.includes(prelacion)) {        
         prelaciones.push(prelacion)
-        getPrelacionesDeMateria(materias, prelacion, prelaciones);
+        getPrelacionesDeMateria(materias, prelacion, prelaciones);}
     });
     return ;
 }
@@ -28,8 +29,9 @@ export function getDesbloqueablesDeMateria(materias: IMateriasObject, codigo: st
     }
 
     materias[codigo].desbloqueables.forEach((desbloqueable) => {
+        if(!desbloqueables.includes(desbloqueable)) {
         desbloqueables.push(desbloqueable);
-        getDesbloqueablesDeMateria(materias, desbloqueable, desbloqueables);
+        getDesbloqueablesDeMateria(materias, desbloqueable, desbloqueables);}
     });
     return ;
 }
@@ -37,40 +39,36 @@ export function getDesbloqueablesDeMateria(materias: IMateriasObject, codigo: st
 export function getBestPath(materias: IMateriasObject, codigos: string[], uc: number, uc_aprobadas: number): IMateriasBest[] {
     let materiasWithDesbloqueables: IMateriasBest[] = [];
     let materiasBest: IMateriasBest[] = [];
-
-    let materiasHuerfanas = getMateriasHuerfanas(materias);
+    let materiasHuerfanas = getMateriasHuerfanas(materias, uc_aprobadas);
 
     codigos.forEach((codigo) => {
         if (materias[codigo].desbloqueables[0] != null) {    
             materias[codigo].desbloqueables.forEach((desbloqueable) => {
-              
+
                 let materiasArray: string[] = []
                 getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);
-                
-                let materiasDes= materiasArray.filter((codigo, index) => materiasArray.indexOf(codigo) === index);
+            
                 materiasWithDesbloqueables.push({
                     "codigo": desbloqueable,
                     "nombre": materias[desbloqueable].nombre,
-                    "desbloqueables": materiasDes.length, 
+                    "desbloqueables": materiasArray.length, 
                     "uc": materias[desbloqueable].uc,
                     "uc_min": materias[desbloqueable].uc_requeridas
                     
                 } as IMateriasBest);
-            });           
+            });        
         }
     });
 
     materiasHuerfanas.forEach((codigo) => {
         let materiasArray: string[] = []
         getDesbloqueablesDeMateria(materias, codigo, materiasArray);     
-        let materiasHuerfanasDes= materiasArray.filter((codigo, index) => materiasArray.indexOf(codigo) === index);
-   
-        if(!materiasHuerfanasDes.some(desbloqueable => codigos.includes(desbloqueable))){
+        if(!materiasArray.some(desbloqueable => codigos.includes(desbloqueable)) && materias[codigo].uc_requeridas <= uc_aprobadas ){
         
             materiasWithDesbloqueables.push({
                 "codigo": codigo,
                 "nombre": materias[codigo].nombre,
-                "desbloqueables": materiasHuerfanasDes.length,
+                "desbloqueables": materiasArray.length,
                 "uc": materias[codigo].uc,
                 "uc_min": materias[codigo].uc_requeridas
                 
@@ -87,7 +85,6 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
         
         if((materias[materia.codigo].prelaciones.every(prelacion => codigos.includes(prelacion)) || materias[materia.codigo].prelaciones[0] == null) 
         && !codigos.includes(materia.codigo) 
-        && materias[materia.codigo].uc_requeridas <= uc_aprobadas
         && ucTotal + materia.uc <= uc) {
 
             ucTotal += materia.uc;

@@ -5,7 +5,6 @@ import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getMateri
 import { de } from "zod/v4/locales";
 import { getRemainingSemestres } from "../utils/misc";
 
-
 const m = await Astro.callAction(actions.materias.getAll, {id:1} );
 const materias = m.data as IMateriasObject;
 
@@ -56,7 +55,23 @@ let desbloqueablesFiltered: string[] = [];
 // let materiasHuerfanas = getMateriasHuerfanas(materias);////
 // console.log('Materias huérfanas: ', materiasHuerfanas);
 
-console.log('semestres restantes', getRemainingSemestres(112, 156, 12));
 
+// console.log(`Mejor semestre tomando como materias base: 
+// ${materias['1023111T'].nombre}, ${materias['1012207T'].nombre}, ${materias['1023302T'].nombre} 
+// ${materias['1032109T'].nombre}, ${materias['1032301T'].nombre}, ${materias['0914201T'].nombre} 
+// ${materias['0834501T'].nombre}, ${materias['0425501T'].nombre}, ${materias['0436505T'].nombre} 
+// ${materias['0236509T'].nombre}, ${materias['0826401T'].nombre}, ${materias['0423804T'].nombre} 
+// y un máximo de 12 UC con 74 uc aprobadas`);
+
+console.log('ru')
+console.time('getBestPath');
+console.log(getBestPath(materias, ['1023111T','1012207T','1023302T','1032301T', '1032109T', '1000003T','1000000T','1000001T', '0914201T','0425601T','0435607T','0435606T','0425701T','0423804T'],19, 112));
+console.timeEnd('getBestPath');
+
+// console.log('semestres restantes', getRemainingSemestres(74, 156, 12));
+
+// console.time('getBestPath');
+// console.log(getBestPath(materias, ['0826301T','0846302T','0842303L','1013401T','1023302T','0415405T', '0423305T'], 15,50));
+// console.timeEnd('getBestPath');
 ---	
   

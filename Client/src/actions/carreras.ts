@@ -1,12 +1,12 @@
 import { defineAction } from 'astro:actions';
 import { z } from 'astro:content';
 import { getSecret } from 'astro:env/server';
-import type { IMaterias, IMateriasBySemester, IMateriasObject } from '../schemas/materias';
 import { de } from 'zod/v4/locales';
+import type { ICarrera } from '../schemas/carreras';
 
 const SERVER_ADDRESS = getSecret("SERVER_ADDRESS")
 
-export const materias = {
+export const carreras = {
     get: defineAction({
         handler: async (input,context) => {
             try {
