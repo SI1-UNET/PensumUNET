@@ -7,8 +7,8 @@ INSERT INTO public.departamento (id, nombre) VALUES
 (6, 'Departamento de Ingenieria Industrial'),
 (7, 'Departamento');
 
-INSERT INTO public.carreras (id, nombre) VALUES
-(1, 'Ingeniería en Informática');
+INSERT INTO public.carreras (id, nombre, uc_total) VALUES
+(1, 'Ingeniería en Informática',156);
 
 INSERT INTO public.nucleo (id, nombre, id_departamento) VALUES
 (1, 'Tecnología básicas', 1),
@@ -106,7 +106,9 @@ INSERT INTO public.prelacion_uc (codigo_mat, min_uc, id_carrera) VALUES
 ('0433817T', 105, 1),
 ('1013308T', 120, 1),
 ('0400002T', 125, 1),
+('0424902T', 126, 1),
 ('0400001T', 156, 1);
+
 
 INSERT INTO public.prelacion_mat (codigo_prel, codigo_mat, id_carrera) VALUES
 ('0415102T', '0416207T', 1),

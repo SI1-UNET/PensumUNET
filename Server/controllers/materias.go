@@ -5,6 +5,7 @@ import (
 	"Server/models"
 	"encoding/json"
 	"net/http"
+	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -32,6 +33,30 @@ func GetMateriasDeDepartamento(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Unable to get stops"))
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Header().Add("Status-Code", "200")
+	json.NewEncoder(w).Encode(materias)
+
+}
+
+func GetMateriasDeCarrera(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte("param {:id} must be an integer"))
+		return
+	}
+
+	var materia models.Materia
+	materia.Id_carrera = id
+	materias, err := materia.GetAllMateriasByCarrera(config.PsqlDB)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Unable to get materias"))
 		return
 	}
 

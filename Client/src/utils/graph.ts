@@ -34,26 +34,6 @@ export function getDesbloqueablesDeMateria(materias: IMateriasObject, codigo: st
     return ;
 }
 
-export function getMateriasByDepartamento(materias: IMateriasObject, departamento: string): IMateriasObject {
- let materiasFiltradas: IMateriasObject = {};
-
- for (const materia in materias as IMateriasObject) {
-    if (materias[materia].departamento == departamento) {
-        materiasFiltradas[materia] = materias[materia];
-    }}
-    return materiasFiltradas;
-}
-
-export function getMateriasByNucleo(materias: IMateriasObject, nucleo: string): IMateriasObject {
- let materiasFiltradas: IMateriasObject = {};
-
- for (const materia in materias as IMateriasObject) {
-    if (materias[materia].nucleo == nucleo) {
-        materiasFiltradas[materia] = materias[materia];
-    }}
-    return materiasFiltradas;
-}
-
 export function getBestPath(materias: IMateriasObject, codigos: string[], uc: number, uc_aprobadas: number): IMateriasBest[] {
     let materiasWithDesbloqueables: IMateriasBest[] = [];
     let materiasBest: IMateriasBest[] = [];
@@ -127,23 +107,23 @@ export function getBestPathIntesivo(materias: IMateriasObject, codigos: string[]
     return materiasWithDesbloqueables.slice(0, 3)
 }
 
-export function getRemainingSemestres(materias: IMateriasObject, codigos: string[]): number {
-    let materiasPending: string[][] = [];
-    codigos.forEach((codigo) => {
-        if (materias[codigo].desbloqueables[0] != null) {    
-            materias[codigo].desbloqueables.forEach((desbloqueable) => {
-                let materiasArray: string[] = []
-                materiasArray.push(materias[desbloqueable].nombre)
-                getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);
-                materiasPending.push(materiasArray)
+// export function getRemainingSemestres(materias: IMateriasObject, codigos: string[]): number {
+//     let materiasPending: string[][] = [];
+//     codigos.forEach((codigo) => {
+//         if (materias[codigo].desbloqueables[0] != null) {    
+//             materias[codigo].desbloqueables.forEach((desbloqueable) => {
+//                 let materiasArray: string[] = []
+//                 materiasArray.push(materias[desbloqueable].nombre)
+//                 getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);
+//                 materiasPending.push(materiasArray)
                 
-            });           
-        }
-    });
-    materiasPending.sort((a,b) => b.length - a.length)
-    console.log('Materias pendientes:', materiasPending);
-    return materiasPending[0].length
-}
+//             });           
+//         }
+//     });
+//     materiasPending.sort((a,b) => b.length - a.length)
+//     console.log('Materias pendientes:', materiasPending);
+//     return materiasPending[0].length
+// }
 
 
 

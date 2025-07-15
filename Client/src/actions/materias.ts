@@ -28,6 +28,27 @@ export const materias = {
           }
         }
     }),
+    getAllMateriasByCarrera : defineAction({
+        input: z.object({
+            id: z.string(),
+        }),
+        handler: async (input,context) => {
+            try {
+              const res = await fetch(`http://${SERVER_ADDRESS}/materias/${input.id}/all`,{
+                  method: "GET",
+                  headers: context.request.headers
+              });
+
+              if (!res.ok) {
+                  throw new Error(`Error fetching thesis data: ${res.statusText}`);
+              }
+              return res.json();
+            
+          } catch (error) {
+              throw new Error(`Error fetching thesis data: ${error}`);
+          }
+        }
+    }),
     getAll: defineAction({
        handler: async (input, context) => {
             const res = await fetch(`http://${SERVER_ADDRESS}/materias/all`, {

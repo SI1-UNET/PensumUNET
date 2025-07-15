@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS public.carreras
 (
     id smallserial NOT NULL,
     nombre character varying(90) NOT NULL,
+    uc_total integer NOT NULL,
     PRIMARY KEY (id)
 );
 
