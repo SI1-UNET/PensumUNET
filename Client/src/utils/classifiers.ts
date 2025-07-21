@@ -18,4 +18,4 @@ export function getMateriasByNucleo(materias: IMateriasObject, nucleo: string): 
         materiasFiltradas[materia] = materias[materia];
     }}
     return materiasFiltradas;
-}
+} 

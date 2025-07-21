@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS public.materia
     electiva boolean NOT NULL,
     id_departamento integer NOT NULL,
     id_nucleo integer NOT NULL,
+    correquisito boolean NOT NULL,
     PRIMARY KEY (codigo)
 );
 

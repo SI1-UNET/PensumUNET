@@ -4,7 +4,8 @@
 	info:          string,    
 	uc:            number,     
 	horas_estudio: string,    
-	electiva:      boolean,      
+	electiva:      boolean, 
+	correquisito: boolean,     
 	departamento:  string,   
 	nucleo:        string,    
 	semestre:      number,      
@@ -24,6 +25,7 @@ export interface IMateriasObject {
 		uc: number;
 		horas_estudio: string;
 		electiva: boolean;
+		correquisito: boolean,
 		departamento: string;
 		nucleo: string;
 		semestre: number;

@@ -5,8 +5,9 @@ import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getMateri
 import { de } from "zod/v4/locales";
 import { getRemainingSemestres } from "../utils/misc";
 
-const m = await Astro.callAction(actions.materias.getAll, {id:1} );
+const m = await Astro.callAction(actions.materias.getAllMateriasByCarrera, {id:"1"} );
 const materias = m.data as IMateriasObject;
+console.log('Materias cargadas:', materias['0826301T']);
 
 
 let prelaciones: string[] = [];
@@ -46,8 +47,8 @@ let desbloqueablesFiltered: string[] = [];
 // console.log(`Mejor semestre tomando como materias base: \n${materias['1023111T'].nombre},  ${materias['1012207T'].nombre},  ${materias['1023302T'].nombre} \n${materias['1000003T'].nombre},  ${materias['1000000T'].nombre},  ${materias['1000001T'].nombre} \n${materias['1032109T'].nombre},  ${materias['1032301T'].nombre},  ${materias['0914201T'].nombre} \n ${materias['0425601T'].nombre},  ${materias['0435607T'].nombre},  ${materias['0435606T'].nombre} \n${materias['0425701T'].nombre},  ${materias['0423804T'].nombre} \ny un máximo de 19 UC con 112 uc aprobadas`);
 // console.log(getBestPath(materias, ['1023111T','1012207T','1023302T','1032301T', '1032109T', '1000003T','1000000T','1000001T', '0914201T','0425601T','0435607T','0435606T','0425701T','0423804T'], 19, 112));
 
-// console.log(`Mejor semestre tomando como materias base: \n${materias['0826301T'].nombre} \n${materias['0134805T'].nombre} \n${materias['0416304T'].nombre} \n${materias['0423305T'].nombre} \n${materias['0834405T'].nombre} \n${materias['0842303L'].nombre} \n${materias['0846302T'].nombre} \n${materias['1032301T'].nombre} \n${materias['1032601T'].nombre} \ny un máximo de 12 UC`);
-// console.log(getBestPath(materias, ['0826301T','0134805T','0416304T','0423305T','0834405T','0842303L','0846302T', '1032301T','1032601T'], 12));
+console.log(`Mejor semestre tomando como materias base: \n${materias['0826301T'].nombre} \n${materias['0134805T'].nombre} \n${materias['0416304T'].nombre} \n${materias['0423305T'].nombre} \n${materias['0834405T'].nombre} \n${materias['0842303L'].nombre} \n${materias['0846302T'].nombre} \n${materias['1032301T'].nombre} \n${materias['1032601T'].nombre} \ny un máximo de 12 UC`);
+console.log(getBestPath(materias, ['0826301T','0134805T','0416304T','0423305T','0834405T','0842303L','0846302T', '1032301T','1032601T'], 12, 60));
 
 // console.log(`Mejor semestre tomando como materias base: \n${materias['0416207T'].nombre} \n${materias['1032109T'].nombre} \n${materias['1023111T'].nombre} \n${materias['0846203T'].nombre} \n${materias['0826201T'].nombre} \n${materias['0416304T'].nombre} \n${materias['0423305T'].nombre} \n${materias['1012207T'].nombre} \n${materias['0842204L'].nombre} \n${materias['1023302T'].nombre} \n${materias['1032301T'].nombre} \n${materias['0914201T'].nombre} \ny un máximo de 14 UC`);
 // console.log(getBestPath(materias, ['0416207T','1032109T', '1023111T','0846203T','0826201T','0416304T','0423305T','1012207T','0842204L','1023302T','1032301T','0914201T'], 14, 20));
@@ -63,10 +64,10 @@ let desbloqueablesFiltered: string[] = [];
 // ${materias['0236509T'].nombre}, ${materias['0826401T'].nombre}, ${materias['0423804T'].nombre} 
 // y un máximo de 12 UC con 74 uc aprobadas`);
 
-console.log('ru')
-console.time('getBestPath');
-console.log(getBestPath(materias, ['1023111T','1012207T','1023302T','1032301T', '1032109T', '1000003T','1000000T','1000001T', '0914201T','0425601T','0435607T','0435606T','0425701T','0423804T'],19, 112));
-console.timeEnd('getBestPath');
+// console.log('ru')
+// console.time('getBestPath');
+// console.log(getBestPath(materias, ['1023111T','1012207T','1023302T','1032301T', '1032109T', '1000003T','1000000T','1000001T', '0914201T','0425601T','0435607T','0435606T','0425701T','0423804T'],19, 112));
+// console.timeEnd('getBestPath');
 
 // console.log('semestres restantes', getRemainingSemestres(74, 156, 12));
 

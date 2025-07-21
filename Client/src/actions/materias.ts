@@ -42,7 +42,26 @@ export const materias = {
               if (!res.ok) {
                   throw new Error(`Error fetching thesis data: ${res.statusText}`);
               }
-              return res.json();
+                const materias = await res.json();
+
+                const materiasObj = Object.assign({}, ...(materias as IMaterias[]).map(materia=> ({
+                    [materia.codigo]: {
+                        nombre: materia.nombre,
+                        info: materia.info,
+                        uc: materia.uc,
+                        horas: materia.horas_estudio,
+                        electiva: materia.electiva,
+                        correquisito: materia.correquisito,
+                        nucleo: materia.nucleo,
+                        departamento: materia.departamento,
+                        semestre: materia.semestre,
+                        uc_requeridas: (materia.uc_requeridas) ? materia.uc_requeridas : 0,
+                        prelaciones: materia.prelaciones,
+                        desbloqueables: materia.desbloqueables
+                    }
+                    })));
+
+                return materiasObj as IMateriasObject;
             
           } catch (error) {
               throw new Error(`Error fetching thesis data: ${error}`);

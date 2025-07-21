@@ -29,17 +29,29 @@ func InitDB(db *pgx.Conn) {
 }
 
 func LoadSampleData(db *pgx.Conn) {
-	sqlScript, err := getSqlScript("sample_data.sql")
-	if err != nil {
-		log.Fatalln("Error reading sample_data.sql", err)
+
+	infoScripts := []string{
+		"sample_data.sql",
+		"tables/materias.sql",
+		"tables/prelaciones_uc.sql",
+		"tables/prelaciones_mat.sql",
+		"tables/semestre_mat_carrera.sql",
 	}
-	err = runSqlScript(db, sqlScript)
-	if err != nil {
-		log.Fatalln("Error executing sample_data.sql", err)
+
+	for _, fileName := range infoScripts {
+		sqlScript, err := getSqlScript(fileName)
+		if err != nil {
+			log.Fatalln("Error reading sample data", err)
+		}
+		err = runSqlScript(db, sqlScript)
+		if err != nil {
+			log.Fatalln("Error executing sample data", err)
+		}
 	}
 }
 
 func getSqlScript(fileName string) (string, error) {
+
 	mydir, err := os.Getwd()
 	if err != nil {
 		return "", err
