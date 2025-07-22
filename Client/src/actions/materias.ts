@@ -51,11 +51,11 @@ export const materias = {
                         uc: materia.uc,
                         horas: materia.horas_estudio,
                         electiva: materia.electiva,
-                        correquisito: materia.correquisito,
                         nucleo: materia.nucleo,
                         departamento: materia.departamento,
                         semestre: materia.semestre,
                         uc_requeridas: (materia.uc_requeridas) ? materia.uc_requeridas : 0,
+                        correquisito: materia.correquisito,
                         prelaciones: materia.prelaciones,
                         desbloqueables: materia.desbloqueables
                     }

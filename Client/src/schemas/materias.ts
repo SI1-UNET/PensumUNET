@@ -4,12 +4,12 @@
 	info:          string,    
 	uc:            number,     
 	horas_estudio: string,    
-	electiva:      boolean, 
-	correquisito: boolean,     
+	electiva:      boolean,  
 	departamento:  string,   
 	nucleo:        string,    
 	semestre:      number,      
 	uc_requeridas: number,
+	correquisito: string[] | [],
 	prelaciones:   string[] | [],
 	desbloqueables: string[] | []
   }
