@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CourseGraph from '../components/diagram';
+import Testo from '../components/test';
 // import { useEffect, useState } from "preact/hooks"; // Import from "preact/hooks"
 import transformar_info from '../utils';
 import type { Node, Edge } from '../types'; // Import types for client-side state
@@ -46,7 +47,7 @@ const departamentos = JSON.stringify([
 ]);
 
 const info_materias = JSON.stringify([
-  {"codigo": "CJP000", "nombre": "Introducción al Derecho", "info": "Info 0", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
+  {"codigo": "CJP000", "nombre": "Introducción al perreo", "info": "Info 0", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
   {"codigo": "CJP001", "nombre": "Derecho Romano", "info": "Info 1", "uc": 4, "horas_estudio": 8, "id_departamento": 1},
   {"codigo": "CJP002", "nombre": "Teoría General del Proceso", "info": "Info 2", "uc": 3, "horas_estudio": 6, "id_departamento": 1},
   {"codigo": "CJP003", "nombre": "Derecho Civil I", "info": "Info 3", "uc": 4, "horas_estudio": 8, "id_departamento": 1},
@@ -64,8 +65,6 @@ const [nodes, edges] = transformar_info( materias, prelaciones_mat, prelaciones_
 
 <Layout title="test">
     <div id="myDiagram" class="bg-[#ffffff] size-full">
-        <CourseGraph client:load nodes={nodes} edges={edges} />
+        <Testo client:load nodes={nodes} edges={edges} />
     </div>
 </Layout>
-
-<!-- <script type="module" src="go-debug.js"> -->

@@ -30,6 +30,13 @@ export default function transformar_info ( materiasJson: string, prelaciones_mat
             return null;
         }
 
+        const departamento = arr_dep.find((d) => d.id === infoMateria.id_departamento);
+
+        if (!departamento) {
+            console.warn(`Información para el departamento ${infoMateria.id_departamento} no encontrada.`);
+            return null;
+        }
+
         if (numSemestre <= 0 || numSemestre > maxSemestre) { // Adjusted condition for validity
             console.warn(`Número de semestre inválido (${numSemestre}) para la materia ${m.codigo}.`);
             return null;
@@ -47,6 +54,9 @@ export default function transformar_info ( materiasJson: string, prelaciones_mat
         return {
             id: m.codigo,
             content: infoMateria.nombre,
+            uc: infoMateria.uc,
+            departamento: departamento.nombre,
+            info: infoMateria.info,
             x: xPos,
             y: yPos,
             // If you want to add tooltip, you'd fetch the department name here:

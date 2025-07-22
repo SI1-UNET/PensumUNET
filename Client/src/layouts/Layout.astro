@@ -14,14 +14,14 @@ import "../styles/global.css";
         <title>{title}</title>
 	</head>
 	<body>
-        <div class="flex flex-row border-b-3 border-[#1063ab] justify-between relative">
+        <div class="flex flex-row border-b-3 border-[#00519f] justify-between relative">
             <div class="flex flex-row items-center mb-4">
                 <img src={unet_logo.src} class="ml-16 mt-4 mr-4 size-24">
-                <h1 class="text-5xl font-[League_Gothic] text-[#1063ab]">Tu pensum UNET</h1>
+                <h1 class="text-5xl font-[League_Gothic] text-[#00519f]">Tu pensum UNET</h1>
             </div>
             <div class="self-end relative -bottom-[2px] flex flex-row gap-x-4">
-                <button id="btnPlanificaciones" class="text-xl font-[Poppins] text-[#1063ab] px-4">Planificador</button>
-                <button id="btnPrelaciones" class="text-xl font-[Poppins] text-[#1063ab] px-4 mr-8">Prelaciones</button>
+                <button id="btnPlanificaciones" class="text-xl font-[Poppins] text-[#00519f] px-4">Planificador</button>
+                <button id="btnPrelaciones" class="text-xl font-[Poppins] text-[#00519f] px-4 mr-8">Prelaciones</button>
             </div>
         </div>
 		<slot />
@@ -41,15 +41,16 @@ import "../styles/global.css";
         background-color: #ffffff;
 	}
     button {
-        background-color: #1063ab;
+        background-color: #00519f;
         color: #ffffff;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
+
     .active {
         background-color: #ffffff;
-        border:#1063ab solid 3px;
-        color: #1063ab;
+        border: #00519f solid 3px;
+        color: #00519f;
         border-bottom: none;
     }
 </style>

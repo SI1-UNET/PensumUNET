@@ -1,6 +1,9 @@
 export interface Node {
     id: string;
     content: string;
+    uc: number;
+    departamento: string;
+    info: string;
     x: number;
     y: number;
     width: number;

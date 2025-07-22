@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "preact/hooks"; // Import from "preact/hooks"
 import type { Node, Edge } from '../types'; // Type imports are correct
-import * as d3 from "d3";
+// import * as d3 from "d3";
+// import { containsServerDirective } from "astro/runtime/server/render/server-islands.js";
 
 interface CourseGraphProps {
     nodes: Node[];
@@ -25,27 +26,33 @@ function calculateTextSize(text: string,font_family: string, font_size: string, 
     return [width,height];
 }
 
-function calculateSVGWidth(nodes: Node[], nodeXSpacing: number): number {
+function calculateSVGSize(nodes: Node[], padding: number): [number, number] {
     const nodeWidth = 260;
-    const width = (Math.max(...nodes.map(n => n.x)) + 1) * (nodeWidth + nodeXSpacing);
+    const width = Math.max(...nodes.map(n => n.x)) + nodeWidth + padding;
+    const height = Math.max(...nodes.map(n => n.y + n.height)) + padding;
+    // const width = Math.max(...nodes.map(n => n.x)) + nodeWidth;
+    // const height = Math.max(...nodes.map(n => n.y + n.height));
 
-    return width;
+    return [width, height];
 }
 
-function calculateNodesSizeAndPos(nodes: Node[], nodeXSpacing: number, nodeYSpacing: number) {
+function calculateNodesSizeAndPos(nodes: Node[], nodeXSpacing: number, nodeYSpacing: number, padding: number) {
     const nodesWidth = 260;
     nodes.forEach((node, index) => {
         const [_, height] = calculateTextSize(node.content,"Poppins", "12px", String(nodesWidth) + "px");
         node.height = height;
         node.width = nodesWidth;
         if (node.x == 0) {
-            node.x = 0;
+            node.x = 0 + padding;
+            // node.x = 0;
         } else {
-            node.x = node.x * nodeXSpacing + node.x * nodesWidth;
+            node.x = node.x * nodeXSpacing + node.x * nodesWidth + padding;
+            // node.x = node.x * nodeXSpacing + node.x * nodesWidth;
         }
 
         if (node.y == 0) {
-            node.y = 0;
+            node.y = 0 + padding;
+            // node.y = 0;
         } else {
             node.y = nodes[index - 1].y + nodes[index - 1].height + nodeYSpacing;
         }
@@ -64,6 +71,9 @@ export default function CourseGraph({ nodes, edges }: CourseGraphProps) {
 
     const svgRef = useRef<SVGSVGElement | null>(null);
 
+    // const border = [20, 20, 20, 20];
+    const padding = 20;
+
     useEffect(() => {
         const svgElement = svgRef.current;
         if (!svgElement) {
@@ -80,19 +90,23 @@ export default function CourseGraph({ nodes, edges }: CourseGraphProps) {
         const svg = d3.select(svgElement);
         svg.selectAll("*").remove();
 
-        const width = calculateSVGWidth(nodes, 20);
-        console.log(width);
-        const height = 1000;
+        calculateNodesSizeAndPos(nodes, 20, 20, padding);
+
+        const [width, height] = calculateSVGSize(nodes, padding);
         svg.attr("width", width)
            .attr("height", height);
 
-        calculateNodesSizeAndPos(nodes, 20, 20);
+        console.log(`svg width = ${width}, svg height = ${height}`)
+        console.log(`window width = ${window.innerWidth}, window height = ${window.innerHeight}`)
 
         // nodes.forEach(node => {
         //     console.log(`contenido = ${node.content}, x = ${node.x}, y = ${node.y}, width = ${node.width}, height = ${node.height}`)
         // });
         //
-        const g = svg.append("g");
+        const g = svg.append("g")
+            .attr("class", "container");
+            // .attr("transform", `translate(${padding}, ${padding})`);
+
 
         const nodeElements = g.selectAll<SVGGElement, Node>(".node") // Specify types for selectAll
                               .data(nodes)
@@ -108,9 +122,27 @@ export default function CourseGraph({ nodes, edges }: CourseGraphProps) {
                     .attr("y", d => d.y)
                     .attr("fill", "#1063ab")
                     .attr("stroke", "#1063ab")
-                    .attr("stroke-width", 1.5)
+                    // .attr("stroke-width", 1.5)
                     .attr("rx", 5)
                     .attr("ry", 5);
+
+        nodeElements.append("rect")
+                    .attr("width", d => d.width - 4)
+                    .attr("height", d => d.height - 4)
+                    .attr("x", d => d.x + d.width / 2)
+                    .attr("y", d => d.y + 2)
+                    .attr("fill", "#ffffff")
+                    .attr("stroke", "#ffffff")
+                    .attr("rx", 5)
+                    .attr("ry", 5);
+
+        nodeElements.append("rect")
+                    .attr("width", d => 20)
+                    .attr("height", d => d.height - 4)
+                    .attr("x", d => d.x + d.width / 2)
+                    .attr("y", d => d.y + 2)
+                    .attr("fill", "#ffffff")
+                    .attr("stroke", "#ffffff")
 
         nodeElements.append("text")
                     // .attr("x", d => d.x + d.width / 2)
@@ -124,6 +156,21 @@ export default function CourseGraph({ nodes, edges }: CourseGraphProps) {
                     .style("font-size", "12px")
                     .style("font-family", "Poppins")
                     .style("pointer-events", "none");
+
+
+        const zoomWidth = width > window.innerWidth  ? window.innerWidth : height;
+        const zoomHeight = height > window.innerHeight ? window.innerHeight : height;
+
+        const zoom = d3.zoom<SVGSVGElement, unknown>()
+        .extent([[0, 0], [zoomWidth, zoomHeight]])
+        .translateExtent([[0,0], [width, height]])
+        .scaleExtent([1, 1])
+        .on('zoom', (event) => {
+            console.log(`event.transform: x=${event.transform.x}, y=${event.transform.y}`);
+            g.attr('transform', event.transform);
+        });
+
+        svg.call(zoom).on("wheel.zoom", null);
 
 
         // const nodesElements = g.selectAll(".node")
@@ -318,147 +365,10 @@ export default function CourseGraph({ nodes, edges }: CourseGraphProps) {
     }, [nodes, edges]); // Re-run effect if nodes or edges change
 
     return (
-        <div style={{ overflow: 'scroll', border: '1px solid #ff0000' }}>
+        // <div style={{ overflow: 'scroll', border: '1px solid #ff0000' }}>
+        // <div style={{ overflow: 'scroll'}}>
+        <div>
             <svg ref={svgRef}></svg>
         </div>
     );
 }
-
-// export default CourseGraph;
-
-// export default function Curriculum({
-//     // materias,
-//     // prelaciones_mat,
-//     // prelaciones_uc,
-//     // semestres,
-//     // departamentos,
-//     // info_materias,
-//     // xSpacing,
-//     // ySpacing
-// }) {
-//
-//     materias,
-//     prelaciones_mat,
-//     prelaciones_uc,
-//     semestres,
-//     departamentos,
-//     info_materias,
-//     xSpacing,
-//     ySpacing
-//     const { nodes, aristas } = transformar_info(materias, prelaciones_mat, prelaciones_uc, semestres, departamentos, info_materias, xSpacing, ySpacing);
-//
-//     const svgRef = useRef();
-//     const [tooltip, setTooltip] = useState({ visible: false, content: '', x: 0, y: 0 });
-//
-//     useEffect(() => {
-//         const svg = d3.select(svgRef.current);
-//         svg.selectAll("*").remove(); // Limpia para redibujar
-//
-//         const width = 800;
-//         const height = 600;
-//         svg.attr("width", width).attr("height", height);
-//
-//         // Posicionamiento de nodos
-//         const xSpacing = 200;
-//         const ySpacing = 100;
-//
-//         // Asignar coordenadas
-//         const nodesWithCoords = data.nodes.map(n => ({
-//             ...n,
-//             xCoord: n.x * xSpacing + 100,
-//             yCoord: n.y * ySpacing + 50,
-//         }));
-//
-//         // Dibujar enlaces (edges)
-//         svg.selectAll("line")
-//             .data(data.edges)
-//             .enter()
-//             .append("line")
-//             .attr("x1", d => nodesWithCoords.find(n => n.id === d.from).xCoord)
-//             .attr("y1", d => nodesWithCoords.find(n => n.id === d.from).yCoord)
-//             .attr("x2", d => nodesWithCoords.find(n => n.id === d.to).xCoord)
-//             .attr("y2", d => nodesWithCoords.find(n => n.id === d.to).yCoord)
-//             .attr("stroke", "#ccc")
-//             .attr("stroke-width", 2);
-//
-//         // Dibujar nodos
-//         svg.selectAll("rect")
-//             .data(nodesWithCoords)
-//             .enter()
-//             .append("rect")
-//             .attr("x", d => d.xCoord - 60)
-//             .attr("y", d => d.yCoord - 20)
-//             .attr("width", 120)
-//             .attr("height", 40)
-//             .attr("rx", 6)
-//             .attr("fill", "#1976d2")
-//             .on("mouseover", (event, d) => {
-//                 setTooltip({
-//                     visible: true,
-//                     content: d.tooltip || '',
-//                     x: event.pageX + 10,
-//                     y: event.pageY - 10,
-//                 });
-//             })
-//             .on("mousemove", event => {
-//                 setTooltip(prev => ({ ...prev, x: event.pageX + 10, y: event.pageY - 10 }));
-//             })
-//             .on("mouseout", () => {
-//                 setTooltip({ visible: false, content: '', x: 0, y: 0 });
-//             });
-//
-//         // Dibujar texto
-//         svg.selectAll("text")
-//             .data(nodesWithCoords)
-//             .enter()
-//             .append("text")
-//             .attr("x", d => d.xCoord)
-//             .attr("y", d => d.yCoord + 5)
-//             .attr("text-anchor", "middle")
-//             .attr("fill", "white")
-//             .attr("font-size", "12px")
-//             .text(d => d.id);
-//
-//     }, [data]);
-//
-//     return (
-//         <div style={{ position: 'relative' }}>
-//             <svg ref={svgRef}></svg>
-//             {tooltip.visible && (
-//                 <div style={{
-//                     position: 'absolute',
-//                     top: tooltip.y,
-//                     left: tooltip.x,
-//                     background: 'white',
-//                     border: '2px solid black',
-//                     padding: '10px',
-//                     borderRadius: '8px',
-//                     maxWidth: '250px',
-//                     fontSize: '12px',
-//                     pointerEvents: 'none',
-//                     boxShadow: '0px 4px 12px rgba(0,0,0,0.2)',
-//                     zIndex: 100,
-//                 }}
-//                     dangerouslySetInnerHTML={{ __html: tooltip.content }}
-//                 />
-//             )}
-//         </div>
-//     );
-// };
-//
-//
-//
-// // const x = d3.scaleLinear([0, data.length - 1], [marginLeft, width - marginRight]);
-// // const y = d3.scaleLinear(d3.extent(data), [height - marginBottom, marginTop]);
-// // const line = d3.line((d, i) => x(i), y);
-// //
-// // k
-// // return (
-// //   <svg width={width} height={height}>
-// //     <path fill="none" stroke="currentColor" strokeWidth="1.5" d={line(data)} />
-// //     <g fill="white" stroke="currentColor" strokeWidth="1.5">
-// //       {data.map((d, i) => (<circle key={i} cx={x(i)} cy={y(d)} r="2.5" />))}
-// //     </g>
-// //   </svg>
-// // );
-// }
