@@ -101,5 +101,5 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('0643910T', 2, 9),
 ('0643922T', 2, 9),
 --- Ingeniería Mecánica - Trabajo de Aplicación Profesional 
-('0400002T', 1, 10), 
-('0400001T', 1, 10);
+('0600002T', 2, 10), 
+('0600001T', 2, 10);

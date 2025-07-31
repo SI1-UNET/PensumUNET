@@ -15,6 +15,7 @@ func Init(router *mux.Router) {
 
 	// Rest API routes
 	api.PathPrefix("/materias").Handler(MateriasRoutes())
+	api.PathPrefix("/courses").Handler(CarrerasRoutes())
 
 	// Health check
 	router.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {

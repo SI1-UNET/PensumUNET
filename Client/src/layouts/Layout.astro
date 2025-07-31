@@ -1,6 +1,11 @@
 ---
 import Image from "astro/components/Image.astro";
 import { Navbar } from "../components/navbar";
+import { actions } from "astro:actions";
+
+const c = await Astro.callAction(actions.carreras.get, {});
+const carreras = c.data;
+console.log('carreras:', carreras);
 
 ---
 
@@ -17,7 +22,7 @@ import { Navbar } from "../components/navbar";
 		<title>Astro Basics</title>
 	</head>
 	<body>
-		<Navbar client:load/>
+		<Navbar carreras={carreras} client:only/>
 		<slot />
 	</body>
 </html>

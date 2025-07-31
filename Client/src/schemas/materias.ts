@@ -45,3 +45,8 @@ export interface IMateriasBest {
 		uc_min: number;
 	
 }
+export interface ICarrera {
+		id: number;
+		nombre: string;
+		uc_total: number;
+}

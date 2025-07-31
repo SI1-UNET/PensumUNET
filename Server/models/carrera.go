@@ -15,10 +15,8 @@ type Carrera struct {
 func GetAllCarreras() ([]Carrera, error) {
 	query := `
 	SELECT 
-		id, 
-		nombre,
-		uc_total 
-	FROM Carreras;`
+		*
+	FROM carreras;`
 
 	rows, err := config.PsqlDB.Query(context.Background(), query)
 	if err != nil {

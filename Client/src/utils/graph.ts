@@ -40,12 +40,8 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
     let materiasWithDesbloqueables: IMateriasBest[] = [];
     let materiasBest: IMateriasBest[] = [];
     let materiasHuerfanas = getMateriasHuerfanas(materias, uc_aprobadas);
-   
-
     codigos.forEach((codigo) => {
-        if (materias[codigo].desbloqueables[0] != null) {    
-            
-            
+        if (materias[codigo].desbloqueables[0] != null) {        
             materias[codigo].desbloqueables.forEach((desbloqueable) => {
                 let materiasArray: string[] = []
                 if(materias[desbloqueable].uc_requeridas <= uc_aprobadas){     

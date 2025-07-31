@@ -44,9 +44,6 @@ export const GraphInfo= ({materias}: Props) =>{
           <ul class="flex flex-col gap-8">
            {Object.entries(materiasList).map(
             ([codigo, materia]: [string, IMateriasObject]) => (
-              materia.electiva 
-              ? null 
-              :
               <div class="flex relative"> 
               <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
                 ${
@@ -99,10 +96,24 @@ export const GraphInfo= ({materias}: Props) =>{
                     </div>
                     <div class="p-2">
                       <p>
+                        <span class="font-bold">Codigo:</span> {codigo}
+                      </p>
+                      <p>
+                        <span class="font-bold">Info:</span> {materia.info.split("/").map((line, idx) => (
+                          <span key={idx}>
+                            {line}
+                            {idx < materia.info.split("/").length - 1 && <br />}
+                          </span>
+                        ))}
+                      </p>
+                      <p>
                         <span class="font-bold">Nucleo:</span> {materia.nucleo}
                       </p>
                       <p>
                         <span class="font-bold">UC Requeridas:</span> {materia.uc_requeridas} 
+                      </p>
+                       <p>
+                        <span class="font-bold">Electiva:</span> {materia.electiva ? "Si" : "No"} 
                       </p>
                     </div>
                   </div>
@@ -132,6 +143,7 @@ export const GraphPlanner= ({materias}: Props) =>{
   const [intensivo, setIntensivo] = useState<boolean>(false)
   const [maximasUC, setMaximasUC] = useState<number>(0);
   const [uc, setUC] = useState<number>(0);
+  const [electivaRecomendadas, setElectivaRecomendadas] = useState<number>(0);
  
 
   const handleMateriaClick = (codigo: string) => {
@@ -167,6 +179,12 @@ export const GraphPlanner= ({materias}: Props) =>{
     materiasBestArray.forEach((materia) => {
       materiasBestCode.push(materia.codigo);
     })
+    let electivas = 0 
+    materiasBestCode.map((codigo) => {
+      if(materias[codigo].electiva) {
+        electivas++;
+      }})
+    setElectivaRecomendadas(electivas);
     setMateriasRecomendadas(materiasBestCode);
   }
 
@@ -179,7 +197,9 @@ export const GraphPlanner= ({materias}: Props) =>{
           <ul class="flex flex-col gap-8">
            {Object.entries(materiasList).map(
             ([codigo, materia]: [string, IMateriasObject]) => (
-              
+              materia.electiva 
+              ? null 
+              :
               <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
                 ${
                   materiasSelected.includes(codigo) 
@@ -221,6 +241,33 @@ export const GraphPlanner= ({materias}: Props) =>{
               
       
             ))}
+            {  parseInt(semester)== 10 &&
+            <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
+                ${
+                  electivaRecomendadas > 0  
+                  ? "border-accent-100"
+                  : "border-secondary"
+                  }
+                  `}
+               >
+                <span class={`w-full px-2 py-6 
+                  ${
+                  electivaRecomendadas > 0
+                  ? "bg-accent-100"
+                  : "bg-secondary"
+                  }
+                `}>
+                  Electivas Recomendadas
+                </span>
+                <span class={`flex items-center justify-center  font-bold w-[60px] py-1 text-center
+                  ${
+                  electivaRecomendadas > 0
+                  ? "text-accent-100"
+                  : "text-secondary"
+                  }
+                  `}>{electivaRecomendadas}</span>
+              </li>
+            }
           </ul>
         </div>
       ))}

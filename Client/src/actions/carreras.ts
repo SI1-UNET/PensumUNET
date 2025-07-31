@@ -9,7 +9,7 @@ const SERVER_ADDRESS = getSecret("SERVER_ADDRESS")
 export const carreras = {
     get: defineAction({
         handler: async (input,context) => {
-            try {
+    
               const res = await fetch(`http://${SERVER_ADDRESS}/courses/all`,{
                   method: "GET",
                   headers: context.request.headers
@@ -20,9 +20,6 @@ export const carreras = {
               }
               return res.json();
             
-          } catch (error) {
-              throw new Error(`Error fetching carreras: ${error}`);
-          }
         }
     }),
 }
