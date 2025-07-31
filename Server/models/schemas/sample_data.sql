@@ -10,9 +10,11 @@ INSERT INTO public.departamento (id, nombre) VALUES
 (9, 'Departamento de Ingeniería Ambiental');
 
 
+
 INSERT INTO public.carreras (id, nombre, uc_total) VALUES
 (1, 'Ingeniería en Informática',156),
 (2, 'Ingeniería Mecánica', 168 );
+
 
 INSERT INTO public.nucleo (id, nombre, id_departamento) VALUES
 (1, 'Nucleo', 1),

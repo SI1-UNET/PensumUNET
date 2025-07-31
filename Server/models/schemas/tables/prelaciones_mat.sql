@@ -9,6 +9,7 @@ INSERT INTO public.prelacion_mat (codigo_prel, codigo_mat, id_carrera) VALUES
 ('0416207T', '0416304T', 1),
 ('0846203T', '0846302T', 1),
 ('0846203T', '0842204L', 1),
+('0842204L', '0846302T', 1),
 ('0826201T', '0826301T', 1),
 ('0826201T', '0846302T', 1),
 ('0416304T', '0415405T', 1),
@@ -47,6 +48,8 @@ INSERT INTO public.prelacion_mat (codigo_prel, codigo_mat, id_carrera) VALUES
 ('0425801T', '0425901T', 1),
 ('0843814T', '0425901T', 1),
 ('1013401T', '1032601T', 1),
+('1000001T', '1000002T', 1),
+('1000001T', '1000003T', 1),
 -- Ingeniería Mecánica - Semestre II
 ('0914201T','0912202L', 2),
 ('0826101T','0846203T', 2),

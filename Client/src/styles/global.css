@@ -1,1 +1,45 @@
 @import "tailwindcss";
+
+@theme{
+    --color-transparent: transparent;
+    --color-primary: #1062ab;
+    --color-primary-100: #6891b4; 
+    --color-primary-200: #a8c6f0;
+    --color-secondary: #7f7876;
+    --color-accent: #76BC91;
+    --color-accent-100: #51A471;
+
+    --font-DmSans: "DM Sans",sans-serif;
+    --font-LeagueGothic: "League Gothic", sans-serif;
+}
+
+
+
+*{
+    font-family: Poppins, sans-serif;
+}
+
+
+html, body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+.font-league-gothic {
+    font-family: 'League Gothic', sans-serif;
+}
+.font-dm-sans {
+    font-family: 'DM Sans', sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove arrows from number input in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

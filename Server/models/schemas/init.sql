@@ -12,6 +12,10 @@ ALTER TABLE IF EXISTS public.prelacion_mat DROP CONSTRAINT IF EXISTS None;
 
 ALTER TABLE IF EXISTS public.prelacion_mat DROP CONSTRAINT IF EXISTS None;
 
+ALTER TABLE IF EXISTS public.prelacion_corr DROP CONSTRAINT IF EXISTS None;
+
+ALTER TABLE IF EXISTS public.prelacion_corr DROP CONSTRAINT IF EXISTS None;
+
 ALTER TABLE IF EXISTS public.prelacion_mat DROP CONSTRAINT IF EXISTS None;
 
 ALTER TABLE IF EXISTS public.semestre_mat_carrera DROP CONSTRAINT IF EXISTS None;
@@ -32,7 +36,6 @@ CREATE TABLE IF NOT EXISTS public.materia
     electiva boolean NOT NULL,
     id_departamento integer NOT NULL,
     id_nucleo integer NOT NULL,
-    correquisito boolean NOT NULL,
     PRIMARY KEY (codigo)
 );
 
@@ -82,6 +85,17 @@ CREATE TABLE IF NOT EXISTS public.prelacion_uc
 (
     id serial NOT NULL,
     min_uc integer NOT NULL,
+    codigo_mat character varying(8) NOT NULL,
+    id_carrera integer NOT NULL,
+    PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS public.prelacion_corr;
+
+CREATE TABLE IF NOT EXISTS public.prelacion_corr
+(
+    id serial NOT NULL,
+    codigo_corr character varying(8) NOT NULL,
     codigo_mat character varying(8) NOT NULL,
     id_carrera integer NOT NULL,
     PRIMARY KEY (id)
@@ -170,4 +184,26 @@ ALTER TABLE IF EXISTS public.semestre_mat_carrera
     ON DELETE NO ACTION
     NOT VALID;
 
+ALTER TABLE IF EXISTS public.prelacion_corr
+    ADD FOREIGN KEY (codigo_corr)
+    REFERENCES public.materia (codigo) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+ALTER TABLE IF EXISTS public.prelacion_corr
+    ADD FOREIGN KEY (codigo_mat)
+    REFERENCES public.materia (codigo) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
+ALTER TABLE IF EXISTS public.prelacion_corr
+    ADD FOREIGN KEY (id_carrera)
+    REFERENCES public.carreras (id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
 END;
+

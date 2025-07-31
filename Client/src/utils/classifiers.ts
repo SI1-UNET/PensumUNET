@@ -1,4 +1,4 @@
-import type { IMateriasObject } from "../schemas/materias";
+import type { IMateriasBySemester, IMateriasObject } from "../schemas/materias";
 
 export function getMateriasByDepartamento(materias: IMateriasObject, departamento: string): IMateriasObject {
  let materiasFiltradas: IMateriasObject = {};
@@ -18,4 +18,16 @@ export function getMateriasByNucleo(materias: IMateriasObject, nucleo: string): 
         materiasFiltradas[materia] = materias[materia];
     }}
     return materiasFiltradas;
+} 
+
+export function getMateriasBySemester(materias: IMateriasObject): IMateriasBySemester {
+    let materiasSemestre: IMateriasBySemester = {};
+    for (const codigo in materias) {
+        const semestre = materias[codigo].semestre;
+        if (!materiasSemestre[semestre]) {
+            materiasSemestre[semestre] = {};
+        }
+        materiasSemestre[semestre][codigo] = materias[codigo];
+    }
+    return materiasSemestre;
 } 

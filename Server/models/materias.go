@@ -20,7 +20,7 @@ type Materia struct {
 	Nucleo        string    `json:"nucleo"`
 	Semestre      int       `json:"semestre"`
 	UC_requeridas *int      `json:"uc_requeridas"`
-	Correquisito  []*string `json:"correquisito"`
+	Correquisito  *string   `json:"correquisito"`
 	Prelaciones   []*string `json:"prelaciones"`
 	Debloqueables []*string `json:"desbloqueables"`
 }
@@ -34,11 +34,11 @@ func GetAllMaterias() ([]Materia, error) {
 		m.uc, 
 		m.horas_estudio,
 		m.electiva,
-		m.correquisito,
 		d.nombre,
 		n.nombre,
 		s.semestre,
 		uc.min_uc,
+		co.correquisito,
 		ARRAY_AGG(DISTINCT prl.codigo_prel) AS prelaciones,
 		ARRAY_AGG(DISTINCT des.codigo_mat) AS debloqueables
 	FROM materia m
@@ -46,6 +46,7 @@ func GetAllMaterias() ([]Materia, error) {
 	JOIN nucleo n ON m.id_nucleo = n.id
 	JOIN semestre_mat_carrera s ON m.codigo = s.codigo_materia
 	LEFT JOIN prelacion_uc uc ON m.codigo = uc.codigo_mat
+	LEFT JOIN prelacion_corr co ON s.codigo_materia = co.codigo_mat AND co.id_carrera = @id_carrera
 	LEFT JOIN prelacion_mat prl ON m.codigo = prl.codigo_mat
 	LEFT JOIN prelacion_mat des ON m.codigo = des.codigo_prel
 	GROUP BY s.semestre, m.codigo, d.nombre, n.nombre, uc.min_uc;`
@@ -84,7 +85,7 @@ func (m *Materia) GetAllMateriasByCarrera(db *pgx.Conn) ([]Materia, error) {
 		n.nombre,
 		s.semestre,
 		uc.min_uc,
-		ARRAY_AGG(co.codigo_mat) FILTER (WHERE m.correquisito = TRUE),
+		co.codigo_mat,
 		ARRAY_AGG(DISTINCT prl.codigo_prel) AS prelaciones,
 		ARRAY_AGG(DISTINCT des.codigo_mat) AS debloqueables
 	FROM materia m
@@ -92,11 +93,11 @@ func (m *Materia) GetAllMateriasByCarrera(db *pgx.Conn) ([]Materia, error) {
 	JOIN nucleo n ON m.id_nucleo = n.id
 	JOIN semestre_mat_carrera s ON m.codigo = s.codigo_materia
 	LEFT JOIN prelacion_uc uc ON m.codigo = uc.codigo_mat
-	LEFT JOIN prelacion_mat co ON s.codigo_materia = co.codigo_prel AND co.id_carrera = @id_carrera
+	LEFT JOIN prelacion_corr co ON s.codigo_materia = co.codigo_corr AND co.id_carrera = @id_carrera
 	LEFT JOIN prelacion_mat prl ON s.codigo_materia = prl.codigo_mat AND prl.id_carrera = @id_carrera
 	LEFT JOIN prelacion_mat des ON s.codigo_materia = des.codigo_prel AND des.id_carrera = @id_carrera
 	WHERE s.id_carrera = @id_carrera
-	GROUP BY s.semestre, m.codigo, d.nombre, n.nombre, uc.min_uc;`
+	GROUP BY s.semestre, m.codigo, d.nombre, n.nombre, uc.min_uc, co.codigo_mat;`
 
 	rows, err := config.PsqlDB.Query(context.Background(), query, pgx.NamedArgs{"id_carrera": m.Id_carrera})
 	if err != nil {

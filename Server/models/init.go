@@ -35,6 +35,7 @@ func LoadSampleData(db *pgx.Conn) {
 		"tables/materias.sql",
 		"tables/prelaciones_uc.sql",
 		"tables/prelaciones_mat.sql",
+		"tables/prelaciones_corr.sql",
 		"tables/semestre_mat_carrera.sql",
 	}
 

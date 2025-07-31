@@ -5,10 +5,12 @@ import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getMateri
 import { de } from "zod/v4/locales";
 import { getRemainingSemestres } from "../utils/misc";
 import "../styles/global.css";
-const m = await Astro.callAction(actions.materias.getAllMateriasByCarrera, {id:"2"} );
+import Layout from "../layouts/Layout.astro";
+import { getMateriasBySemester } from "../utils/classifiers";
+import {GraphInfo } from "../components/graph";
+const m = await Astro.callAction(actions.materias.getAllMateriasByCarrera, {id:"1"} );
 const materias = m.data as IMateriasObject;
 // console.log('Materias cargadas:', materias['0826101T'].prelaciones[0]);
-
 
 let prelaciones: string[] = [];
 let desbloqueables: string[] = [];
@@ -21,8 +23,8 @@ let desbloqueablesFiltered: string[] = [];
 // prelacionesFiltered = prelaciones.filter((codigo, index) => prelaciones.indexOf(codigo) === index);
 // console.log('Prelaciones:', prelacionesFiltered);
 
-// console.log('Desbloqueables de la materia:',materias['1023202T'].nombre);
-// getDesbloqueablesDeMateria(materias, '1023202T', desbloqueables);
+// console.log('Desbloqueables de la materia:',materias['0644601T'].nombre);
+// getDesbloqueablesDeMateria(materias, '0644601T', desbloqueables);
 // desbloqueablesFiltered = desbloqueables.filter((codigo, index) => desbloqueables.indexOf(codigo) === index);
 // console.log('Desbloqueables filtrados:', desbloqueablesFiltered);
 
@@ -64,14 +66,13 @@ let desbloqueablesFiltered: string[] = [];
 // ${materias['0236509T'].nombre}, ${materias['0826401T'].nombre}, ${materias['0423804T'].nombre} 
 // ${materias['0435606T'].nombre}, ${materias['0424604T'].nombre}, ${materias['0425601T'].nombre}
 // ${materias['0435607T'].nombre}}
-// y un máximo de 19 UC con 112 uc aprobadas`);
+// y un máximo de 12 UC con 112 uc aprobadas`);
 
-// console.log('ru')
 // console.time('getBestPath');
-// console.log(getBestPath(materias, ['1023111T','1012207T','1023302T','1032301T', '1032109T', '1000003T','1000002T','1000001T', '0914201T','0425601T','0435607T','0435606T','0425701T','0423804T','0424604T'],19, 112));
+// console.log(getBestPath(materias, ['1023111T','1012207T','1023302T','1032301T', '1032109T', '1000003T','1000002T','1000001T', '0914201T','0425601T','0435607T','0435606T','0425701T','0423804T','0424604T'],12, 112));
 // console.timeEnd('getBestPath');
 
-console.log(materias['0634503T'])
+// console.log(materias['0634503T'])
 
 // console.log(`Mejor semestre tomando como materias base: 
 // ${materias['0826401T'].nombre}, ${materias['0846302T'].nombre}, ${materias['0842303L'].nombre} 
@@ -79,20 +80,23 @@ console.log(materias['0634503T'])
 // ${materias['0415102T'].nombre}, ${materias['0642101T'].nombre}, ${materias['0644103T'].nombre} 
 // ${materias['0924301T'].nombre}, ${materias['0922302L'].nombre}, ${materias['0644302T'].nombre}, 
 // ${materias['0626401T'].nombre}, ${materias['0615405T'].nombre}, ${materias['1012207T'].nombre}
-// ${materias['0634403T'].nombre}, ${materias['0834403T'].nombre}}
+// ${materias['0634403T'].nombre}, ${materias['0834403T'].nombre}, ${materias['0615301T'].nombre}
 // y un máximo de 12 UC con 40 uc aprobadas`);
-
 
 
 // console.time('getBestPath');
 // console.log(getBestPath(materias, 
-// ['0826401T','0846302T','0842303L','1023302T', '1032109T', '1023111T','0415102T','0642101T', '0644103T','0924301T','0922302L','0644302T', '0626401T','0634403T','0615405T','0834403T','1012207T'],
+// ['0826401T','0846302T','0842303L','1023302T', '1032109T', '1023111T','0415102T','0642101T', '0644103T','0924301T','0922302L','0644302T', '0626401T','0634403T','0615405T','0834403T','1012207T','0615301T'],
 // 16, 40));
 // console.timeEnd('getBestPath');
 
 // console.log('semestres restantes', getRemainingSemestres(74, 156, 12));
 
 // console.time('getBestPath');
-// console.log(getBestPath(materias, ['0826301T','0846302T','0842303L','1013401T','1023302T','0415405T', '0423305T'], 15,50));
+// console.log(getBestPath(materias, ['0826301T','0846302T','0842303L','1013401T','1023302T', '0423305T'], 15,50));
 // console.timeEnd('getBestPath');
 ---	
+<Layout>
+  <GraphInfo materias={materias} client:load/>
+</Layout>
+

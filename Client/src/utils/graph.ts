@@ -45,37 +45,38 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
     codigos.forEach((codigo) => {
         if (materias[codigo].desbloqueables[0] != null) {    
             
+            
             materias[codigo].desbloqueables.forEach((desbloqueable) => {
-                
                 let materiasArray: string[] = []
-                getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);
-                console.log(materias[codigo].nombre, ": ", materias[desbloqueable].nombre)
-                if(materias[desbloqueable].correquisito){
-                    console.log(materias[desbloqueable].nombre)
-                    let materiasArray: string[] = []
-                    getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);
+                if(materias[desbloqueable].uc_requeridas <= uc_aprobadas){     
+                
+                    getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);             
                     materiasWithDesbloqueables.push({
-                    "codigo": desbloqueable,
-                    "nombre": materias[desbloqueable].nombre,
-                    "desbloqueables": materiasArray.length,
-                    "correquisto": materias[desbloqueable].correquisito,
-                    "codigo_correquisito": `${materias[desbloqueable].correquisito ? codigo : null}`,
-                    "uc": materias[desbloqueable].uc,
-                    "uc_min": materias[desbloqueable].uc_requeridas
-                    
-                } as IMateriasBest);
-                }
+                        "codigo": desbloqueable,
+                        "nombre": materias[desbloqueable].nombre,
+                        "desbloqueables": materiasArray.length,
+                        "correquisito": false,
+                        "codigo_correquisito": null,
+                        "uc": materias[desbloqueable].uc,
+                        "uc_min": materias[desbloqueable].uc_requeridas
+                        
+                    } as IMateriasBest);
 
-                materiasWithDesbloqueables.push({
-                    "codigo": desbloqueable,
-                    "nombre": materias[desbloqueable].nombre,
-                    "desbloqueables": materiasArray.length,
-                    "correquisto": materias[desbloqueable].correquisito,
-                    "codigo_correquisito": `${materias[desbloqueable].correquisito ? codigo : null}`,
-                    "uc": materias[desbloqueable].uc,
-                    "uc_min": materias[desbloqueable].uc_requeridas
-                    
-                } as IMateriasBest);
+                    if(materias[desbloqueable].correquisito){
+                        let materiasCoArray: string[] = []
+                        getDesbloqueablesDeMateria(materias, desbloqueable, materiasCoArray);
+                        let correquisito = materias[desbloqueable].correquisito
+                        materiasWithDesbloqueables.push({
+                        "codigo": correquisito,
+                        "nombre": materias[correquisito].nombre,
+                        "desbloqueables": materiasCoArray.length,
+                        "correquisito": true,
+                        "codigo_correquisito": desbloqueable,
+                        "uc": materias[correquisito].uc,
+                        "uc_min": materias[correquisito].uc_requeridas
+                        
+                    } as IMateriasBest);
+                    }}
             });        
         }
     });
@@ -89,8 +90,8 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
                 "codigo": codigo,
                 "nombre": materias[codigo].nombre,
                 "desbloqueables": materiasArray.length,
-                "correquisto": materias[codigo].correquisito,
-                "codigo_correquisito": `${materias[codigo].correquisito ? codigo : null}`,
+                "correquisito": false,
+                "codigo_correquisito": null,
                 "uc": materias[codigo].uc,
                 "uc_min": materias[codigo].uc_requeridas
                 
@@ -98,16 +99,18 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
     });
 
     materiasWithDesbloqueables.sort((a,b) => b.desbloqueables - a.desbloqueables)
-   
     let materiasWithDesbloqueablesFiltrada: IMateriasBest[] = materiasWithDesbloqueables.filter((o,index,arr) => 
         arr.findIndex(item => JSON.stringify(item) === JSON.stringify(o)) === index);
-    
+
+
     let ucTotal = 0;
     materiasWithDesbloqueablesFiltrada.forEach((materia) => {
         
-        if((materias[materia.codigo].prelaciones.every(prelacion => codigos.includes(prelacion)) || materias[materia.codigo].prelaciones[0] == null) 
+        if(
+        (materias[materia.codigo].prelaciones.every(prelacion => codigos.includes(prelacion)) || materias[materia.codigo].prelaciones[0] == null || materia.correquisito )
         && !codigos.includes(materia.codigo) 
-        && ucTotal + materia.uc <= uc) {
+        && ucTotal + materia.uc <= uc
+        && ((materia.correquisito && materia.codigo_correquisito !== null && materiasBest.some(m => m.codigo === materia.codigo_correquisito)) || !materia.correquisito)) {
 
             ucTotal += materia.uc;
             materiasBest.push(materia);
