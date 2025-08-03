@@ -2,12 +2,19 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import type { IMateriasBest, IMateriasBySemester, IMateriasObject } from "../schemas/materias"
 import { getBestPath, getDesbloqueablesDeMateria, getPrelacionesDeMateria } from "../utils/graph";
 import { getMateriasBySemester } from "../utils/classifiers";
+import { getRemainingSemestres, getUC } from "../utils/misc";
+import { RecomendationWindow } from "./recommendation";
+import { set } from "zod/v4";
 
-type Props = {
+type PropsInfo = {
   materias: IMateriasObject
 }
 
-export const GraphInfo= ({materias}: Props) =>{
+type PropsPlanner = PropsInfo & {
+  uc_total: number
+}
+
+export const GraphInfo= ({materias}: PropsInfo) =>{
   
   const materiasBySemester = getMateriasBySemester(materias);
 
@@ -99,9 +106,11 @@ export const GraphInfo= ({materias}: Props) =>{
                         <span class="font-bold">Codigo:</span> {codigo}
                       </p>
                       <p>
+                        {/* @ts-ignore*/}
                         <span class="font-bold">Info:</span> {materia.info.split("/").map((line, idx) => (
                           <span key={idx}>
                             {line}
+                            {/* @ts-ignore*/}
                             {idx < materia.info.split("/").length - 1 && <br />}
                           </span>
                         ))}
@@ -133,7 +142,7 @@ export const GraphInfo= ({materias}: Props) =>{
 
 }
 
-export const GraphPlanner= ({materias}: Props) =>{
+export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
   
   const materiasBySemester = getMateriasBySemester(materias);
 
@@ -144,6 +153,11 @@ export const GraphPlanner= ({materias}: Props) =>{
   const [maximasUC, setMaximasUC] = useState<number>(0);
   const [uc, setUC] = useState<number>(0);
   const [electivaRecomendadas, setElectivaRecomendadas] = useState<number>(0);
+  const [electivasVistas, setElectivasVistas ] = useState<number>(0);
+  const [semestresRestantes, setSemestresRestantes] = useState<number>(0);
+  const [recommendationDone, setRecommentadionDone] = useState<boolean>(false)  
+  const [showRecomendation, setShowRecomendation] = useState<boolean>(false);
+
  
 
   const handleMateriaClick = (codigo: string) => {
@@ -165,9 +179,10 @@ export const GraphPlanner= ({materias}: Props) =>{
     }
     else {
       setMateriasSelected(prev => [...prev, codigo]);
-      
       getPrelacionesDeMateria(materias, codigo, materiasVistas);
       setVistas(prev => [...prev, ...materiasVistas]);
+
+
    
       
     }
@@ -175,6 +190,7 @@ export const GraphPlanner= ({materias}: Props) =>{
 
   const handlePlanner = () => {
     let materiasBestCode: string[] = [];
+    setUC((getUC(materias, [...materiasSelected, ...vistas]) + electivasVistas*2));
     const materiasBestArray: IMateriasBest[]  = getBestPath(materias, materiasSelected, maximasUC, uc)
     materiasBestArray.forEach((materia) => {
       materiasBestCode.push(materia.codigo);
@@ -186,6 +202,8 @@ export const GraphPlanner= ({materias}: Props) =>{
       }})
     setElectivaRecomendadas(electivas);
     setMateriasRecomendadas(materiasBestCode);
+    setSemestresRestantes(getRemainingSemestres(getUC(materias, [...materiasSelected, ...vistas])+ electivasVistas*2 , uc_total ,maximasUC));
+    setRecommentadionDone(true);
   }
 
   return(
@@ -226,7 +244,7 @@ export const GraphPlanner= ({materias}: Props) =>{
                   : "bg-secondary"
                   }
                 `}> {materia.nombre}</span>
-                <span class={`flex items-center justify-center  font-bold w-[60px] py-1 text-center
+                <span class={`flex items-center justify-center  font-bold min-w-[50px] py-1 text-center
                   ${
                    materiasSelected.includes(codigo) 
                   ? "text-primary" 
@@ -242,6 +260,7 @@ export const GraphPlanner= ({materias}: Props) =>{
       
             ))}
             {  parseInt(semester)== 10 &&
+            <>
             <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
                 ${
                   electivaRecomendadas > 0  
@@ -259,20 +278,93 @@ export const GraphPlanner= ({materias}: Props) =>{
                 `}>
                   Electivas Recomendadas
                 </span>
-                <span class={`flex items-center justify-center  font-bold w-[60px] py-1 text-center
+                <span class={`flex items-center justify-center  font-bold min-w-[50px] py-1 text-center
                   ${
                   electivaRecomendadas > 0
                   ? "text-accent-100"
                   : "text-secondary"
                   }
-                  `}>{electivaRecomendadas}</span>
+                  `}>{electivaRecomendadas}
+                </span>
+                </li>
+                <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
+                ${
+                  electivasVistas > 0  
+                  ? "border-primary outline-3 outline-primary outline-offset-6" 
+                  : "border-secondary"
+                  }
+                  `}
+               >
+                <span class={`w-full px-2 py-6 
+                  ${
+                  electivasVistas > 0
+                  ? "bg-primary"
+                  : "bg-secondary"
+                  }
+                `}>
+                  Electivas Vistas
+                </span>
+                <input 
+                  type="number"
+                  min="0"
+                  max="10"
+                  class={`flex items-center justify-center font-bold min-w-[50px] py-1 text-center border-none outline-none
+                    ${
+                    electivasVistas > 0
+                    ? "text-primary"
+                    : "text-secondary"
+                    }
+                    `}
+                    value={electivasVistas}
+                    onChange={e => setElectivasVistas(Number(e.currentTarget.value))}
+                  />
+                
+                  
               </li>
+              </>
             }
           </ul>
         </div>
       ))}
 
-      <button class="fixed right-12 bottom-54 flex justify-between rounded-lg w-[250px] border-3 border-primary bg-white text-white cursor-pointer"
+     
+      <div class="fixed left-12 bottom-6 flex flex-col p-2 py-6 gap-3">
+
+       {!intensivo && 
+        <div class=" flex justify-between rounded-lg w-[245px] border-3 border-primary text-white bg-white">
+          <span class="w-full p-2 bg-primary">
+            Semestres restantes con carga similar
+          </span>
+          <span
+            class="flex items-center justify-center font-bold w-[50px] text-center text-primary  border-none outline-none appearance-none"
+          >
+            {semestresRestantes}
+          </span>
+        </div>
+        }
+       
+
+       <div class="flex justify-between rounded-lg w-[245px] border-3 border-primary text-white bg-white">
+        <span class="w-full p-2 bg-primary">
+          UC aprobadas
+        </span>
+        <span
+          class="flex items-center justify-center font-bold w-[50px] text-center text-primary  border-none outline-none appearance-none"
+        >
+          {uc}
+        </span>
+        </div>
+        { recommendationDone &&
+        <button 
+          className="bg-primary rounded-lg text-white h-[50px] w-[245px] border-3 border-primary hover:bg-white hover:text-primary active:bg-primary active:text-white"
+          onClick={() => setShowRecomendation(!showRecomendation)}
+          >
+            Mostrar Resumen
+        </button>
+        }
+      </div>
+
+      <button class="fixed right-12 bottom-40 flex justify-between rounded-lg w-[245px] border-3 border-primary bg-white text-white cursor-pointer"
         onClick={() => setIntensivo(!intensivo)}>
         <span class="w-full p-2 bg-primary"> 
           Intensivo 
@@ -281,7 +373,7 @@ export const GraphPlanner= ({materias}: Props) =>{
           {intensivo ? "Si" : "No"}
         </span>
       </button>
-      <div class="fixed right-12 bottom-40 flex justify-between rounded-lg w-[250px] border-3 border-primary text-white cursor-pointer bg-white">
+      <div class="fixed right-12 bottom-26 flex justify-between rounded-lg w-[245px] border-3 border-primary text-white cursor-pointer bg-white">
         <span class="w-full p-2 bg-primary">
           Maximas UC a cursar
         </span>
@@ -297,28 +389,21 @@ export const GraphPlanner= ({materias}: Props) =>{
           onChange={e => setMaximasUC(Number(e.currentTarget.value))}
         />
       </div>
-      <div class="fixed right-12 bottom-26 flex justify-between rounded-lg w-[250px] border-3 border-primary text-white cursor-pointer bg-white">
-        <span class="w-full p-2 bg-primary">
-          UC aprobadas
-        </span>
-        <input
-          type="number"
-          min="0"
-          class="flex items-center justify-center font-bold w-[50px] text-center text-primary  border-none outline-none appearance-none"
-          style={{
-            WebkitAppearance: "none",
-            MozAppearance: "textfield",
-          }}
-          value={uc}
-          onChange={e => setUC(Number(e.currentTarget.value))}
-        />
-      </div>
-      <button class="fixed right-12 p-2 bg-primary bottom-12 flex justify-between rounded-lg w-[250px] border-3 border-primary text-white cursor-pointer text-center"
+      <button class="fixed right-12 p-2 bg-primary bottom-12 flex justify-between rounded-lg w-[245px] border-3 border-primary text-white cursor-pointer text-center"
         onClick={handlePlanner}
       >
           <p class="w-full text-center">Calcular</p>
       </button>
-    </div>
+      {showRecomendation &&
+      <RecomendationWindow 
+        materias={materias} 
+        codigo_sel={materiasSelected} 
+        codigos_recomendadas={materiasRecomendadas} 
+        electivas={electivasVistas} 
+        ShowRecomendation={showRecomendation}
+        setShowRecomendation={setShowRecomendation}/>
+      }
+      </div>
 
   )
 

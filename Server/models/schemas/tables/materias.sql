@@ -67,8 +67,8 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0400002T', 'Trabajo de Aplicación Profesional (Proyecto especial de grado)', 12, FALSE, 0, 2, 1, ''),
    ('0400001T', 'Trabajo de Aplicación Profesional (Pasantías Profesional)', 12, FALSE, 0, 2, 1, ''),
 -- Ingeniería Mecánica - Semestre I
-   ('0642101T', 'Introducción A La Ingeniería Mecánica', 3, FALSE, 0,8,1,''),
-   ('0644103T', 'Dibujo I', 1, FALSE, 0,8,6,''),
+   ('0642101T', 'Introducción A La Ingeniería Mecánica', 1, FALSE, 0,8,1,''),
+   ('0644103T', 'Dibujo I', 3, FALSE, 0,8,6,''),
    -- ('0007050T', 'Desarrollo Estudiantil I', 1, TRUE, 0,1,1,''),
 -- Ingeniería Mecánica - Semestre II
    ('0912202L', 'Laboratorio De Química General I', 1, FALSE, 0,5,12,''),
@@ -119,7 +119,7 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0123910T', 'Administración De Personal', 2, FALSE, 0,7,1,''),
    ('0213608L', 'Laboratorio De Tecnología Eléctrica', 1, FALSE, 0,6,1,''),
    ('0233905L', 'Laboratorio De Instrumentación Y Control', 1, FALSE, 0,6,1,''),
-   ('0234904T', 'Instrumentación Y Control', 4, FALSE, 0,6,1,''),
+   ('0234904T', 'Instrumentación Y Control', 3, FALSE, 0,6,1,''),
 -- Ingeniería Mecánica - Electivas
    ('0113616T', 'Introducción A La Ergonomía', 2, TRUE, 0,6,1,''),
    ('0233808T', 'Instrumentación Industrial', 2, TRUE, 0,7,1,''),

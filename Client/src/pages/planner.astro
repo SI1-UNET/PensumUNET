@@ -1,12 +1,8 @@
 ---
 import { actions } from "astro:actions";
 import type { IMateriasObject } from "../schemas/materias";
-import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getMateriasHuerfanas, getPrelacionesDeMateria} from "../utils/graph";
-import { de } from "zod/v4/locales";
-import { getRemainingSemestres } from "../utils/misc";
 import "../styles/global.css";
 import Layout from "../layouts/Layout.astro";
-import { getMateriasBySemester } from "../utils/classifiers";
 import { GraphPlanner } from "../components/graph";
 
 const m = await Astro.callAction(actions.materias.getAllMateriasByCarrera, {id:"2"} );

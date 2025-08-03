@@ -24,6 +24,7 @@ export function getPrelacionesDeMateria(materias: IMateriasObject, codigo: strin
 }
 
 export function getDesbloqueablesDeMateria(materias: IMateriasObject, codigo: string, desbloqueables: string[]) {
+    try{
     if (materias[codigo].desbloqueables[0] == null) {    
         return;
     }
@@ -33,7 +34,11 @@ export function getDesbloqueablesDeMateria(materias: IMateriasObject, codigo: st
         desbloqueables.push(desbloqueable);
         getDesbloqueablesDeMateria(materias, desbloqueable, desbloqueables);}
     });
-    return ;
+    return ;}
+    catch (error) {
+        console.error(`Error processing desbloqueables for ${codigo}:`, error);
+        return;
+    }
 }
 
 export function getBestPath(materias: IMateriasObject, codigos: string[], uc: number, uc_aprobadas: number): IMateriasBest[] {
