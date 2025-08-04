@@ -9,6 +9,7 @@
     --color-secondary-100: #E2DFDF;
     --color-accent: #76BC91;
     --color-accent-100: #51A471;
+    --color-accent-200: #43895E;
 
     --font-DmSans: "DM Sans",sans-serif;
     --font-LeagueGothic: "League Gothic", sans-serif;
@@ -44,3 +45,4 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+

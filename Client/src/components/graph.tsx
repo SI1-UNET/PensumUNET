@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import type { IMateriasBest, IMateriasBySemester, IMateriasObject } from "../schemas/materias"
-import { getBestPath, getDesbloqueablesDeMateria, getPrelacionesDeMateria } from "../utils/graph";
+import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getPrelacionesDeMateria } from "../utils/graph";
 import { getMateriasBySemester } from "../utils/classifiers";
 import { getRemainingSemestres, getUC } from "../utils/misc";
 import { RecomendationWindow } from "./recommendation";
@@ -45,14 +45,15 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
 
   return(
     <div class="flex gap-32 h-full overflow-x-scroll px-8">
-      {Object.entries(materiasBySemester).map(([semester, materiasList]: [string, IMateriasObject[]]) => (
+      {Object.entries(materiasBySemester).map(([semester, materiasList]: [string, IMateriasObject[]]) =>
+       (
         <div class="flex flex-col p-2 py-6" key={semester}>
-          <h2 class="font-DmSans text-secondary text-2xl mb-3">Semestre {semester}</h2>
+          <h2 class="font-dm-sans text-secondary text-3xl mb-4">Semestre {semester}</h2>
           <ul class="flex flex-col gap-8">
            {Object.entries(materiasList).map(
             ([codigo, materia]: [string, IMateriasObject]) => (
               <div class="flex relative"> 
-              <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
+              <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer  
                 ${
                   materiaPrel == null 
                   ? "border-primary" 
@@ -181,17 +182,16 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
       setMateriasSelected(prev => [...prev, codigo]);
       getPrelacionesDeMateria(materias, codigo, materiasVistas);
       setVistas(prev => [...prev, ...materiasVistas]);
-
-
-   
-      
     }
 };
 
   const handlePlanner = () => {
     let materiasBestCode: string[] = [];
-    setUC((getUC(materias, [...materiasSelected, ...vistas]) + electivasVistas*2));
-    const materiasBestArray: IMateriasBest[]  = getBestPath(materias, materiasSelected, maximasUC, uc)
+    let uc_aprobadas =getUC(materias, [...materiasSelected, ...vistas]) + electivasVistas*2
+    setUC(uc_aprobadas);
+
+    if(!intensivo || (intensivo && maximasUC <= 10)){
+    const materiasBestArray: IMateriasBest[]  = !intensivo ? getBestPath(materias, materiasSelected, maximasUC, uc_aprobadas) : getBestPathIntesivo(materias, materiasSelected, maximasUC, uc_aprobadas)
     materiasBestArray.forEach((materia) => {
       materiasBestCode.push(materia.codigo);
     })
@@ -205,20 +205,24 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
     setSemestresRestantes(getRemainingSemestres(getUC(materias, [...materiasSelected, ...vistas])+ electivasVistas*2 , uc_total ,maximasUC));
     setRecommentadionDone(true);
   }
+  else{
+    alert("El maximo de UC a cursar en un intensivo es 10UC")
+  }
+  }
 
   return(
     <div class="flex relative gap-32 h-full overflow-x-scroll px-8">
       
       {Object.entries(materiasBySemester).map(([semester, materiasList]: [string, IMateriasObject[]]) => (
         <div  class="flex flex-col p-2 py-6" key={semester}>
-          <h2 class="font-DmSans text-secondary text-2xl mb-3">Semestre {semester}</h2>
+          <h2 class="font-dm-sans text-secondary text-3xl mb-4">Semestre {semester}</h2>
           <ul class="flex flex-col gap-8">
            {Object.entries(materiasList).map(
             ([codigo, materia]: [string, IMateriasObject]) => (
               materia.electiva 
               ? null 
               :
-              <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
+              <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer active:scale-98
                 ${
                   materiasSelected.includes(codigo) 
                   ? "border-primary outline-3 outline-primary outline-offset-6" 
@@ -326,44 +330,16 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
           </ul>
         </div>
       ))}
-
-     
-      <div class="fixed left-12 bottom-6 flex flex-col p-2 py-6 gap-3">
-
-       {!intensivo && 
-        <div class=" flex justify-between rounded-lg w-[245px] border-3 border-primary text-white bg-white">
-          <span class="w-full p-2 bg-primary">
-            Semestres restantes con carga similar
-          </span>
-          <span
-            class="flex items-center justify-center font-bold w-[50px] text-center text-primary  border-none outline-none appearance-none"
-          >
-            {semestresRestantes}
-          </span>
-        </div>
-        }
-       
-
-       <div class="flex justify-between rounded-lg w-[245px] border-3 border-primary text-white bg-white">
-        <span class="w-full p-2 bg-primary">
-          UC aprobadas
-        </span>
-        <span
-          class="flex items-center justify-center font-bold w-[50px] text-center text-primary  border-none outline-none appearance-none"
-        >
-          {uc}
-        </span>
-        </div>
-        { recommendationDone &&
+  
+      { recommendationDone &&
         <button 
-          className="bg-primary rounded-lg text-white h-[50px] w-[245px] border-3 border-primary hover:bg-white hover:text-primary active:bg-primary active:text-white"
+          className="fixed left-12 bottom-6 bg-primary rounded-lg text-white h-[50px] w-[245px] border-3 border-primary cursor-pointer hover:bg-white hover:text-primary active:bg-primary active:text-white active:scale-95"
           onClick={() => setShowRecomendation(!showRecomendation)}
           >
             Mostrar Resumen
         </button>
-        }
-      </div>
-
+      }
+    
       <button class="fixed right-12 bottom-40 flex justify-between rounded-lg w-[245px] border-3 border-primary bg-white text-white cursor-pointer"
         onClick={() => setIntensivo(!intensivo)}>
         <span class="w-full p-2 bg-primary"> 
@@ -399,7 +375,11 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
         materias={materias} 
         codigo_sel={materiasSelected} 
         codigos_recomendadas={materiasRecomendadas} 
-        electivas={electivasVistas} 
+        electivas_recomendadas={electivaRecomendadas}
+        electivas_vistas={electivasVistas} 
+        uc_aprobadas={uc}
+        semestres_restantes={semestresRestantes}
+        intensivo={intensivo}
         ShowRecomendation={showRecomendation}
         setShowRecomendation={setShowRecomendation}/>
       }
