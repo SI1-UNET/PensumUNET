@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "preact/hooks";
+import React, { useEffect, useRef, useState } from "react";
 import type { IMateriasBest, IMateriasBySemester, IMateriasObject } from "../schemas/materias"
 import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getPrelacionesDeMateria } from "../utils/graph";
 import { getMateriasBySemester } from "../utils/classifiers";
 import { getRemainingSemestres, getUC } from "../utils/misc";
 import { RecomendationWindow } from "./recommendation";
 import { set } from "zod/v4";
+import { MateriaNode } from "./node";
 
 type PropsInfo = {
   materias: IMateriasObject
@@ -44,16 +45,16 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
 };
 
   return(
-    <div class="flex gap-32 h-full overflow-x-scroll px-8">
-      {Object.entries(materiasBySemester).map(([semester, materiasList]: [string, IMateriasObject[]]) =>
+    <div className="flex gap-32 h-full overflow-x-scroll px-8">
+      {Object.entries(materiasBySemester).map(([semester, materiasList]) =>
        (
-        <div class="flex flex-col p-2 py-6" key={semester}>
-          <h2 class="font-dm-sans text-secondary text-3xl mb-4">Semestre {semester}</h2>
-          <ul class="flex flex-col gap-8">
-           {Object.entries(materiasList).map(
-            ([codigo, materia]: [string, IMateriasObject]) => (
-              <div class="flex relative"> 
-              <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer  
+        <div className="flex flex-col p-2 py-6" key={semester}>
+          <h2 className="font-dm-sans text-secondary text-3xl mb-4">Semestre {semester}</h2>
+          <ul className="flex flex-col gap-8">
+           {Object.entries(materiasList as IMateriasObject).map(
+            ([codigo, materia]) => (
+              <div className="flex relative"> 
+              <li className={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer  
                 ${
                   materiaPrel == null 
                   ? "border-primary" 
@@ -71,7 +72,7 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
                onMouseEnter={() => setMateriaHover(codigo)}
                onMouseLeave={() => setMateriaHover(null)}
                >
-                <span class={`w-full  p-2
+                <span className={`w-full  p-2
                   ${materiaPrel == null 
                   ? "bg-primary" 
                   : materiaPrel === codigo 
@@ -83,7 +84,7 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
                   : "bg-secondary"
                   }
                 `}> {materia.nombre}</span>
-                <span class={`flex items-center justify-center  font-bold w-[60px] py-1 text-center
+                <span className={`flex items-center justify-center  font-bold w-[60px] py-1 text-center
                   ${
                   materiaPrel == null 
                   ? "text-primary"
@@ -98,17 +99,17 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
                   `}>{materia.uc} UC</span>
 
                   {materiaHover === codigo && 
-                  <div class="flex absolute flex-col w-full top-full bg-white  border-3 border-black text-black z-3 rounded-lg rounded-tl-none">
-                    <div class="bg-black text-white p-2">
+                  <div className="flex absolute flex-col w-full top-full bg-white  border-3 border-black text-black z-3 rounded-lg rounded-tl-none">
+                    <div className="bg-black text-white p-2">
                       {materia.departamento}
                     </div>
-                    <div class="p-2">
+                    <div className="p-2">
                       <p>
-                        <span class="font-bold">Codigo:</span> {codigo}
+                        <span className="font-bold">Codigo:</span> {codigo}
                       </p>
                       <p>
                         {/* @ts-ignore*/}
-                        <span class="font-bold">Info:</span> {materia.info.split("/").map((line, idx) => (
+                        <span className="font-bold">Info:</span> {materia.info.split("/").map((line, idx) => (
                           <span key={idx}>
                             {line}
                             {/* @ts-ignore*/}
@@ -117,13 +118,13 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
                         ))}
                       </p>
                       <p>
-                        <span class="font-bold">Nucleo:</span> {materia.nucleo}
+                        <span className="font-bold">Nucleo:</span> {materia.nucleo}
                       </p>
                       <p>
-                        <span class="font-bold">UC Requeridas:</span> {materia.uc_requeridas} 
+                        <span className="font-bold">UC Requeridas:</span> {materia.uc_requeridas} 
                       </p>
                        <p>
-                        <span class="font-bold">Electiva:</span> {materia.electiva ? "Si" : "No"} 
+                        <span className="font-bold">Electiva:</span> {materia.electiva ? "Si" : "No"} 
                       </p>
                     </div>
                   </div>
@@ -210,19 +211,47 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
   }
   }
 
+  const nodeTypes = {
+  materia: MateriaNode,
+};
+
+function materiasToNodes(
+  materiasList: IMateriasObject,
+  materiasSelected: string[],
+  vistas: string[],
+  materiasRecomendadas: string[],
+  handleMateriaClick: (codigo: string) => void
+) {
+  return Object.entries(materiasList)
+    .filter(([_, materia]) => !materia.electiva)
+    .map(([codigo, materia], idx) => ({
+      id: codigo,
+      type: "materia",
+      position: { x: 0, y: idx * 100 }, // Stack vertically
+      data: {
+        materia,
+        codigo,
+        materiasSelected,
+        vistas,
+        materiasRecomendadas,
+        handleMateriaClick,
+      },
+    }));
+}
+
   return(
-    <div class="flex relative gap-32 h-full overflow-x-scroll px-8">
+    <div className="flex relative gap-32 h-full overflow-x-scroll px-8">
       
-      {Object.entries(materiasBySemester).map(([semester, materiasList]: [string, IMateriasObject[]]) => (
-        <div  class="flex flex-col p-2 py-6" key={semester}>
-          <h2 class="font-dm-sans text-secondary text-3xl mb-4">Semestre {semester}</h2>
-          <ul class="flex flex-col gap-8">
+      {(Object.entries(materiasBySemester) as [string, IMateriasObject][]).map(([semester, materiasList]) => (
+        <div  className="flex flex-col p-2 py-6" key={semester}>
+          <h2 className="font-dm-sans text-secondary text-3xl mb-4">Semestre {semester}</h2>
+          <ul className="flex flex-col gap-8">
            {Object.entries(materiasList).map(
-            ([codigo, materia]: [string, IMateriasObject]) => (
+            ([codigo, materia]) => (
               materia.electiva 
               ? null 
               :
-              <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer active:scale-98
+              <li className={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer active:scale-98
                 ${
                   materiasSelected.includes(codigo) 
                   ? "border-primary outline-3 outline-primary outline-offset-6" 
@@ -237,7 +266,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
                 key={codigo} 
                 onClick={() => handleMateriaClick(codigo)}
                >
-                <span class={`w-full  p-2
+                <span className={`w-full  p-2
                   ${
                   materiasSelected.includes(codigo)
                   ? "bg-primary"
@@ -248,7 +277,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
                   : "bg-secondary"
                   }
                 `}> {materia.nombre}</span>
-                <span class={`flex items-center justify-center  font-bold min-w-[50px] py-1 text-center
+                <span className={`flex items-center justify-center  font-bold min-w-[50px] py-1 text-center
                   ${
                    materiasSelected.includes(codigo) 
                   ? "text-primary" 
@@ -265,7 +294,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
             ))}
             {  parseInt(semester)== 10 &&
             <>
-            <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
+            <li className={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
                 ${
                   electivaRecomendadas > 0  
                   ? "border-accent-100"
@@ -273,7 +302,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
                   }
                   `}
                >
-                <span class={`w-full px-2 py-6 
+                <span className={`w-full px-2 py-6 
                   ${
                   electivaRecomendadas > 0
                   ? "bg-accent-100"
@@ -282,7 +311,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
                 `}>
                   Electivas Recomendadas
                 </span>
-                <span class={`flex items-center justify-center  font-bold min-w-[50px] py-1 text-center
+                <span className={`flex items-center justify-center  font-bold min-w-[50px] py-1 text-center
                   ${
                   electivaRecomendadas > 0
                   ? "text-accent-100"
@@ -291,7 +320,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
                   `}>{electivaRecomendadas}
                 </span>
                 </li>
-                <li class={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
+                <li className={`flex relative justify-between rounded-lg w-[300px] border-3 text-white text-sm cursor-pointer 
                 ${
                   electivasVistas > 0  
                   ? "border-primary outline-3 outline-primary outline-offset-6" 
@@ -299,7 +328,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
                   }
                   `}
                >
-                <span class={`w-full px-2 py-6 
+                <span className={`w-full px-2 py-6 
                   ${
                   electivasVistas > 0
                   ? "bg-primary"
@@ -312,7 +341,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
                   type="number"
                   min="0"
                   max="10"
-                  class={`flex items-center justify-center font-bold min-w-[50px] py-1 text-center border-none outline-none
+                  className={`flex items-center justify-center font-bold min-w-[50px] py-1 text-center border-none outline-none
                     ${
                     electivasVistas > 0
                     ? "text-primary"
@@ -340,23 +369,23 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
         </button>
       }
     
-      <button class="fixed right-12 bottom-40 flex justify-between rounded-lg w-[245px] border-3 border-primary bg-white text-white cursor-pointer"
+      <button className="fixed right-12 bottom-40 flex justify-between rounded-lg w-[245px] border-3 border-primary bg-white text-white cursor-pointer"
         onClick={() => setIntensivo(!intensivo)}>
-        <span class="w-full p-2 bg-primary"> 
+        <span className="w-full p-2 bg-primary"> 
           Intensivo 
         </span>
-        <span class="flex items-center justify-center font-bold min-w-[50px] text-center text-primary" >
+        <span className="flex items-center justify-center font-bold min-w-[50px] text-center text-primary" >
           {intensivo ? "Si" : "No"}
         </span>
       </button>
-      <div class="fixed right-12 bottom-26 flex justify-between rounded-lg w-[245px] border-3 border-primary text-white cursor-pointer bg-white">
-        <span class="w-full p-2 bg-primary">
+      <div className="fixed right-12 bottom-26 flex justify-between rounded-lg w-[245px] border-3 border-primary text-white cursor-pointer bg-white">
+        <span className="w-full p-2 bg-primary">
           Maximas UC a cursar
         </span>
         <input
           type="number"
           min="0"
-          class="flex items-center justify-center font-bold w-[50px] text-center text-primary  border-none outline-none appearance-none"
+          className="flex items-center justify-center font-bold w-[50px] text-center text-primary  border-none outline-none appearance-none"
           style={{
             WebkitAppearance: "none",
             MozAppearance: "textfield",
@@ -365,10 +394,10 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
           onChange={e => setMaximasUC(Number(e.currentTarget.value))}
         />
       </div>
-      <button class="fixed right-12 p-2 bg-primary bottom-12 flex justify-between rounded-lg w-[245px] border-3 border-primary text-white cursor-pointer text-center"
+      <button className="fixed right-12 p-2 bg-primary bottom-12 flex justify-between rounded-lg w-[245px] border-3 border-primary text-white cursor-pointer text-center"
         onClick={handlePlanner}
       >
-          <p class="w-full text-center">Calcular</p>
+          <p className="w-full text-center">Calcular</p>
       </button>
       {showRecomendation &&
       <RecomendationWindow 

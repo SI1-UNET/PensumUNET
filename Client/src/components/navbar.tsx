@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from "react";
 import Logo from "../assets/UNET.png"
 import type { ICarrera } from "../schemas/materias";
 
@@ -30,26 +30,26 @@ export const Navbar = ({carreras}: Props) =>{
   }
 
   return(
-      <nav class="flex relative justify-between w-full">
-        <a href="/" class="flex items-center gap-2 py-2 ms-20 cursor-pointer ">
+      <nav className="flex relative justify-between w-full">
+        <a href="/" className="flex items-center gap-2 py-2 ms-20 cursor-pointer ">
           <img src={Logo.src} width={70} height={70} alt="UNET Logo" />
-          <h1 class="font-league-gothic tracking-tight font-medium text-primary text-5xl">Tu Pensum UNET</h1>
+          <h1 className="font-league-gothic tracking-tight font-medium text-primary text-5xl">Tu Pensum UNET</h1>
         </a>
-         <h2 class="text-primary font-dm-sans tracking-tight text-3xl font-semibold self-center ">
+         <h2 className="text-primary font-dm-sans tracking-tight text-3xl font-semibold self-center ">
             {carreraNombre}
           </h2>
-        <div class="flex gap-10 self-end text-primary me-20">
-          <div class="relative">
+        <div className="flex gap-10 self-end text-primary me-20">
+          <div className="relative">
             <button 
-              class="border-3  border-b-0 border-primary border-x-primary rounded-t-[10px] w-[250px] py-2 relative z-3 hover:bg-primary hover:text-white group"
+              className="border-3  border-b-0 border-primary border-x-primary rounded-t-[10px] w-[250px] py-2 relative z-3 hover:bg-primary hover:text-white group"
               onClick={handleCarreras}>  
               Carreras
-              <div class="absolute w-full bottom-0 h-[3px] bg-white group-hover:hidden"/>
+              <div className="absolute w-full bottom-0 h-[3px] bg-white group-hover:hidden"/>
             </button>
             {carrerasOpen &&
-                <div class="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3">
+                <div className="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3">
                   {carreras.map((carrera) => (
-                    <a href={`/${middle}/${carrera.id}`} class="py-2 text-center odd:bg-white  not-odd:bg-secondary-100" key={carrera.id}>
+                    <a href={`/${middle}/${carrera.id}`} className="py-2 text-center odd:bg-white  not-odd:bg-secondary-100" key={carrera.id}>
                       {carrera.nombre}
                     </a>
                   ))}
@@ -58,24 +58,24 @@ export const Navbar = ({carreras}: Props) =>{
               }
           </div>
          
-          <div class="relative">
+          <div className="relative">
             <button 
-              class="border-3 border-b-0 border-primary border-x-primary rounded-t-[10px] w-[250px] py-2 relative z-3 hover:bg-primary hover:text-white group cursor-pointer"
+              className="border-3 border-b-0 border-primary border-x-primary rounded-t-[10px] w-[250px] py-2 relative z-3 hover:bg-primary hover:text-white group cursor-pointer"
               onClick={handleModalidad}>
               Modalidad
-              <div class="absolute w-full bottom-0 h-[3px] bg-white group-hover:hidden"/>
+              <div className="absolute w-full bottom-0 h-[3px] bg-white group-hover:hidden"/>
               
             </button>
             {modalidadOpen &&
-                <div class="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3">
-                  <a href={`/carreras/${lastPart}`} class="py-2 text-center bg-white" >Información de Materia</a>
-                  <a href={`/carreras/planificador/${lastPart}`} class="py-2 text-center bg-secondary-100">Planificador</a>
+                <div className="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3">
+                  <a href={`/carreras/${lastPart}`} className="py-2 text-center bg-white" >Información de Materia</a>
+                  <a href={`/carreras/planificador/${lastPart}`} className="py-2 text-center bg-secondary-100">Planificador</a>
                 </div>
 
               }
           </div>
         </div>
-        <div class="absolute w-full bottom-0 h-[3px] bg-primary " />
+        <div className="absolute w-full bottom-0 h-[3px] bg-primary " />
       </nav>
   )
 }

@@ -5,8 +5,9 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0834102T', 'Matemática Discreta', 3, false, 8, 2, 10, 'Fundamentos de la Matemática Discreta:/Conjuntos y Logica/Algebra de Boole/Teoría de Grafos'),
    ('1023111T', 'Lenguaje y Comunicación', 2, false, 2, 3, 1, 'Aspectos fundamentales de la lengua española'),
    ('1032109T', 'Efectividad Personal', 1, false, 2, 3, 1, 'Aspectos de una persona efectiva'),
+   
    ('0416207T', 'Programación I', 4, FALSE, 10, 2, 3, 'Programación Orientada a Objetos'),
-   ('0826201T', 'Matemática II', 4, FALSE, 10, 3, 1, 'Calculo Integral:/Integrales indefinidas/Integrales definidas/Coordenas Polares/Series y Sucesiones'),
+   ('0826201T', 'Matemática II', 4, FALSE, 10, 3, 9, 'Calculo Integral:/Integrales indefinidas/Integrales definidas/Coordenas Polares/Series y Sucesiones'),
    ('0842204L', 'Laboratorio De Física I', 1, FALSE, 3, 2, 4, 'Aplicaciones practicas de los conocimientos de Física I'),
    ('0846203T', 'Física I', 4, FALSE, 10, 3, 11, 'Fundamentos de la física cinética'),
    ('0914201T', 'Química General I', 3, FALSE, 8, 5, 12, 'Fundamentos de la Química inorgánica'),
@@ -66,6 +67,7 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('1000003T', 'Servicio Comunitario', 0, FALSE, 0, 1, 1, ''),
    ('0400002T', 'Trabajo de Aplicación Profesional (Proyecto especial de grado)', 12, FALSE, 0, 2, 1, ''),
    ('0400001T', 'Trabajo de Aplicación Profesional (Pasantías Profesional)', 12, FALSE, 0, 2, 1, ''),
+
 -- Ingeniería Mecánica - Semestre I
    ('0642101T', 'Introducción A La Ingeniería Mecánica', 1, FALSE, 0,8,1,''),
    ('0644103T', 'Dibujo I', 3, FALSE, 0,8,6,''),
@@ -134,4 +136,57 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0643922T', 'Introducción A La Robótica', 2, TRUE, 0,8,6,''),
 -- Ingeniería Mecánica - Semestre X
    ('0600001T', 'Trabajo De Aplicación Profesional (Proyecto Especial De Grado)', 12, FALSE,0,8,1,''),
-   ('0600002T', 'Trabajo De Aplicación Profesional (Pasantías Profesional)', 12, FALSE,0,8,1,'');
+   ('0600002T', 'Trabajo De Aplicación Profesional (Pasantías Profesional)', 12, FALSE,0,8,1,''),
+
+-- Ingenieria Civíl - Semestre I
+   ('1524101T', 'Introducción A La Ingeniería Civil', 1, FALSE, 0,10,1,''),
+   ('1542102T', 'Sistemas de Representación', 3, FALSE, 0,8,6,''),
+
+-- Ingenieria Civíl - Semestre II
+   ('0824207T', 'Álgebra Lineal', 3, FALSE, 0,3,10,''),
+
+--Ingeniería Civil - Semestre IV
+   ('0413104T', 'Computación Aplicada', 2, FALSE, 0,2,2,''),
+   ('1524401T', 'Dibujo Asistido Por Computadora', 3, FALSE, 0,10,1,''),
+
+--Ingeniería Civil - Semestre V
+   ('1516501T', 'Mecánica De Los Materiales', 4, FALSE, 0,10,1,''),
+   ('1523503T', 'Geología Aplicada', 2, FALSE, 0,10,1,''),
+   ('1526504T', 'Topografía Para Ingeniería Civil ', 4, FALSE, 0,10,1,''),
+   ('1533505T', 'Saneamiento Ambiental', 2, FALSE, 0,10,1,''),
+   ('1536502T', 'Mecánica de Fluidos I', 4, FALSE, 0,10,1,''),   
+   
+--Ingeniería Civil - Semestre VI
+   ('1514603T', 'Materiales y Ensayos', 3, FALSE, 0,10,1,''),
+   ('1516602T', 'Análisis Estructural I', 4, FALSE, 0,10,1,''),
+   ('1524605T', 'Proyectos Viales I', 3, FALSE, 0,10,1,''),
+   ('1533604T', 'Hidrología Aplicada', 2, FALSE, 0,10,1,''),
+   ('1534601T', 'Mecánica de Fluidos II', 3, FALSE, 0,10,1,''),   
+   ('1534606T', 'Instalaciones Para Edificios', 3, FALSE, 0,10,1,''),
+
+--Ingeniería Civil - Semestre VII
+   ('1516701T', 'Análisis Estructural II', 4, FALSE, 0,10,1,''),
+   ('1516705T', 'Concreto Armado', 4, FALSE, 0,10,1,''),
+   ('1524703T', 'Proyectos Viales II', 3, FALSE, 0,10,1,''),
+   ('1525702T', 'Mecánica de Suelos', 3, FALSE, 0,10,1,''),
+   ('1534704T', 'Obras Hidráulicas', 3, FALSE, 0,10,1,''),   
+   ('1523706T', 'Ingeniería de Transito', 2, TRUE, 0,10,1,''),  
+
+--Ingeniería Civil - Semestre VIII
+   ('1516801T', 'Proyectos Estructurales I', 4, FALSE, 0,10,1,''),
+   ('1516802T', 'Fundaciones Y Muros', 4, FALSE, 0,10,1,''),
+   ('1533804T', 'Obras Sanitarias', 2, FALSE, 0,10,1,''),
+   ('1543803T', 'Gerencia Y Control De Obras I', 2, FALSE, 0,10,1,''),
+   ('1513805T', 'Ingeniería de Sísmica', 2, TRUE, 0,10,1,''),
+
+--Ingeniería Civil - Semestre IX
+   ('1516901T', 'Proyectos Estructurales II', 4, FALSE, 0,10,1,''),
+   ('1525902T', 'Pavimentos', 3, FALSE, 0,10,1,''),
+   ('1543903T', 'Gerencia Y Control De Obras II', 2, FALSE, 0,10,1,''),
+   ('1543904T', 'Patología De Obras Civiles', 2, FALSE, 0,10,1,''),
+   ('1543905T', 'Seminario De Investigación', 2, FALSE, 0,10,1,''),
+   ('1513906T', 'Puentes', 2, TRUE, 0,10,1,''),
+
+-- Ingeniería Mecánica - Semestre X
+   ('1500001T', 'Trabajo De Aplicación Profesional (Proyecto Especial De Grado)', 12, FALSE,0,10,1,''),
+   ('1500002T', 'Trabajo De Aplicación Profesional (Pasantías Profesional)', 12, FALSE,0,10,1,'');
