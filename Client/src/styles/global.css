@@ -7,9 +7,8 @@
     --color-primary-200: #a8c6f0;
     --color-secondary: #7f7876;
     --color-secondary-100: #E2DFDF;
-    --color-accent: #76BC91;
-    --color-accent-100: #51A471;
-    --color-accent-200: #43895E;
+    --color-accent: #69B586;
+    --color-accent-100: #43895E;
 
     --font-DmSans: "DM Sans",sans-serif;
     --font-LeagueGothic: "League Gothic", sans-serif;
@@ -46,3 +45,34 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.outline-x {
+  position: relative;
+}
+.outline-x:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: -0.75rem;
+  right: -0.75rem;
+  border-left: 3px solid #1062ab; 
+  border-right: 3px solid #1062ab;           
+  z-index: 2;
+}
+
+.outline-x-green {
+  position: relative;
+}
+.outline-x-green:after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: -0.75rem;
+  right: -0.75rem;
+  border-left: 3px solid #43895E; 
+  border-right: 3px solid #43895E;           
+  z-index: 2;
+}

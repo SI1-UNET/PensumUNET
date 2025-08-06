@@ -45,7 +45,10 @@ export function getBestPath(materias: IMateriasObject, codigos: string[], uc: nu
     let materiasWithDesbloqueables: IMateriasBest[] = [];
     let materiasBest: IMateriasBest[] = [];
     let materiasHuerfanas = getMateriasHuerfanas(materias, uc_aprobadas);
+
     codigos.forEach((codigo) => {
+
+        
         if (materias[codigo].desbloqueables[0] != null) {        
             materias[codigo].desbloqueables.forEach((desbloqueable) => {
                 let materiasArray: string[] = []
@@ -130,23 +133,32 @@ export function getBestPathIntesivo(materias: IMateriasObject, codigos: string[]
     return materiasWithDesbloqueables.slice(0, 3)
 }
 
-// export function getRemainingSemestres(materias: IMateriasObject, codigos: string[]): number {
-//     let materiasPending: string[][] = [];
-//     codigos.forEach((codigo) => {
-//         if (materias[codigo].desbloqueables[0] != null) {    
-//             materias[codigo].desbloqueables.forEach((desbloqueable) => {
-//                 let materiasArray: string[] = []
-//                 materiasArray.push(materias[desbloqueable].nombre)
-//                 getDesbloqueablesDeMateria(materias, desbloqueable, materiasArray);
-//                 materiasPending.push(materiasArray)
-                
-//             });           
-//         }
-//     });
-//     materiasPending.sort((a,b) => b.length - a.length)
-//     console.log('Materias pendientes:', materiasPending);
-//     return materiasPending[0].length
-// }
+export function getMissingMateria(materias: IMateriasObject, codigo: string, selected_materias: string[], missing_materias: string[], visited_materias: string[]){
+    
+    if (!visited_materias.includes(codigo)) {
+        visited_materias.push(codigo);
+    }
+    
+    if (materias[codigo].prelaciones[0] == null 
+        || materias[codigo].prelaciones.every(prelacion => visited_materias.includes(prelacion))) {
+        return;
+    }
 
+    
 
-
+    materias[codigo].prelaciones.forEach((prelacion) => {
+        getMissingMateria(materias, prelacion, selected_materias, missing_materias, visited_materias);
+        
+        if(!materias[prelacion].desbloqueables.every(desbloqueable => visited_materias.includes(desbloqueable))
+            && !selected_materias.includes(prelacion)
+            && !missing_materias.includes(prelacion)
+            && !materias[prelacion].desbloqueables.every(desbloqueable => selected_materias.includes(desbloqueable))
+            ){
+            missing_materias.push(prelacion);
+        }
+            
+       
+    
+    });
+    return ;
+}

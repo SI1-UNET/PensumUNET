@@ -4,7 +4,7 @@ import type { IMateriasObject } from "../../schemas/materias";
 import "../../styles/global.css";
 import Layout from "../../layouts/Layout.astro";
 
-import {GraphInfo } from "../../components/graph";
+import {GraphInfo} from "../../components/graph";
 
 const { id } = Astro.params;
 const m = await Astro.callAction(actions.materias.getAllMateriasByCarrera, {id:id!} );

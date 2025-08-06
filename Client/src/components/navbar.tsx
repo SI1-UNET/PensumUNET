@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "preact/hooks";
 import Logo from "../assets/UNET.png"
 import type { ICarrera } from "../schemas/materias";
 
