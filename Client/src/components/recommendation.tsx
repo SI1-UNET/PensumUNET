@@ -94,7 +94,7 @@ const handleCapture = async () => {
                 </p>
                 <p>
                   <span className="text-primary font-bold mr-2">
-                    Unidades Credito aprobadas:
+                    Unidades Credito recomendadas:
                   </span>
                     {uc_totales}
                 </p>

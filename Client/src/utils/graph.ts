@@ -133,8 +133,7 @@ export function getBestPathIntesivo(materias: IMateriasObject, codigos: string[]
     return materiasWithDesbloqueables.slice(0, 3)
 }
 
-export function getMissingMateria(materias: IMateriasObject, codigo: string, selected_materias: string[], missing_materias: string[], visited_materias: string[]){
-    
+export function getMissingMateria(materias: IMateriasObject, codigo: string, selected_materias: string[], missing_materias: string[], visited_materias: string[]){ 
     if (!visited_materias.includes(codigo)) {
         visited_materias.push(codigo);
     }
@@ -143,8 +142,6 @@ export function getMissingMateria(materias: IMateriasObject, codigo: string, sel
         || materias[codigo].prelaciones.every(prelacion => visited_materias.includes(prelacion))) {
         return;
     }
-
-    
 
     materias[codigo].prelaciones.forEach((prelacion) => {
         getMissingMateria(materias, prelacion, selected_materias, missing_materias, visited_materias);
@@ -157,8 +154,6 @@ export function getMissingMateria(materias: IMateriasObject, codigo: string, sel
             missing_materias.push(prelacion);
         }
             
-       
-    
     });
     return ;
 }

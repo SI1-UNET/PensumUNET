@@ -23,4 +23,27 @@ INSERT INTO public.prelacion_corr (codigo_corr, codigo_mat, id_carrera) VALUES
 -- Ingeniería Civil
 ('0846203T','0842204L',3),
 ('0846302T','0842303L',3),
-('0914201T','0912202L',3);
+('0914201T','0912202L',3),
+-- Ingeniería Industrial - Semester II
+('0842204L', '0846203T', 4), -- Laboratorio Fisica I -> Fisica I  
+('0912202L', '0914201T', 4), -- Laboratorio Quimica General I -> Química General I
+-- Ingeniería Industrial - Semester III
+('0842303L', '0846203T', 4), -- Fisica I -> Laboratorio Fisica II
+('0842303L', '0846302T', 4), -- Laboratorio Fisica II -> Fisica II
+-- Ingeniería Industrial - Semester V
+('0213508L', '0214507T', 4), -- Laboratorio Ingeniería Eléctrica -> Ingeniería Eléctrica 
+('0622502L', '0624604T', 4), -- Laboratorio Mecánica Fluidos -> Mecánica Fluidos 
+('0633512L', '0634509T', 4), --  Laboratorio Procesos Metalmecánicos -> Procesos Metalmecánicos
+-- Ingeniería Industrial - Semester VI
+('0112603L', '0113602T', 4), -- Laboratorio Ingenieria Metodos I -> Ingenieria Métodos I
+('0113602T', '0124601T', 4), -- Organización -> Ingenieria Métodos I
+('0124613T', '0124601T', 4), -- Organización -> Sistemas Y Procedimientos
+-- Ingeniería Industrial - Semester VII
+('0113705T', '0112706L', 4), -- Ingenieria Metodos II -> Laboratorio Ingenieria Metodos II
+-- Ingeniería Electrónica - Semestre II
+('0914201T', '0912202L', 5), -- QUIMICA GENERAL I -> LAB. DE QUIMICA GENERAL I
+-- Ingeniería Electrónica - Semestre IV
+('0213401T', '0212403L', 5), -- MEDICIONES -> LAB. DE MEDICIONES
+-- Ingeniería Electrónica - Semestre V
+('0225502T', '0225503T', 5); -- ELECTRONICA I -> SISTEMAS DIGITALES I
+

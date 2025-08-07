@@ -49,7 +49,7 @@ export const Navbar = ({carreras}: Props) =>{
             {carrerasOpen &&
                 <div className="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3">
                   {carreras.map((carrera) => (
-                    <a href={`/${middle}/${carrera.id}`} className="py-2 text-center odd:bg-white  not-odd:bg-secondary-100" key={carrera.id}>
+                    <a href={`/${middle}/${carrera.id}`} className="py-2 text-center odd:bg-white  not-odd:bg-secondary-100 hover:bg-primary-100 hover:text-white" key={carrera.id}>
                       {carrera.nombre}
                     </a>
                   ))}
@@ -67,9 +67,9 @@ export const Navbar = ({carreras}: Props) =>{
               
             </button>
             {modalidadOpen &&
-                <div className="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3">
-                  <a href={`/carreras/${lastPart}`} className="py-2 text-center bg-white" >Información de Materia</a>
-                  <a href={`/carreras/planificador/${lastPart}`} className="py-2 text-center bg-secondary-100">Planificador</a>
+                <div className="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3 ">
+                  <a href={`/carreras/${lastPart}`} className="py-2 text-center bg-white hover:bg-primary-100 hover:text-white" >Información de Materia</a>
+                  <a href={`/carreras/planificador/${lastPart}`} className="py-2 text-center bg-secondary-100 hover:bg-primary-100 hover:text-white">Planificador</a>
                 </div>
 
               }

@@ -15,7 +15,10 @@ INSERT INTO public.departamento (id, nombre) VALUES
 INSERT INTO public.carreras (id, nombre, uc_total) VALUES
 (1, 'Ingeniería en Informática',156),
 (2, 'Ingeniería Mecánica', 168 ),
-(3, 'Ingeniería Civil', 156);
+(3, 'Ingeniería Civil', 156),
+(4, 'Ingeniería Industrial', 169),
+(5, 'Ingeniería Electronica',164);
+
 
 
 INSERT INTO public.nucleo (id, nombre, id_departamento) VALUES
@@ -28,11 +31,22 @@ INSERT INTO public.nucleo (id, nombre, id_departamento) VALUES
 (5,'Termofluidos', 8),
 (6,'Diseño Mecánico', 8),
 (7,'Mecánica del Solido', 8),
-(8, 'Materiales y Procesos', 8),
+(8,'Materiales y Procesos', 8),
 --Departamento de Matematica y Física
 (9,'Matematica',3),
 (10,'Matematica Aplicada',3),
 (11,'Física',3),
 --Departamento de Química
 (12,'Química Básica',5),
-(13,'Química Avanzada',5);
+(13,'Química Avanzada',5),
+--Departamento de Ingeniería Industrial
+(14,'Producción',7), --amarillo
+(15,'Técnicas Cuantitativas',7), --rojo
+(16,'Gerencia',7), -- Azul
+--Deparamento de Ingeniería Electrónica
+(17,'Electricidad',6),
+(18,'Electrónica Y Sistemas Digitales',6),
+(19,'Instrumentación Y Control',6),
+(20,'Telecomunicaciones',6);
+
+

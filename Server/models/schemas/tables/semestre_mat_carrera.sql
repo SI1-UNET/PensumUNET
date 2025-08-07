@@ -232,7 +232,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('1516802T', 3, 8), -- Fundaciones Y Muros
 ('1533804T', 3, 8), -- Obras Sanitarias
 ('1543803T', 3, 8), -- Gerencia Y Control De Obras I
-
 -- Ingeniería Civil - Semestre IX
 ('1513906T', 3, 9), -- Electiva III (Nota: Esta materia es Electiva, pero aparece en el listado de materias de este semestre)
 ('1516901T', 3, 9), -- Proyectos Estructurales II
@@ -242,4 +241,196 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('1543905T', 3, 9), -- Seminario De Investigación
 -- Ingeniería Civil - Semestre X
 ('1500002T', 3, 10), -- Trabajo De Aplicación Profesional (Pasantías Profesional)
-('1500001T', 3, 10); -- Trabajo De Aplicación Profesional (Proyecto Especial De Grado)
+('1500001T', 3, 10), -- Trabajo De Aplicación Profesional (Proyecto Especial De Grado)
+
+-- Ingeniería Industrial - Semester I
+('0112101T', 4, 1), -- Introducción A La Ingeniería Industrial
+('0415102T', 4, 1), -- Computación 1
+('0644103T', 4, 1), -- Dibujo I
+('0826101T', 4, 1), -- Matemática I
+('1032109T', 4, 1), -- Efectividad Personal
+('1023111T', 4, 1), -- Lenguaje Y Comunicación
+-- Ingeniería Industrial - Semester II
+('0826201T', 4, 2), -- Matemática II
+('0842204L', 4, 2), -- Laboratorio Fisica I
+('0846203T', 4, 2), -- Fisica I
+('0912202L', 4, 2), -- Laboratorio Quimica General I
+('0914201T', 4, 2), -- Química General I
+('1023202T', 4, 2), -- Ingles I
+('1012207T', 4, 2), -- Ciencia Y Sociedad I
+-- Ingeniería Industrial - Semester III
+('0615301T', 4, 3), -- Mecánica I
+('0644302T', 4, 3), -- Dibujo De Elementos De Maquinas
+('0826301T', 4, 3), -- Matemática III
+('0842303L', 4, 3), -- Laboratorio Fisica II
+('0846302T', 4, 3), -- Fisica II
+('1023302T', 4, 3), -- Ingles II
+('1032301T', 4, 3), -- Necesidades. Valores Y Proyectos De Vida
+-- Ingeniería Industrial - Semester IV
+('0113401T', 4, 4), -- Procesos Industriales
+('0626401T', 4, 4), -- Termodinámica I
+('0634403T', 4, 4), -- Ciencia De Los Materiales I
+('0826401T', 4, 4), -- Matemática IV
+('1013401T', 4, 4), -- Economía
+('1113404T', 4, 4), -- Ecologia Y Contaminación Ambiental
+-- Ingeniería Industrial - Semester V
+('0213508L', 4, 5), -- Laboratorio Ingeniería Eléctrica
+('0214507T', 4, 5), -- Ingeniería Eléctrica
+('0622502L', 4, 5), -- Laboratorio Mecánica Fluidos
+('0624604T', 4, 5), -- Mecánica Fluidos
+('0633512L', 4, 5), -- Laboratorio Procesos Metalmecánicos
+('0633504L', 4, 5), -- Laboratorio Ciencia De Los Materiales
+('0634509T', 4, 5), -- Procesos Metalmecánicos
+('0834405T', 4, 5), -- Estadística l
+-- Ingeniería Industrial - Semester VI
+('0112603L', 4, 6), -- Laboratorio Ingenieria Metodos I
+('0113602T', 4, 6), -- Ingenieria Métodos I
+('0124601T', 4, 6), -- Organización Del Trabajo
+('0124613T', 4, 6), -- Sistema Y Procedimientos
+('0124604T', 4, 6), -- Contabilidad Gerencial I
+('0834501T', 4, 6), -- Estadistica II
+('1032601T', 4, 6), -- Legislación Valores Y Proyectos De Pais
+('0113616T', 4, 6),
+('0123608T', 4, 6),
+('0123609T', 4, 6),
+('0123610T', 4, 6),
+('0123611T', 4, 6),
+('0123614T' ,4, 6),
+('0123615T', 4, 6),
+('1013308T', 4, 6), 
+-- 'Electiva Básica I' does not have a COD, so it is skipped.
+-- Ingeniería Industrial - Semester VII
+('1000001T', 4, 7), -- Seminario De Servicio Comunitario
+('0112706L', 4, 7), -- Laboratorio Ingenieria Metodos II
+('0113705T', 4, 7), -- Ingenieria Metodos II
+('0114703T', 4, 7), -- Seguridad E Higiene Industrial
+('0124702T', 4, 7), -- Mercadotecnia
+('0124704T', 4, 7), -- Contabilidad Gerencial II
+('0135701T', 4, 7), -- Investigación De Operaciones I
+-- Ingeniería Industrial - Semester VIII
+('0114803T', 4, 8), -- Control De Calidad
+('0114807T', 4, 8), -- Diseño Plantas Industriales
+('0124805T', 4, 8), -- Comportamiento Organizacional
+('0124806T', 4, 8), -- Gerencia
+('0134805T', 4, 8), -- Ingeniería Económica
+('0135802T', 4, 8), -- Investigación De Operaciones II
+-- Ingeniería Industrial - Semester IX
+('0114905T', 4, 9), -- Mantenimiento Industrial
+('0114904T', 4, 9), -- Medición Y Mejoramiento De La Productividad
+('0124901T', 4, 9), -- Investigación Y Desarrollo Del Producto
+('0134901T', 4, 9), -- Simulación
+('0114902T', 4, 9), -- Formulación Y Evaluación De Proyectos
+('0114906T', 4, 9), -- Administración De Producción
+('0123912T', 4, 9),
+('0133907T', 4, 9),
+('0133913T', 4, 9),
+('0423504T', 4, 9),
+('0643903T', 4, 9),
+-- 'Electiva Básica II' does not have a COD, so it is skipped.
+-- Ingeniería Industrial - Semester X
+('0100001T', 4, 10), -- Trabajo De Aplicación Profesional Proyecto Especial De Grado
+('0100002T', 4, 10), -- Pasantia Profesional
+
+-- Ingeniería Electrónica - Semestre I
+('0826101T', 5, 1), -- MATEMATICA I
+('0644103T', 5, 1), -- DIBUJO I
+('0415102T', 5, 1), -- COMPUTACION I
+('1023111T', 5, 1), -- LENGUAJE Y COMUNICACIÓN
+('1032109T', 5, 1), -- EFECTIVIDAD PERSONAL
+('0222101T', 5, 1), -- INTRODUCCION A LA INGENIERIA ELECTRONICA
+
+-- Ingeniería Electrónica - Semestre II
+('0826201T', 5, 2), -- MATEMATICA II
+('0415201T', 5, 2), -- COMPUTACION II
+('0914201T', 5, 2), -- QUIMICA GENERAL I
+('0912202L', 5, 2), -- LAB. DE QUIMICA GENERAL I
+('0846203T', 5, 2), -- FISICA I
+('1012207T', 5, 2), -- CIENCIA Y SOCIEDAD I
+
+-- Ingeniería Electrónica - Semestre III
+('0842204L', 5, 3), -- LAB. DE FISICA I
+('1023202T', 5, 3), -- INGLES I
+('0826301T', 5, 3), -- MATEMATICA III
+('0846302T', 5, 3), -- FISICA II
+('1032301T', 5, 3), -- NECESIDAD VALORES Y PROYECTO DE VIDA
+('0244302T', 5, 3), -- TECNOLOGIA DE INFORMACION y COMUNICACIONES
+('0215301T', 5, 3), -- CIRCUITOS I
+
+-- Ingeniería Electrónica - Semestre IV
+('1023302T', 5, 4), -- INGLES II
+('0826401T', 5, 4), -- MATEMATICA IV
+('0834403T', 5, 4), -- PROBABILIDAD Y ESTADISTICA
+('0213401T', 5, 4), -- MEDICIONES
+('0215402T', 5, 4), -- CIRCUITOS II
+('0212403L', 5, 4), -- LAB. DE MEDICIONES
+('0624402T', 5, 4), -- TERMOTECNIA
+
+-- Ingeniería Electrónica - Semestre V
+('0234501T', 5, 5), -- SEÑALES Y SISTEMAS I
+('0834503T', 5, 5), -- METODOS NUMERICOS
+('0225502T', 5, 5), -- ELECTRONICA I
+('0225503T', 5, 5), -- SISTEMAS DIGITALES I
+('0244504T', 5, 5), -- TEORIA ELECTROMAGNETICA
+('0213505T', 5, 5), -- TECNOLOGIA ELECTRICA
+('0213506L', 5, 5), -- LAB. DE CIRCUITOS
+('1000001T', 5, 5), -- SEMINARIO SERVICIO COMUNITARIO
+
+-- Ingeniería Electrónica - Semestre VI
+('1013401T', 5, 6), -- ECONOMIA
+('0244606T', 5, 6), -- SEÑALES Y SISTEMAS II
+('0223602L', 5, 6), -- LAB, ELECTRONICA I
+('0225601T', 5, 6), -- ELECTRONICA II
+('0213608L', 5, 6), -- LAB. DE TECNOLOGIA ELECTRICA
+('0223605T', 5, 6), -- TECNOLOGIA ELECTRONICA
+('0224603T', 5, 6), -- SISTEMAS DIGITALES II
+('0223604L', 5, 6), -- LAB. DE SISTEMAS DIGITALES I
+('1000002T', 5, 6), -- PROYECTO DE SERVICIO COMUNITARIO
+
+-- Ingeniería Electrónica - Semestre VII
+('0234701T', 5, 7), -- SISTEMAS DE CONTROL 1
+('0223702L', 5, 7), -- LAB. DE ELECTRONICA II
+('0225703T', 5, 7), -- ELECTRONICA III
+('0244704T', 5, 7), -- TELECOMUNICACIONES 1
+('0223705L', 5, 7), -- LAB. DE SISTEMAS DIGITALES II
+('0244706T', 5, 7), -- ELECTRONICA DEL ESTADO SÓLIDO
+('1032402T', 5, 7), -- GERENCIA PERSONAL CONTEXTO Y PROYECTO ORGANIZACIONAL
+('1113404T', 5, 7), -- ECOLOGIA Y CONTAMINACION AMBIENTAL
+('1000003T', 5, 7), -- SERVICIO COMUNITARIO
+
+-- Ingeniería Electrónica - Semestre VIII
+('0234801T', 5, 8), -- SISTEMAS DE CONTROL II
+('0223802L', 5, 8), -- LAB. DE ELECTRONICA III
+('0225803T', 5, 8), -- ELECTRONICA IV
+('0243804L', 5, 8), -- LAB. DE TELECOMUNICACIONES
+('0243805T', 5, 8), -- COMUNICACIONES DE RF
+('0232806L', 5, 8), -- LAB. DE SISTEMAS DE CONTROL I
+('1032601T', 5, 8), -- LEGISLACION Y VALORES NACIONALES Y PROYECTO DE PAIS
+('0243807T', 5, 8), -- REDES DE COMPUTADORAS
+
+-- Ingeniería Electrónica - Semestre IX
+('0233903T', 5, 9), -- INSTRUMENTACION ELECTRONICA
+('0233902T', 5, 9), -- PROYECTOS DE INSTRUMENTACION ELECTRONICA
+('0243906T', 5, 9), -- PROYECTOS DE RADIO FRECUENCIA
+('0233901T', 5, 9), -- PROYECTOS SISTEMAS DE CONTROL
+('1013308T', 5, 9), -- METODOLOGIA DE LA INVESTIGACION
+('0124601T', 5, 9), -- ORGANIZACIÓN
+
+-- Ingeniería Electrónica - Electivas (Asignadas al Semestre 9 por referencia)
+('0243812T', 5, 9), -- FIBRA OPTICA
+('0243811T', 5, 9), -- LINEAS DE TRANSMISION
+('0243907T', 5, 9), -- TRANSMISION DE DATOS
+('0243815T', 5, 9), -- PROPAGACION Y ANTENAS
+('0243819T', 5, 9), -- SIST. DE COM. OPTICOS
+('0223818T', 5, 9), -- PROYECTOS DIGITALES
+('0243810T', 5, 9), -- RADIOENLACES
+('0243908T', 5, 9), -- INGENIERIA DE REDES
+('0243816T', 5, 9), -- CIRCUITOS DE ALTAS FRECUENCIAS
+('0243813T', 5, 9), -- TELECOMUNICACIONES CELULARES
+('0243814T', 5, 9), -- COMUNICACIONES SATELITALES
+('0233809T', 5, 9), -- REDES NEURONALES Y LOGICA DIFUSA
+('0233817T', 5, 9), -- PROCESAMIENTO DE BIOSEÑALES E IMÁGENES MEDICAS
+('0243820T', 5, 9), -- APRENDIZAJE AUTOMATICO
+
+-- Ingeniería Electrónica - Semestre X (Trabajo de Grado)
+('0200001T', 5, 10), -- TRABAJO DE APLICACIÓN PROFESIONAL (MODALIDAD A ESCOGER)
+('0200002T', 5, 10); -- PASANTÍAS PROFESIONALES

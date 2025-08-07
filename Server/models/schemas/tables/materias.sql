@@ -11,6 +11,7 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0842204L', 'Laboratorio De Física I', 1, FALSE, 3, 2, 4, 'Aplicaciones practicas de los conocimientos de Física I'),
    ('0846203T', 'Física I', 4, FALSE, 10, 3, 11, 'Fundamentos de la física cinética'),
    ('0914201T', 'Química General I', 3, FALSE, 8, 5, 12, 'Fundamentos de la Química inorgánica'),
+   
    ('0416304T', 'Estructura De Datos', 4, FALSE, 10, 2, 2, 'Estructuras de Datos fundamentales de la Programación'),
    ('0423305T', 'Teoría General De Sistemas', 2, FALSE, 4, 2, 4, 'Teoría que estudia el comportamiento de los sistemas'),
    ('0826301T', 'Matemática III', 4, FALSE, 10, 3, 9, 'Temas estudiados:/Algebra Lineal/Geometria analítica/Calculo diferencial Multivariable/Calculo Integral Multivariable'),
@@ -40,8 +41,8 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0425705T', 'Base De Datos II', 3, FALSE, 8, 2, 4, ''),
    ('0435708T', 'Comunicaciones II', 3, FALSE, 6, 2, 3, ''),
    ('0435709T', 'Compiladores E Interpretes', 3, FALSE, 10, 2, 3, ''),
-   ('0233809T', 'Redes Neurales Y Lógica Difusa', 2, TRUE, 6, 6, 1, 'Aplicaciones de la logica difusa y les redes neuronales para la resolución de problemas'),
-   ('0243820T', 'Aprendizaje Automático', 2, TRUE, 6, 6, 1, ''),
+   ('0233809T', 'Redes Neurales Y Lógica Difusa', 2, TRUE, 6, 6, 20, 'Aplicaciones de la logica difusa y les redes neuronales para la resolución de problemas'),
+   ('0243820T', 'Aprendizaje Automático', 2, TRUE, 6, 6, 20, ''),
    ('0423504T', 'Formación De Emprendedores', 2, TRUE, 4, 2, 4, 'Guia de estudio para los futuro emprendedores'),
    ('0423703T', 'Introducción A La Inteligencia Artificial', 2, TRUE, 4, 6, 1, ''),
    ('0423707T', 'Análisis Y Procesamiento De Datos', 2, TRUE, 4, 2, 4, ''),
@@ -52,7 +53,7 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0425803T', 'Simulación De Sistemas', 3, FALSE, 6, 2, 4, ''),
    ('0843814T', 'Sistemas Distribuidos', 3, FALSE, 8, 2, 3, ''),
    ('1113404T', 'Ecología Y Contaminación Ambiental', 2, FALSE, 4, 9, 1, ''),
-   ('0123614T', 'Gestión Tecnológica', 2, TRUE, 4, 7, 1, ''),
+   ('0123614T', 'Gestión Tecnológica', 2, TRUE, 4, 7, 14, ''),
    ('0123801T', 'Organización', 2, TRUE, 4, 7, 1, ''),
    ('0423805T', 'Administración De Base De Datos', 2, TRUE, 4, 2, 4, ''),
    ('0423807T', 'Desarrollo De Aplicaciones Web', 2, TRUE, 4, 2, 1, ''),
@@ -187,6 +188,118 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('1543905T', 'Seminario De Investigación', 2, FALSE, 0,10,1,''),
    ('1513906T', 'Puentes', 2, TRUE, 0,10,1,''),
 
--- Ingeniería Mecánica - Semestre X
+-- Ingeniería Civil - Semestre X
    ('1500001T', 'Trabajo De Aplicación Profesional (Proyecto Especial De Grado)', 12, FALSE,0,10,1,''),
-   ('1500002T', 'Trabajo De Aplicación Profesional (Pasantías Profesional)', 12, FALSE,0,10,1,'');
+   ('1500002T', 'Trabajo De Aplicación Profesional (Pasantías Profesional)', 12, FALSE,0,10,1,''),
+
+-- Ingeniería Industrial - Semestre I
+   ('0112101T', 'Introducción A La Ingeniería Industrial', 1, FALSE, 0,7,14,''),
+--Ingeniería Industrial - Semestre IV
+   ('0113401T', 'Procesos Industriales', 2, FALSE, 0,7,14,''),
+--Ingeniería Industrial - Semestre V
+   ('0214507T', 'Ingeniería Eléctrica', 3, FALSE, 0,6,1,''),
+   ('0213508L', 'Laboratorio Ingeniería Eléctrica', 1, FALSE, 0,6,1,''),
+   ('0634509T', 'Procesos Metalmecánicos', 3, FALSE, 0,8,8,''),
+   ('0633512L', 'Laboratorio Procesos Metalmecánicos', 1, FALSE, 0,8,8,''),
+--Ingeniería Industrial - Semestre VI
+   ('0112603L', 'Laboratorio Ingenieria Metodos I',1, FALSE, 0, 7, 14, ''),
+   ('0113602T', 'Ingenieria Metodos I', 2, FALSE, 0, 7, 14, ''),
+   ('0124601T', 'Organizacion', 2, FALSE, 0, 7, 16,''),
+   ('0124613T', 'Sistema Y Procedimientos', 3, FALSE, 0, 7, 16,''),
+   ('0124604T', 'Contabilidad Gerencial I', 3, FALSE, 0, 7, 15,''),
+   ('0123608T', 'Introdución A Negocios Internacionales ', 2, TRUE, 0, 7, 16, ''),
+   ('0123609T', 'Gerencia De Exportaciones', 2, TRUE, 0, 7, 16, ''),
+   ('0123610T', 'Investigación De Mercados', 2, TRUE, 0, 7, 16, ''),
+   ('0123611T', 'Empaquetecnia', 2, TRUE, 0, 7, 16, ''),
+   ('0123615T', 'Trabajo Efectivo En Equipo', 2, TRUE, 0, 7, 16, ''),
+--Aqui va 1 electiva basica
+--Ingeniería Industrial - Semestre VII
+   ('0112706L', 'Laboratorio Ingenieria Metodos II', 1, FALSE, 0, 7, 14, ''),
+   ('0113705T', 'Ingenieria Metodos II', 2, FALSE, 0, 7, 14, ''),
+   ('0114703T', 'Seguridad E Higiene Industrial', 3, FALSE, 0, 7, 14, ''),
+   ('0124702T', 'Mercadotecnia', 3, FALSE, 0, 7, 16, ''),
+   ('0124704T', 'Contabilidad Gerencial II', 3, FALSE, 0, 7, 15, ''),
+--Ingeniería Industrial - Semestre VIII
+   ('0114803T', 'Control De Calidad', 3, FALSE, 0, 7, 14, ''),
+   ('0114807T', 'Diseño Plantas Industriales', 3, FALSE, 0, 7, 14, ''),
+   ('0124805T', 'Comportamiento Organizacional', 3, FALSE, 0, 7, 16, ''),
+   ('0124806T', 'Gerencia', 3, FALSE, 0, 7, 16, ''),
+   ('0135802T', 'Investigación De Operaciones II', 4, FALSE, 0, 7, 15, ''),
+--Ingeniería Industrial - Semestre IX
+-- (codigo, nombre, uc, electiva, horas_estudio, id_departamento, id_nucleo, info)
+   ('0114905T', 'Mantenimiento Industrial', 3, FALSE, 0, 7, 14, ''),
+   ('0114904T', 'Medicion Y Mejoramiento De La Productividad', 3, FALSE, 0, 7, 14, ''),
+   ('0124901T', 'Investigacion Y Desarrollo Del Producto', 3, FALSE, 0, 7, 16, ''),
+   ('0134901T', 'Simulacion', 3, FALSE, 0, 7, 15, ''),
+   ('0114902T', 'Formulacion Y Evaluacion De Proyectos', 3, FALSE, 0, 7, 14, ''),
+   ('0114906T', 'Administración De Producción', 3, FALSE, 0, 7, 14, ''),
+   ('0123912T', 'Competencias Laborales', 2, TRUE, 0, 7, 1, ''),
+   ('0133907T', 'Toma De Decisiones Badasa En Costos', 2, TRUE, 0, 7, 15, ''),
+   ('0133913T', 'Introd. A La Perforación Direccional Y Toma De Registros', 2, TRUE, 0, 7, 1, ''),
+--Aqui va 1 electiva basica II
+--Ingeniería Industrial - Semestre X
+   ('0100001T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,7,1,''),
+   ('0100002T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,7,1,''),
+--Ingeniería Electrónica - Semestre I
+   ('0222101T', 'Introducción A La Ingeniería Electrónica', 1, FALSE, 0,6,18,''),
+--Ingeniería Electrónica - Semestre I
+('0415201T', 'Computacion II', 1, FALSE, 0,2,2,''),
+
+--Ingeniería Electrónica - Semestre III
+   ('0244302T', 'Tecnología De Información Y Comunicaciones', 3, FALSE, 0,6,1,''),
+   ('0215301T', 'Circuitos I', 3, FALSE, 0,6,17,''),
+--Ingeniería Electrónica - Semestre IV
+   ('0213401T', 'Mediciones', 2, FALSE, 0,6,17,''),
+   ('0215402T', 'Circuitos II', 3, FALSE, 0,6,17,''),
+   ('0212403L', 'Laboratorio de Mediciones', 1, FALSE, 0,6,17,''),
+   ('0624402T', 'Termotecnia', 3, FALSE, 0,8,5,''),
+--Ingeniería Electrónica - Semestre V
+   ('0234501T', 'Señales Y Sistemas I', 3, FALSE, 0,6,19,''),
+   ('0225502T', 'Electrónica I', 1, FALSE, 0,6,18,''),
+   ('0225503T', 'Sistemas Digitales I', 3, FALSE, 0,6,18,''),
+   ('0244504T', 'Teoria Electromagnética', 3, FALSE, 0,6,20,''),
+   ('0213506L', 'Laboratorio de Circuitos', 3, FALSE, 0,6,17,''),
+---Ingeniería Electrónica - Semestre VI
+   ('0244606T', 'Señales Y Sistemas II', 3, FALSE, 0,6,19,''),
+   ('0223602L', 'Laboratorio Electronica I', 1, FALSE, 0,6,19,''),
+   ('0225601T', 'Electrónica II', 3, FALSE, 0,6,18,''),
+   ('0223605T', 'Tecnología Electrónica', 2, FALSE, 0,6,18,''),
+   ('0224603T', 'Sistemas Digitales II', 3, FALSE, 0,6,18,''),
+   ('0223604L', 'Laboratorio de Sistemas Digitales I', 1, FALSE, 0,6,18,''),
+--Ingeniería Electrónica - Semestre VII
+   ('0234701T', 'Sistemas De Control I', 3, FALSE, 0,6,19,''),
+   ('0223702L', 'Laboratorio Electronica II', 1, FALSE, 0,6,19,''),
+   ('0225703T', 'Electrónica III', 3, FALSE, 0,6,18,''),
+   ('0244704T', 'Telecomunicaciones I', 3, FALSE, 0,6,20,''),
+   ('0223705L', 'Laboratorio de Sistemas Digitales II', 1, FALSE, 0,6,18,''),
+   ('0244706T', 'Electrónica Del Estado Solido', 3, FALSE, 0,6,20,''),
+--Ingeniería Electrónica - Semestre VIII
+   ('0234801T', 'Sistemas De Control II', 3, FALSE, 0,6,19,''),
+   ('0223802L', 'Laboratorio de Electrónica III', 1, FALSE, 0,6,18,''),
+   ('0225803T', 'Electrónica IV', 3, FALSE, 0,6,18,''),
+   ('0243804L', 'Laboratorio de Telecomunicaciones', 1, FALSE, 0,6,20,''),
+   ('0243805T', 'Comunicaciones RF', 2, FALSE, 0,6,20,''),
+   ('0232806L', 'Laboratorio De Sistemas De Control I', 1, FALSE, 0,6,18,''),
+   ('0243807T', 'Redes De Computadoras', 2, FALSE, 0,6,20,''),
+--Ingeniería Electrónica - Semestre IX
+   ('0233903T', 'Instrumentación Electrónica', 2, FALSE, 0,6,19,''),
+   ('0233902T', 'Proyectos de Instrumentación Electrónica', 2, FALSE, 0,6,19,''),
+   ('0243906T', 'Proyectos De Radio Frecuencia', 2, FALSE, 0,6,20,''),
+   ('0233901T', 'Proyectos Sistemas De Control', 2, FALSE, 0,6,19,''),
+-- Ingeniería Electrónica - Semestre X
+   ('0200001T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,6,1,''),
+   ('0200002T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,6,1,''),
+--Ingeniería Electrónica - Electivas
+   ('0243812T', 'Fibra Optica', 2, TRUE, 0, 6, 20, ''),
+   ('0243811T', 'Lineas De Transmision', 2, TRUE, 0, 6, 20, ''),
+   ('0243907T', 'Transmision De Datos', 2, TRUE, 0, 6, 20, ''),
+   ('0243815T', 'Propagacion Y Antenas', 2, TRUE, 0, 6, 20, ''),
+   ('0243819T', 'Sistemas De Comunicaciones Opticos', 2, TRUE, 0, 6, 20, ''),
+   ('0223818T', 'Proyectos Digitales', 2, TRUE, 0, 6, 18, ''),
+   ('0243810T', 'Radioenlaces', 2, TRUE, 0, 6, 20, ''),
+   ('0243908T', 'Ingenieria De Redes', 2, TRUE, 0, 6, 20, ''),
+   ('0243816T', 'Circuitos De Alta Frecuencia', 2, TRUE, 0, 6, 20, ''),
+   ('0243813T', 'Telecomunicaciones Celulares', 2, TRUE, 0, 6, 20, ''),
+   ('0243814T', 'Comunicaciones Satelitales', 2, TRUE, 0, 6, 20, ''),
+   ('0233817T', 'Procesamiento De Bioñesales E Imagenes Medicas', 2, TRUE, 0, 6, 20, '');
+
