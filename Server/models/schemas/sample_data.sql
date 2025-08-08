@@ -8,16 +8,19 @@ INSERT INTO public.departamento (id, nombre) VALUES
 (7, 'Departamento de Ingeniería Industrial'),
 (8, 'Departamento de Ingeniería Mecánica'),
 (9, 'Departamento de Ingeniería Ambiental'),
-(10,'Departamento de Ingeniería Civil');
+(10,'Departamento de Ingeniería Civil'),
+(11,'Departamento de Ingeniería de Producción Animal');
 
 
 
 INSERT INTO public.carreras (id, nombre, uc_total) VALUES
-(1, 'Ingeniería en Informática',156),
+(1, 'Ingeniería En Informática',156),
 (2, 'Ingeniería Mecánica', 168 ),
 (3, 'Ingeniería Civil', 156),
 (4, 'Ingeniería Industrial', 169),
-(5, 'Ingeniería Electronica',164);
+(5, 'Ingeniería Electronica',164),
+(6, 'Ingeniería Ambiental', 154),
+(7, 'Ingeniería de Producción Animal', 167);
 
 
 

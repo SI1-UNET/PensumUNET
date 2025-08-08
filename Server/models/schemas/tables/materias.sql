@@ -236,14 +236,14 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0123912T', 'Competencias Laborales', 2, TRUE, 0, 7, 1, ''),
    ('0133907T', 'Toma De Decisiones Badasa En Costos', 2, TRUE, 0, 7, 15, ''),
    ('0133913T', 'Introd. A La Perforación Direccional Y Toma De Registros', 2, TRUE, 0, 7, 1, ''),
---Aqui va 1 electiva basica II
+
 --Ingeniería Industrial - Semestre X
    ('0100001T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,7,1,''),
    ('0100002T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,7,1,''),
 --Ingeniería Electrónica - Semestre I
    ('0222101T', 'Introducción A La Ingeniería Electrónica', 1, FALSE, 0,6,18,''),
 --Ingeniería Electrónica - Semestre I
-('0415201T', 'Computacion II', 1, FALSE, 0,2,2,''),
+('0415201T', 'Computación II', 1, FALSE, 0,2,2,''),
 
 --Ingeniería Electrónica - Semestre III
    ('0244302T', 'Tecnología De Información Y Comunicaciones', 3, FALSE, 0,6,1,''),
@@ -301,5 +301,55 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0243816T', 'Circuitos De Alta Frecuencia', 2, TRUE, 0, 6, 20, ''),
    ('0243813T', 'Telecomunicaciones Celulares', 2, TRUE, 0, 6, 20, ''),
    ('0243814T', 'Comunicaciones Satelitales', 2, TRUE, 0, 6, 20, ''),
-   ('0233817T', 'Procesamiento De Bioñesales E Imagenes Medicas', 2, TRUE, 0, 6, 20, '');
+   ('0233817T', 'Procesamiento De Bioñesales E Imagenes Medicas', 2, TRUE, 0, 6, 20, ''),
+
+--Ingeniería Ambiental - Semestre I
+   ('1112101T', 'Introducción A La Ingeniería Ambiental', 1, FALSE, 0,9,1,''),
+   ('1112102T', 'Biología', 1, FALSE, 0,9,1,''),
+--Ingeniería Ambiental - Semestre III
+   ('1113301T', 'Fundamentos de Ingeniería Ambiental I', 2, FALSE, 0,9,1,''),
+--Ingeniería Ambiental - Semestre IV
+   ('1123401T', 'Fundamentos de Ingeniería Ambiental II', 2, FALSE, 0,9,1,''),
+   ('0834402T', 'Estadistica', 4, FALSE, 0,3,10,''),
+--Ingeniería Ambiental - Semestre V
+   ('1124501T', 'Procesos Y Operaciones Básicas En Ingeniería Ambiental', 3, FALSE, 0,9,1,''),
+   ('1114504T', 'Metereología Y Climitología', 3, FALSE, 0,9,1,''),
+   ('1115503T', 'Microbiología Ambiental', 3, FALSE, 0,9,1,''),
+   ('0923401T', 'Química Orgánica', 2, FALSE, 0,5,13,''),
+--Ingeniería Ambiental - Semestre VI
+   ('1124601T', 'Tratamiento Biológico Del Agua', 3, FALSE, 0,9,1,''),
+   ('1125602T', 'Laboratorio De Ingeniería Ambiental I', 3, FALSE, 0,9,1,''),
+   ('1113610T', 'Hidrología', 2, FALSE, 0,9,1,''),
+   ('1114611T', 'Geología Y Suelos', 3, FALSE, 0,5,13,''),
+   ('1123605T', 'Introducción A La Simulación De Procesos Ambientales', 2, TRUE, 0,9,1,''),
+   ('1123606T', 'Cartografía', 2, TRUE, 0,9,1,''),
+   ('1123607T', 'Contaminación Acústica', 2, TRUE, 0,9,1,''),
+   ('1123608T', 'Ecotoxicología', 2, TRUE, 0,9,1,''),
+   ('1113609T', 'Zoonosis Y Ambiente', 2, TRUE, 0,9,1,''),
+   ('1113612T', 'Ambiente Y Salud Pública', 2, TRUE, 0,9,1,''),
+   ('1023501T', 'Inglés III', 2, TRUE, 0,4,1,''),
+--Ingeniería Ambiental - Semestre VII
+   ('1124701T', 'Tratamiento Físico Químico Del Agua', 3, FALSE, 0,9,1,''),
+   ('1124702T', 'Gestión Integral De Residuos Sólidos', 3, FALSE, 0,9,1,''),
+   ('1012701T', 'Legislación Ambiental', 1, FALSE, 0,9,1,''),
+   ('1124703T', 'Sistema de Información  Geográfica', 3, FALSE, 0,9,1,''),
+   ('1124704T', 'Conservación De Suelos y Agua', 3, FALSE, 0,9,1,''),
+   ('1124705T', 'Contaminación De La Atmósfera', 3, FALSE, 0,9,1,''),
+--Ingeniería Ambiental - Semestre VIII
+   ('1124801T', 'Sistemas de Abastecimiento De Agua Potable', 3, FALSE, 0,9,1,''),
+   ('1123802T', 'Energias Alternativas', 2, FALSE, 0,9,1,''),
+   ('1123803T', 'Estudios De Impacto Ambiental', 2, FALSE, 0,9,1,''),
+   ('1125804T', 'Control E Instrumentación En Procesos Ambientales', 3, FALSE, 0,9,1,''),
+   ('1123805T', 'Análisis Instrumental Para Ingeniería Ambiental', 2, TRUE, 0,9,1,''),
+   ('1123806T', 'Valoración Ambiental', 2, TRUE, 0,9,1,''),
+   ('1123906T', 'Vulnerabilidad En Sistema De Agua Potable', 2, TRUE, 0,9,1,''),
+--Ingeniería Ambiental - Semestre IX
+   ('1124901T', 'Sistemas de Tratamiento de Aguas Residuales', 3, FALSE, 0,9,1,''),
+   ('1123902T', 'Gestión Ambiental', 2, FALSE, 0,9,1,''),
+   ('1125903T', 'Laboratorio Ambiental II', 3, FALSE, 0,9,1,''),
+   ('1123904T', 'Formulación Y Evaluación De Proyectos', 2, FALSE, 0,9,1,''),
+   ('1033801T', 'Metodología De La Investigación (Proyecto D<<<<<<<<<e Grado)', 2, FALSE, 0,9,1,''),
+-- Ingeniería Electrónica - Semestre X
+   ('1100002T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,6,1,''),
+   ('1100001T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,6,1,'');
 

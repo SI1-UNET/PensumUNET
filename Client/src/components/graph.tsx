@@ -7,6 +7,7 @@ import { RecomendationWindow } from "./recommendation";
 import { set } from "zod/v4";
 import { MateriaNode } from "./node";
 import { Background, Controls, MiniMap, ReactFlow } from "@xyflow/react";
+import { json } from "zod/v4-mini";
 // import * as d3 from "d3";
 
 type PropsInfo = {
@@ -174,7 +175,15 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
   const [recommendationDone, setRecommentadionDone] = useState<boolean>(false)  
   const [showRecomendation, setShowRecomendation] = useState<boolean>(false);
 
- 
+  useEffect(() => {
+    const carrera = window.location.pathname.split('/').pop();
+    if(localStorage.getItem('carrera') == carrera ){
+      const materias_seleccionadas = localStorage.getItem('materias_seleccionadas');
+      setMateriasSelected(materias_seleccionadas ? JSON.parse(materias_seleccionadas) : []);
+      const vistas = localStorage.getItem('vistas');
+      setVistas(vistas ? JSON.parse(vistas) : []);
+    }
+  }, []);
 
   const handleMateriaClick = (codigo: string) => {
     let materias_vistas = [] as string[];
@@ -228,6 +237,7 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
     materiasBestArray.forEach((materia) => {
       materiasBestCode.push(materia.codigo);
     })
+
     let electivas = 0 
     materiasBestCode.map((codigo) => {
       if(materias[codigo].electiva) {
@@ -237,6 +247,8 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
     setMateriasRecomendadas(materiasBestCode);
     setSemestresRestantes(getRemainingSemestres(getUC(materias, [...materias_a_evaluar, ...vistas])+ electivasVistas*2 , uc_total ,maximasUC));
     setRecommentadionDone(true);
+    localStorage.setItem('materias_seleccionadas', JSON.stringify(materiasSelected))
+    localStorage.setItem('vistas', JSON.stringify(vistas))
   }
   else{
     alert("El maximo de UC a cursar en un intensivo es 10UC")
