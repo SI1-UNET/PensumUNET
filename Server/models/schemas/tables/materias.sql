@@ -226,7 +226,6 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0124806T', 'Gerencia', 3, FALSE, 0, 7, 16, ''),
    ('0135802T', 'Investigación De Operaciones II', 4, FALSE, 0, 7, 15, ''),
 --Ingeniería Industrial - Semestre IX
--- (codigo, nombre, uc, electiva, horas_estudio, id_departamento, id_nucleo, info)
    ('0114905T', 'Mantenimiento Industrial', 3, FALSE, 0, 7, 14, ''),
    ('0114904T', 'Medicion Y Mejoramiento De La Productividad', 3, FALSE, 0, 7, 14, ''),
    ('0124901T', 'Investigacion Y Desarrollo Del Producto', 3, FALSE, 0, 7, 16, ''),
@@ -236,15 +235,13 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0123912T', 'Competencias Laborales', 2, TRUE, 0, 7, 1, ''),
    ('0133907T', 'Toma De Decisiones Badasa En Costos', 2, TRUE, 0, 7, 15, ''),
    ('0133913T', 'Introd. A La Perforación Direccional Y Toma De Registros', 2, TRUE, 0, 7, 1, ''),
-
 --Ingeniería Industrial - Semestre X
    ('0100001T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,7,1,''),
    ('0100002T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,7,1,''),
 --Ingeniería Electrónica - Semestre I
    ('0222101T', 'Introducción A La Ingeniería Electrónica', 1, FALSE, 0,6,18,''),
 --Ingeniería Electrónica - Semestre I
-('0415201T', 'Computación II', 1, FALSE, 0,2,2,''),
-
+   ('0415201T', 'Computación II', 1, FALSE, 0,2,2,''),
 --Ingeniería Electrónica - Semestre III
    ('0244302T', 'Tecnología De Información Y Comunicaciones', 3, FALSE, 0,6,1,''),
    ('0215301T', 'Circuitos I', 3, FALSE, 0,6,17,''),
@@ -302,7 +299,6 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0243813T', 'Telecomunicaciones Celulares', 2, TRUE, 0, 6, 20, ''),
    ('0243814T', 'Comunicaciones Satelitales', 2, TRUE, 0, 6, 20, ''),
    ('0233817T', 'Procesamiento De Bioñesales E Imagenes Medicas', 2, TRUE, 0, 6, 20, ''),
-
 --Ingeniería Ambiental - Semestre I
    ('1112101T', 'Introducción A La Ingeniería Ambiental', 1, FALSE, 0,9,1,''),
    ('1112102T', 'Biología', 1, FALSE, 0,9,1,''),
@@ -348,8 +344,77 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('1123902T', 'Gestión Ambiental', 2, FALSE, 0,9,1,''),
    ('1125903T', 'Laboratorio Ambiental II', 3, FALSE, 0,9,1,''),
    ('1123904T', 'Formulación Y Evaluación De Proyectos', 2, FALSE, 0,9,1,''),
-   ('1033801T', 'Metodología De La Investigación (Proyecto D<<<<<<<<<e Grado)', 2, FALSE, 0,9,1,''),
--- Ingeniería Electrónica - Semestre X
-   ('1100002T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,6,1,''),
-   ('1100001T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,6,1,'');
-
+   ('1033801T', 'Metodología De La Investigación (Proyecto De Grado)', 2, FALSE, 0,9,1,''),
+-- Ingeniería Amibiental - Semestre X
+   ('1100002T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,9,1,''),
+   ('1100001T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,9,1,''),
+-- Ingenieria Produccion Animal - Semestre I
+   ( '0323104T', 'Introduccion A La Ingenieria Produccion Animal', 1, FALSE, 0, 11, 1,''),
+   ( '0342105T', 'Biologia(Ipa)Teoria', 1, FALSE, 0, 11, 1,''),
+   ( '0343106L', 'Biologia - Laboratorio', 1, FALSE, 0, 11, 1,''),
+-- Ingenieria Produccion Animal - Semestre II
+   ( '0323204T', 'Zootecnia General', 2, FALSE, 0, 11, 1,''),
+   ( '0343205T', 'Zoologia Agricola Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0343206L', 'Zoologia Agricola Laboratorio', 1, FALSE, 0, 11, 1,''),
+-- Ingenieria Produccion Animal - Semestre III
+   ( '0516202T', 'Agroecologia', 4, FALSE, 0, 1, 1,''),
+   ( '0524304T', 'Topografia', 3, FALSE, 0, 1, 1,''),
+-- Ingenieria Produccion Animal - Semestre IV
+   ( '0524402T', 'Suelos', 3, FALSE, 0, 1, 1,''),
+   ( '0923402L', 'Quimica Organica Laboratorio', 1, FALSE, 0, 5, 13,''),
+-- Ingenieria Produccion Animal - Semestre V
+   ( '0345501T', 'Mecanizacion', 3, FALSE, 0, 11, 1,''),
+   ( '0314502T', 'Αnatomia Αnimal Teoria', 3, FALSE, 0, 11, 1,''),
+   ( '0313503L', 'Αnatomia Animal Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0523508T', 'Diseño De Experimentos', 2, FALSE, 0, 1, 1,''),
+   ( '0523604T', 'Conservacion De Suelos Y Aguas', 2, FALSE, 0, 1, 1,''),
+   ( '0924501T', 'Bioquimica Teoria', 3, FALSE, 0, 5, 13,''),
+   ( '0923502L', 'Bioquimica Laboratorio', 1, FALSE, 0, 5, 13,''),
+-- Ingenieria Produccion Animal - Semestre VI
+   ( '0313504T', 'Genetica Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0312508L', 'Genetica Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0313601T', 'Fisiologia Genral Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0313602L', 'Fisiologia General Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0343604T', 'Nutricion Animal I Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0343605L', 'Nutricion Animal I Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0333607T', 'Microbiologia General Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0333608L', 'Microbiologia General - Laboratorio', 1, FALSE, 0, 11, 1,''),
+-- Ingenieria Produccion Animal - Semestre VII
+   ( '0313701T', 'Fisiologia De La Reproduccion Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0313702L', 'Fisiologia De La Reproduccion Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0333703T', 'Microbiologia Aplicada Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0333704L', 'Microbiologia Aplicada Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0345705T', 'Nutricion Animal Ii Teoria', 3, FALSE, 0, 11, 1,''),
+   ( '0325706T', 'Mejoramiento Animal', 3, FALSE, 0, 11, 1,''),
+   ( '0333707T', 'Parasitologia Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0333708L', 'Parasitologia Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0313710T', 'Fisiologia De La Produccion', 2, FALSE, 0, 11, 1,''),
+-- Ingenieria Produccion Animal - Semestre VIII
+   ( '0335803T', 'Sanidad Animal', 3, FALSE, 0, 11, 1,''),
+   ( '0343804T', 'Mercadeo Agricola', 2, FALSE, 0, 11, 1,''),
+   ( '0325805T', 'Avicultura Teoria', 3, FALSE, 0, 11, 1,''),
+   ( '0325809T', 'Porcinotecnia Teoria', 3, FALSE, 0, 11, 1,''),
+   ( '0345810T', 'Planificacion Y Administracion De Fincas', 3, FALSE, 0, 11, 1,''),
+   ( '0533807T', 'Forrajicultura', 2, FALSE, 0, 11, 1,''),
+   ( '0532809L', 'Forrajicultura Laboratorio', 1, FALSE, 0, 11, 1,''),
+-- Ingenieria Produccion Animal - Semestre IX
+   ( '0335901T', 'Industrias De La Carne', 3, FALSE, 0, 11, 1,''),
+   ( '0335902T', 'Industria De La Leche', 3, FALSE, 0, 11, 1,''),
+   ( '0323903T', 'Bovinos De Carne Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0323904L', 'Bovinos De Carne Laboratorio', 1, FALSE, 0, 11, 1,''),
+   ( '0323905T', 'Bovinos De Leche Teoria', 2, FALSE, 0, 11, 1,''),
+   ( '0323906L', 'Bovinos De Leche Laboratorio', 1, FALSE, 0, 11, 1,''),
+-- Ingenieria Produccion Animal - Semestre X
+   ( '0300002T', 'Trabajo De Aplicación Profesional (TAP)', 12, FALSE,0,11,1,''),
+   ( '0300001T', 'Trabajo Especial de Grado (TEG)', 12, FALSE,0,11,1,''),
+-- Ingenieria Produccion Animal - Electivas
+   ( '0343606T', 'Construcciones Rurales', 2, TRUE, 0, 11, 1,''),
+   ( '0313807T', 'Ecologia Y Comportamiento Animal', 2, TRUE, 0, 11, 1,''),
+   ( '0323806T', 'Zoocriaderos', 2, TRUE, 0, 11, 1,''),
+   ( '0333907T', 'Industria Del Cuero', 2, TRUE, 0, 11, 1,''),
+   ( '0323812T', 'Ovinos Y Caprinos', 2, TRUE, 0, 11, 1,''),
+   ( '0323813T', 'Apicultura', 2, TRUE, 0, 11, 1,''),
+   ( '0314810T', 'Biotecnologias De La Reproduccion', 2, TRUE, 0, 11, 1,''),
+   ( '0323811T', 'Piscicultura', 2, TRUE, 0, 11, 1,''),
+   ( '0343808T', 'Cunicultura', 2, TRUE, 0, 11, 1,''),
+   ( '0543901T', 'Gerencia Agricola', 2, TRUE, 0, 1, 1,'');

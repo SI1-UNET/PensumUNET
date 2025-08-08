@@ -445,4 +445,89 @@ INSERT INTO public.prelacion_mat (codigo_prel, codigo_mat, id_carrera) VALUES
 ('1125602T', '1125903T', 6), -- LABORATORIO DE ING. AMBIENTAL I -> LABORATORIO AMBIENTAL II
 ('1124801T', '1125903T', 6), -- SISTEMAS DE ABASTECIMIENTO DE AGUA POTABLE -> LABORATORIO AMBIENTAL II
 ('1124705T', '1125903T', 6), -- CONTAMINACION DE LA ATMOSFERA -> LABORATORIO AMBIENTAL II
-('1123803T', '1123904T', 6); -- ESTUDIOS DE IMPACTO AMBIENTAL -> FORMULACION Y EVALUACION DE PROYECTOS
+('1123803T', '1123904T', 6), -- ESTUDIOS DE IMPACTO AMBIENTAL -> FORMULACION Y EVALUACION DE PROYECTOS
+
+-- Ingenieria Produccion Animal - Semestre I
+-- No prerequisites in this semester
+-- Ingenieria Produccion Animal - Semestre II
+  ('0323104T', '0323204T', 7), -- IntroduccionALaIngenieriaProduccionAnimal -> ZootecniaGeneral
+  ('0342105T', '0323204T', 7), -- Biologia(ipa)Teoria -> ZootecniaGeneral
+  ('0343106L', '0343205T', 7), -- Biologia-Laboratorio -> ZoologiaAgricolaTeoria
+  ('0826101T', '0826201T', 7), -- MatematicaI -> MatematicaII
+-- Ingenieria Produccion Animal - Semestre III
+  ('0343205T', '0516202T', 7), -- ZoologiaAgricolaTeoria -> Agroecologia
+  ('0644103T', '0524304T', 7), -- DibujoI -> Topografia
+  ('0413104T', '0524304T', 7), -- ComputacionAplicada -> Topografia
+  ('0826101T', '0846203T', 7), -- MatematicaI -> FisicaITeoria
+  ('0914201T', '0924301T', 7), -- QuimicaGeneralITeoria -> QuimicaGeneralIITeoria
+  ('1012207T', '1032301T', 7), -- CienciaYSociedadI -> Necesidades,ValoresYProyectosDeVida
+  ('1023202T', '1023302T', 7), -- InglesI -> InglesII
+-- Ingenieria Produccion Animal - Semestre IV
+  ('0924301T', '0524402T', 7), -- QuimicaGeneralIITeoria -> Suelos
+  ('0826201T', '0834402T', 7), -- MatematicaII -> Estadistica
+  ('0826201T', '0846302T', 7), -- MatematicaII -> FisicaIITeoria
+  ('0846203T', '0846302T', 7), -- FisicaITeoria -> FisicaIITeoria
+  ('0924301T', '0923401T', 7), -- QuimicaGeneralIITeoria -> QuimicaOrganicaTeoria
+  ('0826201T', '1013401T', 7), -- MatematicaII -> Economia
+  ('1032301T', '1032402T', 7), -- Necesidades,ValoresYProyectosDeVida -> GerenciaPersonal,ContextoYP.Org.
+-- Ingenieria Produccion Animal - Semestre V
+  ('0846302T', '0345501T', 7), -- FisicaIITeoria -> Mecanizacion
+  ('0524402T', '0345501T', 7), -- Suelos -> Mecanizacion
+  ('0923401T', '0314502T', 7), -- QuimicaOrganicaTeoria -> AnatomiaAnimalTeoria
+  ('0834402T', '0523508T', 7), -- Estadistica -> DiseñoDeExperimentos
+  ('0524402T', '0523604T', 7), -- Suelos -> ConservacionDeSuelosYAguas
+  ('0923401T', '0924501T', 7), -- QuimicaOrganicaTeoria -> BioquimicaTeoria
+-- Ingenieria Produccion Animal - Semestre VI
+  ('0924501T', '0313504T', 7), -- BioquimicaTeoria -> GeneticaTeoria
+  ('0523508T', '0313504T', 7), -- DiseñoDeExperimentos -> GeneticaTeoria
+  ('0314502T', '0313601T', 7), -- AnatomiaAnimalTeoria -> FisiologiaGenralTeoria
+  ('0924501T', '0313601T', 7), -- BioquimicaTeoria -> FisiologiaGenralTeoria
+  ('0924501T', '0343604T', 7), -- BioquimicaTeoria -> NutricionAnimalITeoria
+  ('0924501T', '0333607T', 7), -- BioquimicaTeoria -> MicrobiologiaGeneralTeoria
+-- Ingenieria Produccion Animal - Semestre VII
+  ('0313601T', '0313701T', 7), -- FisiologiaGenralTeoria -> FisiologiaDeLaReproduccionTeoria
+  ('0333607T', '0333703T', 7), -- MicrobiologiaGeneralTeoria -> MicrobiologiaAplicadaTeoria
+  ('0313601T', '0345705T', 7), -- FisiologiaGenralTeoria -> NutricionAnimalIITeoria
+  ('0343604T', '0345705T', 7), -- NutricionAnimalITeoria -> NutricionAnimalIITeoria
+  ('0313504T', '0325706T', 7), -- GeneticaTeoria -> MejoramientoAnimal
+  ('0313601T', '0333707T', 7), -- FisiologiaGenralTeoria -> ParasitologiaTeoria
+  ('0333607T', '0333707T', 7), -- MicrobiologiaGeneralTeoria -> ParasitologiaTeoria
+  ('0313601T', '0313710T', 7), -- FisiologiaGenralTeoria -> FisiologiaDeLaProduccion
+-- Ingenieria Produccion Animal - Semestre VIII
+  ('0333703T', '0335803T', 7), -- MicrobiologiaAplicadaTeoria -> SanidadAnimal
+  ('0333707T', '0335803T', 7), -- ParasitologiaTeoria -> SanidadAnimal
+  ('1013401T', '0343804T', 7), -- Economia -> MercadeoAgricola
+  ('0345705T', '0325805T', 7), -- NutricionAnimalIITeoria -> AviculturaTeoria
+  ('0345705T', '0325809T', 7), -- NutricionAnimalIITeoria -> PorcinotecniaTeoria
+  ('0325706T', '0325809T', 7), -- MejoramientoAnimal -> PorcinotecniaTeoria
+  ('0313701T', '0345810T', 7), -- FisiologiaDeLaReproduccionTeoria -> PlanificacionYAdministracionDeFincas
+  ('0345705T', '0533807T', 7), -- NutricionAnimalIITeoria -> Forrajicultura
+-- Ingenieria Produccion Animal - Semestre IX
+  ('0335803T', '0335901T', 7), -- SanidadAnimal -> IndustriasDeLaCarne
+  ('0335803T', '0335902T', 7), -- SanidadAnimal -> IndustriaDeLaLeche
+  ('0335803T', '0323903T', 7), -- SanidadAnimal -> BovinosDeCarneTeoria
+  ('0345810T', '0323903T', 7), -- PlanificacionYAdministracionDeFincas -> BovinosDeCarneTeoria
+  ('0533807T', '0323903T', 7), -- Forrajicultura -> BovinosDeCarneTeoria
+  ('0335803T', '0323905T', 7), -- SanidadAnimal -> BovinosDeLecheTeoria
+  ('0345810T', '0323905T', 7), -- PlanificacionYAdministracionDeFincas -> BovinosDeLecheTeoria
+  ('0533807T', '0323905T', 7), -- Forrajicultura -> BovinosDeLecheTeoria
+  ('1032402T', '1032601T', 7), -- GerenciaPersonal,ContextoYP.Org. -> LegislacionYValoresNacionalesYProyectoPais
+  ('0523508T', '1033801T', 7), -- DiseñoDeExperimentos -> MetodologiaDeLaInvestigacion
+-- Ingenieria Produccion Animal - Electivas
+  ('0345501T', '0343606T', 7), -- Mecanizacion -> ConstruccionesRurales
+  ('0313601T', '0313807T', 7), -- FisiologiaGenralTeoria -> EcologiaYComportamientoAnimal
+  ('0313701T', '0313807T', 7), -- FisiologiaDeLaReproduccionTeoria -> EcologiaYComportamientoAnimal
+  ('0313601T', '0323806T', 7), -- FisiologiaGenralTeoria -> Zoocriaderos
+  ('0313701T', '0323806T', 7), -- FisiologiaDeLaReproduccionTeoria -> Zoocriaderos
+  ('0335803T', '0333907T', 7), -- SanidadAnimal -> IndustriaDelCuero
+  ('0313701T', '0323812T', 7), -- FisiologiaDeLaReproduccionTeoria -> OvinosYCaprinos
+  ('0345705T', '0323812T', 7), -- NutricionAnimalIITeoria -> OvinosYCaprinos
+  ('0325706T', '0323813T', 7), -- MejoramientoAnimal -> Apicultura
+  ('0313701T', '0314810T', 7), -- FisiologiaDeLaReproduccionTeoria -> BiotecnologiasDeLaReproduccion
+  ('0325706T', '0314810T', 7), -- MejoramientoAnimal -> BiotecnologiasDeLaReproduccion
+  ('0333703T', '0323811T', 7), -- MicrobiologiaAplicadaTeoria -> Piscicultura
+  ('0345705T', '0323811T', 7), -- NutricionAnimalIITeoria -> Piscicultura
+  ('0345705T', '0343808T', 7), -- NutricionAnimalIITeoria -> Cunicultura
+  ('0325706T', '0343808T', 7), -- MejoramientoAnimal -> Cunicultura
+  ('0343804T', '0543901T', 7), -- MercadeoAgricola -> GerenciaAgricola
+  ('1032402T', '0423504T', 7); -- GerenciaPersonal,ContextoYP.Org. -> FormacionDeEmprendedores

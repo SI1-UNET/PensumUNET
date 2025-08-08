@@ -444,7 +444,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('0644103T', 6, 1),
 ('1023111T', 6, 1),
 ('1032109T', 6, 1),
-
 -- Semestre II
 ('0826201T', 6, 2),
 ('0914201T', 6, 2),
@@ -452,7 +451,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('0846203T', 6, 2),
 ('0842204L', 6, 2),
 ('1012207T', 6, 2),
-
 -- Semestre III
 ('0826301T', 6, 3),
 ('0924301T', 6, 3),
@@ -461,7 +459,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('0615301T', 6, 3),
 ('1023202T', 6, 3),
 ('1032301T', 6, 3),
-
 -- Semestre IV
 ('0826401T', 6, 4),
 ('0626401T', 6, 4),
@@ -469,7 +466,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('0834402T', 6, 4),
 ('0846302T', 6, 4),
 ('0842303L', 6, 4),
-
 -- Semestre V
 ('1124501T', 6, 5),
 ('0624604T', 6, 5),
@@ -478,7 +474,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('1115503T', 6, 5),
 ('0923401T', 6, 5),
 ('1023302T', 6, 5),
-
 -- Semestre VI
 ('1124601T', 6, 6),
 ('1125602T', 6, 6),
@@ -494,7 +489,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('1113609T', 6, 6),
 ('1113612T', 6, 6),
 ('1023501T', 6, 6),
-
 -- Semestre VII
 ('1124701T', 6, 7),
 ('1124702T', 6, 7),
@@ -503,7 +497,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('1124704T', 6, 7),
 ('1124705T', 6, 7),
 ('1012703T', 6, 7),
-
 -- Semestre VIII
 ('1124801T', 6, 8),
 ('1123802T', 6, 8),
@@ -515,8 +508,6 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('1123806T', 6, 8),
 ('1123805T', 6, 8),
 ('1123906T', 6, 8),
-
-
 -- Semestre IX
 ('1124901T', 6, 9),
 ('0114703T', 6, 9),
@@ -528,7 +519,103 @@ INSERT INTO public.semestre_mat_carrera (codigo_materia, id_carrera, semestre) V
 ('1123806T', 6, 9),
 ('1123805T', 6, 9),
 ('1123906T', 6, 9),
-
 -- Semestre X
 ('1100002T', 6, 10),
-('1100001T', 6, 10);
+('1100001T', 6, 10),
+
+-- Ingenieria Produccion Animal - Semestre I
+  ( '0323104T', 7, 1), -- Introduccion A La Ingenieria Produccion Animal
+  ( '0342105T', 7, 1), -- Biologia(Ipa)Teoria
+  ( '0343106L', 7, 1), -- Biologia - Laboratorio
+  ( '0413104T', 7, 1), -- Computacion Aplicada
+  ( '0644103T', 7, 1), -- Dibujo I
+  ( '0826101T', 7, 1), -- Matematica I
+  ( '1032109T', 7, 1), -- Efectividad Personal
+  ( '1023111T', 7, 1), -- Lenguaje Y Comunicacion
+-- Ingenieria Produccion Animal - Semestre II
+  ( '0323204T', 7, 2), -- Zootecnia General
+  ( '0343205T', 7, 2), -- Zoologia Agricola Teoria
+  ( '0343206L', 7, 2), -- Zoologia Agricola Laboratorio
+  ( '0826201T', 7, 2), -- Matematica Ii
+  ( '0914201T', 7, 2), -- Quimica General I-Teoria
+  ( '0912202L', 7, 2), -- Quimica Gnerali-Laboratorio
+  ( '1012207T', 7, 2), -- Ciencia Y Sociedad I
+  ( '1023202T', 7, 2), -- Ingles I
+-- Ingenieria Produccion Animal - Semestre III
+  ( '0516202T', 7, 3), -- Agroecologia
+  ( '0524304T', 7, 3), -- Topografia
+  ( '0846203T', 7, 3), -- Fisica I Teoria
+  ( '0842204L', 7, 3), -- Fisica I Laboratorio
+  ( '0924301T', 7, 3), -- Quimica General Ii Teoria
+  ( '0922302L', 7, 3), -- Quimica General Ii Laboratorio
+  ( '1032301T', 7, 3), -- Necesidades, Valores Y Proyectos De Vida
+  ( '1023302T', 7, 3), -- Ingles Ii
+-- Ingenieria Produccion Animal - Semestre IV
+  ( '0524402T', 7, 4), -- Suelos
+  ( '0834402T', 7, 4), -- Estadistica
+  ( '0846302T', 7, 4), -- Fisica Ii Teoria
+  ( '0842303L', 7, 4), -- Fisica Ii Laboratorio
+  ( '0923401T', 7, 4), -- Quimica Organica Teoria
+  ( '0923402L', 7, 4), -- Quimica Organica Laboratorio
+  ( '1013401T', 7, 4), -- Economia
+  ( '1032402T', 7, 4), -- Gerencia Personal, Contexto Y P. Org.
+-- Ingenieria Produccion Animal - Semestre V
+  ( '0345501T', 7, 5), -- Mecanizacion
+  ( '0314502T', 7, 5), -- Αnatomia Αnimal Teoria
+  ( '0313503L', 7, 5), -- Αnatomia Animal Laboratorio
+  ( '0523508T', 7, 5), -- Diseño De Experimentos
+  ( '0523604T', 7, 5), -- Conservacion De Suelos Y Aguas
+  ( '0924501T', 7, 5), -- Bioquimica Teoria
+  ( '0923502L', 7, 5), -- Bioquimica Laboratorio
+-- Ingenieria Produccion Animal - Semestre VI
+  ( '0313504T', 7, 6), -- Genetica Teoria
+  ( '0312508L', 7, 6), -- Genetica Laboratorio
+  ( '0313601T', 7, 6), -- Fisiologia Genral Teoria
+  ( '0313602L', 7, 6), -- Fisiologia General Laboratorio
+  ( '0343604T', 7, 6), -- Nutricion Animal I Teoria
+  ( '0343605L', 7, 6), -- Nutricion Animal I Laboratorio
+  ( '0333607T', 7, 6), -- Microbiologia General Teoria
+  ( '0333608L', 7, 6), -- Microbiologia General - Laboratorio
+-- Ingenieria Produccion Animal - Semestre VII
+  ( '0313701T', 7, 7), -- Fisiologia De La Reproduccion Teoria
+  ( '0313702L', 7, 7), -- Fisiologia De La Reproduccion Laboratorio
+  ( '0333703T', 7, 7), -- Microbiologia Aplicada Teoria
+  ( '0333704L', 7, 7), -- Microbiologia Aplicada Laboratorio
+  ( '0345705T', 7, 7), -- Nutricion Animal Ii Teoria
+  ( '0325706T', 7, 7), -- Mejoramiento Animal
+  ( '0333707T', 7, 7), -- Parasitologia Teoria
+  ( '0333708L', 7, 7), -- Parasitologia Laboratorio
+  ( '0313710T', 7, 7), -- Fisiologia De La Produccion
+-- Ingenieria Produccion Animal - Semestre VIII
+  ( '0335803T', 7, 8), -- Sanidad Animal
+  ( '0343804T', 7, 8), -- Mercadeo Agricola
+  ( '0325805T', 7, 8), -- Avicultura Teoria
+  ( '0325809T', 7, 8), -- Porcinotecnia Teoria
+  ( '0345810T', 7, 8), -- Planificacion Y Administracion De Fincas
+  ( '0533807T', 7, 8), -- Forrajicultura
+  ( '0532809L', 7, 8), -- Forrajicultura Laboratorio
+-- Ingenieria Produccion Animal - Semestre IX
+  ( '0335901T', 7, 9), -- Industrias De La Carne
+  ( '0335902T', 7, 9), -- Industria De La Leche
+  ( '0323903T', 7, 9), -- Bovinos De Carne Teoria
+  ( '0323904L', 7, 9), -- Bovinos De Carne Laboratorio
+  ( '0323905T', 7, 9), -- Bovinos De Leche Teoria
+  ( '0323906L', 7, 9), -- Bovinos De Leche Laboratorio
+  ( '1032601T', 7, 9), -- Legislacion Y Valores Nacionales Y Proyecto Pais
+  ( '1033801T', 7, 9), -- Metodologia De La Investigacion
+-- Ingenieria Produccion Animal - Electivas
+  ( '0343606T', 7, 9), -- Construcciones Rurales
+  ( '0313807T', 7, 9), -- Ecologia Y Comportamiento Animal
+  ( '0323806T', 7, 9), -- Zoocriaderos
+  ( '0333907T', 7, 9), -- Industria Del Cuero
+  ( '0323812T', 7, 9), -- Ovinos Y Caprinos
+  ( '0323813T', 7, 9), -- Apicultura
+  ( '0314810T', 7, 9), -- Biotecnologias De La Reproduccion
+  ( '0323811T', 7, 9), -- Piscicultura
+  ( '0343808T', 7, 9), -- Cunicultura
+  ( '0543901T', 7, 9), -- Gerencia Agricola
+  ( '0423504T', 7, 9), -- Formacion De Emprendedores
+  ( '0123801T', 7, 9), -- Organizacion
+-- Ingenieria Produccion Animal - Semestre X
+  ('1100002T', 7, 10),
+  ('1100001T', 7, 10);

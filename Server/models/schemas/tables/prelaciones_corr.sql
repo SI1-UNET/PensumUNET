@@ -55,4 +55,39 @@ INSERT INTO public.prelacion_corr (codigo_corr, codigo_mat, id_carrera) VALUES
 ('0826401T', '0624604T', 6),
 ('0626401T', '0624604T', 6),
 ('1113610T', '1114611T', 6),
-('1125804T', '1124801T', 6);
+('1125804T', '1124801T', 6),
+ -- Ingenieria Produccion Animal - Semestre I
+  ( '0342105T', '0343106L', 7), -- Biologia(Ipa)Teoria -> Biologia - Laboratorio
+-- Ingenieria Produccion Animal - Semestre II
+  ( '0914201T', '0912202L', 7), -- Quimica General I-Teoria -> Quimica Gnerali-Laboratorio
+  ( '0343205T', '0343206L', 7), -- Zoologia Agricola Teoria -> Zoologia Agricola Laboratorio
+-- Ingenieria Produccion Animal - Semestre III
+  ( '0924301T', '0922302L', 7), -- Quimica General Ii Teoria -> Quimica General Ii Laboratorio
+  ( '0846203T', '0842204L', 7), -- Fisica I Teoria -> Fisica I Laboratorio
+  ( '0846203T', '0524304T', 7), -- Fisica I Teoria -> Topografia
+-- Ingenieria Produccion Animal - Semestre IV
+  ( '0923401T', '0923402L', 7), -- Quimica Organica Teoria -> Quimica Organica Laboratorio
+  ( '0846302T', '0842303L', 7), -- Fisica Ii Teoria -> Fisica Ii Laboratorio
+-- Ingenieria Produccion Animal - Semestre V
+  ( '0924501T', '0923502L', 7), -- Bioquimica Teoria -> Bioquimica Laboratorio
+  ( '0314502T', '0313503L', 7), -- Αnatomia Αnimal Teoria -> Αnatomia Animal Laboratorio
+-- Ingenieria Produccion Animal - Semestre VI
+  ( '0313504T', '0312508L', 7), -- Genetica Teoria -> Genetica Laboratorio
+  ( '0313601T', '0313602L', 7), -- Fisiologia Genral Teoria -> Fisiologia General Laboratorio
+  ( '0313601T', '0343604T', 7), -- Fisiologia Genral Teoria -> Nutricion Animal I Teoria
+  ( '0343604T', '0343605L', 7), -- Nutricion Animal I Teoria -> Nutricion Animal I Laboratorio
+  ( '0333607T', '0333608L', 7), -- Microbiologia General Teoria -> Microbiologia General - Laboratorio
+-- Ingenieria Produccion Animal - Semestre VII
+  ( '0313701T', '0313702L', 7), -- Fisiologia De La Reproduccion Teoria -> Fisiologia De La Reproduccion Laboratorio
+  ( '0333703T', '0333704L', 7), -- Microbiologia Aplicada Teoria -> Microbiologia Aplicada Laboratorio
+  ( '0333707T', '0333708L', 7), -- Parasitologia Teoria -> Parasitologia Laboratorio
+-- Ingenieria Produccion Animal - Semestre VIII
+  ( '0533807T', '0532809L', 7), -- Forrajicultura -> Forrajicultura Laboratorio
+  ( '0335803T', '0325805T', 7), -- Sanidad Animal -> Avicultura Teoria
+  ( '0335803T', '0325809T', 7), -- Sanidad Animal -> Porcinotecnia Teoria
+  ( '0533807T', '0345810T', 7), -- Forrajicultura -> Planificacion Y Administracion De Fincas
+-- Ingenieria Produccion Animal - Semestre IX
+  ( '0323903T', '0323904L', 7), -- Bovinos De Carne Teoria -> Bovinos De Carne Laboratorio
+  ( '0323905T', '0323906L', 7), -- Bovinos De Leche Teoria -> Bovinos De Leche Laboratorio
+  ( '0323903T', '0335901T', 7), -- Bovinos De Carne Teoria -> Industrias De La Carne
+  ( '0323905T', '0335902T', 7); -- Bovinos De Leche Teoria -> Industria De La Leche
