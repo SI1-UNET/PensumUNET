@@ -56,6 +56,7 @@ INSERT INTO public.prelacion_corr (codigo_corr, codigo_mat, id_carrera) VALUES
 ('0626401T', '0624604T', 6),
 ('1113610T', '1114611T', 6),
 ('1125804T', '1124801T', 6),
+
  -- Ingenieria Produccion Animal - Semestre I
   ( '0342105T', '0343106L', 7), -- Biologia(Ipa)Teoria -> Biologia - Laboratorio
 -- Ingenieria Produccion Animal - Semestre II
@@ -90,4 +91,31 @@ INSERT INTO public.prelacion_corr (codigo_corr, codigo_mat, id_carrera) VALUES
   ( '0323903T', '0323904L', 7), -- Bovinos De Carne Teoria -> Bovinos De Carne Laboratorio
   ( '0323905T', '0323906L', 7), -- Bovinos De Leche Teoria -> Bovinos De Leche Laboratorio
   ( '0323903T', '0335901T', 7), -- Bovinos De Carne Teoria -> Industrias De La Carne
-  ( '0323905T', '0335902T', 7); -- Bovinos De Leche Teoria -> Industria De La Leche
+  ( '0323905T', '0335902T', 7), -- Bovinos De Leche Teoria -> Industria De La Leche
+
+-- Psicología - Semestre IV
+  ('2014401T', '2033402T', 10), -- Psicología Evolutiva I -> Psicología Educativa
+-- Psicología - Semestre V
+  ('1000001T', '1000002T', 10), -- Seminario De Servicio Comunitario -> Proyecto De Servicio Comunitario
+  ('2026503T', '2023505T', 10), -- Instrumentos De La Exploración Psicológica I -> Entrevista Psicológica
+  ('2012502T', '2026503T', 10), -- Teoría De La Personalidad -> Instrumentos De La Exploración Psicológica
+-- Psicología - Semestre VI
+  ('2026604T', '2033605T', 10), -- Instrumentos De La Exploración Psicológica II -> Psicología De Las Organizaciones
+-- Psicología - Semestre VIII
+  ('2035802T', '2036801T', 10), -- Psicología Clínica II -> Prácticas Profesionales I
+-- Psicología - Semestre IX 
+  ('2035902T', '2034901T', 10),
+  ('2035902T', '2036903T', 10),
+
+--Architectura - Semestre I
+('0713101T', '0719102T', 11), 
+('0756104T', '0719102T', 11), 
+--Architectura - Semestre II
+('0756206T', '0719201T', 11), 
+--Architectura - Semestre III
+('0753302T', '0719301T', 11),
+--Architectura - Semestre IV
+('0754403T', '0719401T', 11), 
+--Architectura - Semestre V
+('0724517T', '0719501T',11);
+

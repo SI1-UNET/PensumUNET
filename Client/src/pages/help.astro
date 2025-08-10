@@ -1,0 +1,161 @@
+---
+import { actions } from "astro:actions";
+
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+
+
+---	
+<Layout>
+  <div class="w-full min-h-full flex justify-center">
+    <div class="w-75/100 h-full flex flex-col p-10 mb-10 ">
+      <h1 class="font-bold text-primary text-3xl mb-5">
+        ¿Que es Tú Pensum UNET?
+      </h1>
+      <p class="text-lg mb-5">Es una herramienta que permite visualizar los pensum de todas las carreras de la UNET. Usa Algoritmos de Busqueda Primero en Profundidad para recorrer todos los hijos (y padres) de una materia seleccionada.</p>
+       <h2 class="font-bold text-primary text-3xl mb-5">
+        Modalidades
+      </h2>
+       <p class="text-lg mb-5">
+        <span class="text-primary font-bold text-xl" >Información de Materia:</span> Permite visualizar el arbol de herencia de una materia, indicando que materias son prelaciones directas y cuales se van desbloqueando. Mantener el mouse sobre la materia da una breve descripción de la misma.
+       </p>
+       <div class="w-full flex flex-col items-center  gap-10">
+        <div class="w-80/100 flex justify-evenly gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-primary outline-3 outline-primary outline-offset-6">
+                <span class="flex items-center w-full h-full px-2 bg-primary"> Matemática III</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-primary">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias azules rodeadas de un anillo, indican las materias seleccionadas. 
+          </p>
+        </div>
+
+        <div class="w-80/100 flex justify-evenly gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-primary outline-x">
+                <span class="flex items-center w-full h-full px-2 bg-primary"> Matemática II</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-primary">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias azules profundo y con barras a la derecha indican pre requisitos directos. 
+          </p>
+        </div>
+
+        <div class="w-80/100 flex gap-10 ">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg w-[300px] border-3 text-white text-sm border-primary-100">
+                <span class="flex items-center w-full h-full p-2 bg-primary-100"> Matemática I</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-primary-100">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias azules claro son pre requisitos. 
+          </p>
+        </div>
+
+         <div class="w-80/100 flex justify-evenly gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-accent-100 outline-x-green ">
+                <span class="flex items-center w-full h-full px-2 bg-accent-100"> Matemática IV</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-accent-100">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias verdes profundo y con barras a la izquierda indican desbloqueables directas. 
+          </p>
+        </div>
+
+        <div class="w-80/100 flex gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-accent ">
+                <span class="flex items-center w-full h-full p-2 bg-accent"> Metodos Númericos</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-accent">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias verdes suave indican una materia desbloqueable. 
+          </p>
+        </div>
+
+        <div class="w-80/100 flex gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-secondary ">
+                <span class="flex items-center w-full h-full p-2 bg-secondary">Lenguaje y Comunicación</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-secondary">1 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias grises indican materias que no son de la cadena de prelaciones. 
+          </p>
+        </div>
+
+        <div>
+          <p class="text-lg mt-3">
+          <span class="text-primary font-bold text-xl" >Planificador:</span> Indica al usuario cuales son las materias óptimas acorde a la carga deseada en un semestre. La forma en que el algoritmo funciona es recorriendo los desbloquebles directos de cada materia selecciona, y los ordena en base de mayor cantidad de desbloqueables a menor cantidad.
+          </p>
+          <p class="text-lg mt-5">
+            <span class="text-primary font-bold text-xl" >¿Como funciona?:</span> Se debe seleccionar cuales son las materias aprobadas mas adelante en la cadena de materias, además de todas aquellas cursadas que todavia no tienen sus desbloqueables cursadas. El algoritmo se encarga de tomar en cuenta aquellas materias que se olviden en la selección que hayan sido cursadas pero sus desbloqueables no. 
+          </p>
+          <p class="text-lg mt-2">
+            Ejemplo, si en el semestre más actual se aprobó Matemáticas IV, se debe seleccionar esa materia, no hace falta seleccionar el resto de matemáticas ya aprobadas.
+          </p>
+        </div>
+       <div class="w-full flex flex-col items-center  gap-10">
+        <div class="w-80/100 flex justify-evenly gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-primary outline-3 outline-primary outline-offset-6">
+                <span class="flex items-center w-full h-full px-2 bg-primary"> Matemática III</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-primary">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias azules rodeadas de un anillo, indican las materias seleccionadas. 
+          </p>
+        </div>
+
+        <div class="w-80/100 flex gap-10 ">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg w-[300px] border-3 text-white text-sm border-primary-100">
+                <span class="flex items-center w-full h-full p-2 bg-primary-100"> Matemática II</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-primary-100">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias azules claro son materias ya aprobadas. 
+          </p>
+        </div>
+
+         <div class="w-80/100 flex justify-evenly gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-accent-100">
+                <span class="flex items-center w-full h-full px-2 bg-accent-100"> Matemática IV</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-accent-100">4 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias verdes profundo y con barras a la izquierda indican desbloqueables directas. 
+          </p>
+        </div>
+
+        <div class="w-80/100 flex gap-10">
+          <div class="flex relative"> 
+            <div class="flex relative justify-between items-center rounded-lg min-w-[250px] w-[300px] border-3 text-white text-sm border-secondary ">
+                <span class="flex items-center w-full h-full p-2 bg-secondary">Lenguaje y Comunicación</span>
+                <span class="flex items-center justify-center  font-bold w-[60px] py-1 text-center text-secondary">1 UC</span>
+            </div>
+          </div>
+          <p>
+            Las materias grises indican materias que no son de la cadena de prelaciones. 
+          </p>
+        </div>
+
+       </div>
+    </div>
+
+  </div>
+
+</Layout>
+

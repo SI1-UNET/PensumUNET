@@ -130,7 +130,11 @@ export function getBestPathIntesivo(materias: IMateriasObject, codigos: string[]
     let materiasWithDesbloqueables: IMateriasBest[] = getBestPath(materias, codigos, uc, uc_aprobadas);
     materiasWithDesbloqueables.sort((a,b) => b.desbloqueables - a.desbloqueables)
 
-    return materiasWithDesbloqueables.slice(0, 3)
+    const filtered = materiasWithDesbloqueables.filter(
+        m => !["1000001T", "1000002T", "1000003T"].includes(m.codigo)
+    );
+
+    return filtered.slice(0, 3)
 }
 
 export function getMissingMateria(materias: IMateriasObject, codigo: string, selected_materias: string[], missing_materias: string[], visited_materias: string[]){ 

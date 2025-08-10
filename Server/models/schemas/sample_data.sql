@@ -9,9 +9,9 @@ INSERT INTO public.departamento (id, nombre) VALUES
 (8, 'Departamento de Ingeniería Mecánica'),
 (9, 'Departamento de Ingeniería Ambiental'),
 (10,'Departamento de Ingeniería Civil'),
-(11,'Departamento de Ingeniería de Producción Animal');
-
-
+(11,'Departamento de Ingeniería de Producción Animal'),
+(12,'Departamento de Psicología'),
+(13,'Departamento de Arquitectura');
 
 INSERT INTO public.carreras (id, nombre, uc_total) VALUES
 (1, 'Ingeniería En Informática',156),
@@ -20,13 +20,13 @@ INSERT INTO public.carreras (id, nombre, uc_total) VALUES
 (4, 'Ingeniería Industrial', 169),
 (5, 'Ingeniería Electronica',164),
 (6, 'Ingeniería Ambiental', 154),
-(7, 'Ingeniería de Producción Animal', 167);
-
-
+(7, 'Ingeniería de Producción Animal', 167),
+(10, 'Licenciatura en Psicología', 139),
+(11, 'Arquitectura', 167);
 
 INSERT INTO public.nucleo (id, nombre, id_departamento) VALUES
 (1, 'Nucleo', 1),
--- Ingeniería Informática
+-- Ingeniería En Informática
 (2, 'Tecnología básicas', 2),
 (3, 'Telemática', 2),
 (4, 'Ingeniería de la información', 2),
@@ -50,6 +50,15 @@ INSERT INTO public.nucleo (id, nombre, id_departamento) VALUES
 (17,'Electricidad',6),
 (18,'Electrónica Y Sistemas Digitales',6),
 (19,'Instrumentación Y Control',6),
-(20,'Telecomunicaciones',6);
+(20,'Telecomunicaciones',6),
+--Departamento de Arquitectura
+(21,'Historia',11),
+(22,'Ciencias Básicas',11),
+(23,'Producción Y Tecnología ',11),
+(24,'Proyectos',11),
+(25,'Sistemas De Representación Y Simulación',11),
+(26,'Contexto Ambiental',11),
+(27,'Formación Integral',11);
+
 
 

@@ -361,7 +361,8 @@ INSERT INTO public.prelacion_mat (codigo_prel, codigo_mat, id_carrera) VALUES
 ('0223802L', '0233902T', 5), -- LAB. DE ELECTRONICA III -> PROYECTOS DE INSTRUMENTACION ELECTRONICA
 ('0243805T', '0243906T', 5), -- COMUNICACIONES DE RF -> PROYECTOS DE RADIO FRECUENCIA
 ('0234801T', '0233901T', 5), -- SISTEMAS DE CONTROL II -> PROYECTOS SISTEMAS DE CONTROL
-
+('1000001T', '1000002T', 5),
+('1000001T', '1000003T', 5),
 
 -- Ingeniería Ambiental - Semestre II
 ('0826101T', '0826201T', 6), -- MATEMATICA I -> MATEMATICA II
@@ -446,7 +447,8 @@ INSERT INTO public.prelacion_mat (codigo_prel, codigo_mat, id_carrera) VALUES
 ('1124801T', '1125903T', 6), -- SISTEMAS DE ABASTECIMIENTO DE AGUA POTABLE -> LABORATORIO AMBIENTAL II
 ('1124705T', '1125903T', 6), -- CONTAMINACION DE LA ATMOSFERA -> LABORATORIO AMBIENTAL II
 ('1123803T', '1123904T', 6), -- ESTUDIOS DE IMPACTO AMBIENTAL -> FORMULACION Y EVALUACION DE PROYECTOS
-
+('1000001T', '1000002T', 6),
+('1000001T', '1000003T', 6),
 -- Ingenieria Produccion Animal - Semestre I
 -- No prerequisites in this semester
 -- Ingenieria Produccion Animal - Semestre II
@@ -530,4 +532,101 @@ INSERT INTO public.prelacion_mat (codigo_prel, codigo_mat, id_carrera) VALUES
   ('0345705T', '0343808T', 7), -- NutricionAnimalIITeoria -> Cunicultura
   ('0325706T', '0343808T', 7), -- MejoramientoAnimal -> Cunicultura
   ('0343804T', '0543901T', 7), -- MercadeoAgricola -> GerenciaAgricola
-  ('1032402T', '0423504T', 7); -- GerenciaPersonal,ContextoYP.Org. -> FormacionDeEmprendedores
+  ('1032402T', '0423504T', 7), -- GerenciaPersonal,ContextoYP.Org. -> FormacionDeEmprendedores
+  ('1000001T', '1000002T', 7),
+  ('1000001T', '1000003T', 7),
+-- Psicología - Semestre II
+('1023111T', '1023202T', 10), -- Inglés I -> Inglés II
+('2014102T', '2014201T', 10), -- Psicología General I -> Psicología General II
+('0834104T', '0834208T', 10), -- Estadistica Aplicada I -> Estadistica Aplicada II
+
+-- Psicología - Semestre III
+('0834208T', '0834305T', 10),
+('2014201T', '2014301T', 10),
+('2014203T', '2015303T', 10),
+
+-- Psicología - Semestre IV
+('0834305T', '1013308T', 10),
+('2013304T', '2013403T', 10),
+('2014301T','2014401T',10),
+('2014305T','2014404T',10),
+
+-- Psicología - Semestre V
+('1013308T','1014504T',10),
+('2014401T','2014501T',10),
+('2014404T','2014506T',10),
+('0834305T','2026503T',10),
+
+-- Psicología - Semestre VI
+('2013403T','2013602T',10),
+('2026503T','2026604T',10),
+('2023505T','2034601T',10),
+('2033402T','2034603T',10),
+
+-- Psicología - Semestre VII
+('2013602T','2033708T',10),
+('2034603T','2034703T',10),
+
+-- Psicología - Semestre VIII
+('2033706T','2033805T',10),
+('2033707T','2033805T',10),
+('2012502T','2033806T',10),
+('2032701T','2033803T',10),
+('2035705T','2035802T',10),
+('2034703T','2036801T',10),
+('2035705T','2036801T',10),
+
+-- Psicología - Semestre IX
+('2033806T','2034901T',10),
+('2035802T','2035902T',10),
+('2036801T','2036903T',10),
+('2033805T','2033904T',10),
+('1000001T','1000002T', 10),
+('1000001T','1000003T', 10),
+
+--Arquitectura - Semestre II
+('0753105T','0823206T',11),
+('0719102T','0719201T',11),
+('0756104T','0756206T',11),
+('1032109T','1023202T',11), 
+
+--Arquitectura - Semestre III
+('0724208T','0724307T',11),
+('0719201T','0712309T',11),
+('0719201T','0719301T',11),
+('0756206T','0753302T',11),
+('1023202T','1023302T',11),
+--Arquitectura - Semestre IV
+('0742308T','0744402T',11),
+('0823206T','0724406T',11),
+('0724307T','0723407T',11),
+('0719301T','0719401T',11),
+('0753302T','0754403T',11),
+('0734304T','0734405T',11),
+--Arquitectura - Semestre V
+('0744402T','0744502T',11),
+('0724406T','0725309T',11),
+('0723407T','0724517T',11),
+('0719401T','0719501T',11),
+('0734405T','0734503T',11),
+--Arquitectura - Semestre VI
+('0744502T','0744602T',11),
+('0724517T','0724615T',11),
+('0719501T','0719601T',11),
+('0734503T','0734603T',11),
+--Arquitectura - Semestre VII
+('0719601T','0719701T',11),
+('1023302T','1013401T',11),
+--Arquitectura - Semestre VIII
+('0719701T','0719801T',11),
+('1013401T','1033801T',11),
+('1000001T','1000002T',11),
+('1000001T','1000003T',11);
+
+
+
+
+
+
+
+ 

@@ -4,10 +4,7 @@ import { getBestPath, getBestPathIntesivo, getDesbloqueablesDeMateria, getMissin
 import { getMateriasBySemester } from "../utils/classifiers";
 import { getRemainingSemestres, getUC } from "../utils/misc";
 import { RecomendationWindow } from "./recommendation";
-import { set } from "zod/v4";
-import { MateriaNode } from "./node";
-import { Background, Controls, MiniMap, ReactFlow } from "@xyflow/react";
-import { json } from "zod/v4-mini";
+import Help from "../assets/help.svg"
 // import * as d3 from "d3";
 
 type PropsInfo = {
@@ -28,6 +25,11 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
   const [prelaciones, setPrelaciones] = useState<string[]>([]);
   const [prelacionesDirectas, setPrelacionesDirectas] = useState<string[]>([]);
   const [materiaHover, setMateriaHover] = useState<string | null>(null);
+
+  
+  useEffect(() => {
+    localStorage.getItem('carrera') == null ? localStorage.setItem('carrera','1') : null;
+  }, []);
   
   const handleMateriaClick = (codigo: string) => {
     let materiaPrelArray = [] as string[];
@@ -52,7 +54,7 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
 };
 
   return(
-    <div className="flex gap-32 h-full overflow-x-scroll px-8">
+    <div className="flex relative gap-32 h-full overflow-x-scroll px-8">
       {Object.entries(materiasBySemester).map(([semester, materiasList]) =>
        (
         <div className="flex flex-col p-2 py-6" key={semester}>
@@ -153,6 +155,10 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
           </ul>
         </div>
       ))}
+      <a href="/help" className="fixed left-12 bottom-6 active:scale-95">
+        <img className="w-16 h-16" src={Help.src}/>
+      </a>
+
     </div>
 
   )
@@ -176,8 +182,12 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
   const [showRecomendation, setShowRecomendation] = useState<boolean>(false);
 
   useEffect(() => {
+    localStorage.getItem('carrera') == null ? localStorage.setItem('carrera','1') : null;
     const carrera = window.location.pathname.split('/').pop();
+    console.log("Carrera: ", carrera)
+    console.log("Ryyk")
     if(localStorage.getItem('carrera') == carrera ){
+       console.log("Ry")
       const materias_seleccionadas = localStorage.getItem('materias_seleccionadas');
       setMateriasSelected(materias_seleccionadas ? JSON.parse(materias_seleccionadas) : []);
       const vistas = localStorage.getItem('vistas');
@@ -247,7 +257,8 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
     setMateriasRecomendadas(materiasBestCode);
     setSemestresRestantes(getRemainingSemestres(getUC(materias, [...materias_a_evaluar, ...vistas])+ electivasVistas*2 , uc_total ,maximasUC));
     setRecommentadionDone(true);
-    localStorage.setItem('materias_seleccionadas', JSON.stringify(materiasSelected))
+    localStorage.setItem('carrera', window.location.pathname.split('/').pop() || '');
+    localStorage.setItem('materias_seleccionadas', JSON.stringify(materias_a_evaluar))
     localStorage.setItem('vistas', JSON.stringify(vistas))
   }
   else{
@@ -378,14 +389,21 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
         </div>
       ))}
   
-      { recommendationDone &&
+      
+      <div className="flex flex-col fixed left-12 bottom-6 gap-3">
+        <a href="/help" className="active:scale-95">
+          <img className="w-16 h-16" src={Help.src}/>
+        </a>
+        { recommendationDone &&
         <button 
-          className="fixed left-12 bottom-6 bg-primary rounded-lg text-white h-[50px] w-[245px] border-3 border-primary cursor-pointer hover:bg-white hover:text-primary active:bg-primary active:text-white active:scale-95"
+          className=" bg-primary rounded-lg text-white h-[50px] w-[245px] border-3 border-primary cursor-pointer hover:bg-white hover:text-primary active:bg-primary active:text-white active:scale-95"
           onClick={() => setShowRecomendation(!showRecomendation)}
           >
             Mostrar Resumen
         </button>
-      }
+        }
+      </div>
+      
     
       <button className="fixed right-12 bottom-40 flex justify-between rounded-lg w-[245px] border-3 border-primary bg-white text-white cursor-pointer"
         onClick={() => setIntensivo(!intensivo)}>

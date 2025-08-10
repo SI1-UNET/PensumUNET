@@ -11,13 +11,26 @@ export const Navbar = ({carreras}: Props) =>{
   const [modalidadOpen, setModalidadOpen] = useState(false);
   const [carrerasOpen, setCarrerasOpen] = useState(false)
 
-    const currentPath = window.location.pathname;
-    const parts = currentPath.split("/").filter(Boolean);
-    const lastPart = parts[parts.length - 1];
-    const middle = parts.slice(0, -1).join("/");
+  let parts, lastPart: string, lastPartAux, middle: string, currentCarrera, carreraNombre;
 
-    const currentCarrera = carreras.find(carrera => String(carrera.id) === lastPart);
-    const carreraNombre = currentCarrera!.nombre ;
+
+  const currentPath = window.location.pathname;
+  
+    parts = currentPath.split("/").filter(Boolean);
+    lastPart = parts[parts.length - 1];
+    lastPartAux = parts[parts.length - 1];
+    middle = parts.slice(0, -1).join("/");
+  if(lastPart != "help"){
+    currentCarrera = carreras.find(carrera => String(carrera.id) === lastPart);
+    carreraNombre = currentCarrera!.nombre ;
+  }
+  else{
+    carreraNombre = "Ayuda"
+    lastPart = "1"
+    
+  }
+
+  
 
   const handleModalidad = () =>{
     setModalidadOpen(!modalidadOpen)
@@ -33,12 +46,14 @@ export const Navbar = ({carreras}: Props) =>{
       <nav className="flex relative justify-between w-full">
         <a href="/" className="flex items-center gap-2 py-2 ms-20 cursor-pointer ">
           <img src={Logo.src} width={70} height={70} alt="UNET Logo" />
-          <h1 className="font-league-gothic tracking-tight font-medium text-primary text-5xl">Tu Pensum UNET</h1>
+          <h1 className="font-league-gothic tracking-tight font-medium text-primary text-5xl">Tú Pensum UNET</h1>
         </a>
          <h2 className="text-primary font-dm-sans tracking-tight text-3xl font-semibold self-center ">
             {carreraNombre}
           </h2>
         <div className="flex gap-10 self-end text-primary me-20">
+          
+          {lastPartAux != "help" ?
           <div className="relative">
             <button 
               className="border-3  border-b-0 border-primary border-x-primary rounded-t-[10px] w-[250px] py-2 relative z-3 hover:bg-primary hover:text-white group"
@@ -57,6 +72,8 @@ export const Navbar = ({carreras}: Props) =>{
 
               }
           </div>
+          : null
+        }
          
           <div className="relative">
             <button 
