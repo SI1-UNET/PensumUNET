@@ -14,13 +14,13 @@ export const Navbar = ({carreras}: Props) =>{
   let parts, lastPart: string, lastPartAux, middle: string, currentCarrera, carreraNombre;
 
 
-  const currentPath = window.location.pathname;
-  
+const currentPath = window.location.pathname;
     parts = currentPath.split("/").filter(Boolean);
     lastPart = parts[parts.length - 1];
     lastPartAux = parts[parts.length - 1];
     middle = parts.slice(0, -1).join("/");
   if(lastPart != "help"){
+    !lastPart ? lastPart = '1' : null
     currentCarrera = carreras.find(carrera => String(carrera.id) === lastPart);
     carreraNombre = currentCarrera!.nombre ;
   }
@@ -56,7 +56,7 @@ export const Navbar = ({carreras}: Props) =>{
           {lastPartAux != "help" ?
           <div className="relative">
             <button 
-              className="border-3  border-b-0 border-primary border-x-primary rounded-t-[10px] w-[250px] py-2 relative z-3 hover:bg-primary hover:text-white group"
+              className="border-3  border-b-0 border-primary border-x-primary rounded-t-[10px] w-[250px] py-2 relative z-3 hover:bg-primary hover:text-white group cursor-pointer"
               onClick={handleCarreras}>  
               Carreras
               <div className="absolute w-full bottom-0 h-[3px] bg-white group-hover:hidden"/>
@@ -64,7 +64,7 @@ export const Navbar = ({carreras}: Props) =>{
             {carrerasOpen &&
                 <div className="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3">
                   {carreras.map((carrera) => (
-                    <a href={`/${middle}/${carrera.id}`} className="py-2 text-center odd:bg-white  not-odd:bg-secondary-100 hover:bg-primary-100 hover:text-white" key={carrera.id}>
+                    <a href={`${middle == "planificador" ? `/${middle}` : '' }/${carrera.id}`} className="py-2 text-center odd:bg-white  not-odd:bg-secondary-100 hover:bg-primary-100 hover:text-white" key={carrera.id}>
                       {carrera.nombre}
                     </a>
                   ))}
@@ -85,8 +85,8 @@ export const Navbar = ({carreras}: Props) =>{
             </button>
             {modalidadOpen &&
                 <div className="w-full flex flex-col absolute top-full border-3 border-primary border-t-0 z-3 ">
-                  <a href={`/carreras/${lastPart}`} className="py-2 text-center bg-white hover:bg-primary-100 hover:text-white" >Información de Materia</a>
-                  <a href={`/carreras/planificador/${lastPart}`} className="py-2 text-center bg-secondary-100 hover:bg-primary-100 hover:text-white">Planificador</a>
+                  <a href={`/${lastPart}`} className="py-2 text-center bg-white hover:bg-primary-100 hover:text-white" >Información de Materia</a>
+                  <a href={`/planificador/${lastPart}`} className="py-2 text-center bg-secondary-100 hover:bg-primary-100 hover:text-white">Planificador</a>
                 </div>
 
               }

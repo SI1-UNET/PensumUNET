@@ -1,0 +1,16 @@
+---
+import { actions } from "astro:actions";
+import type { IMateriasObject } from "../schemas/materias";
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+
+import {GraphInfo} from "../components/graph";
+
+const m = await Astro.callAction(actions.materias.getAllMateriasByCarrera, {id: "1"} );
+const materias = m.data as IMateriasObject;
+
+---	
+<Layout>
+  <GraphInfo materias={materias} client:load/>
+</Layout>
+

@@ -155,8 +155,8 @@ export const GraphInfo= ({materias}: PropsInfo) =>{
           </ul>
         </div>
       ))}
-      <a href="/help" className="fixed left-12 bottom-6 active:scale-95">
-        <img className="w-16 h-16" src={Help.src}/>
+      <a href="/help" className="fixed flex justify-center items-center w-14 h-14 bg-white border-5 border-primary rounded-full left-12 bottom-6 active:scale-95">
+        <img className="w-10 h-10" src={Help.src}/>
       </a>
 
     </div>
@@ -391,8 +391,8 @@ export const GraphPlanner= ({materias, uc_total}: PropsPlanner) =>{
   
       
       <div className="flex flex-col fixed left-12 bottom-6 gap-3">
-        <a href="/help" className="active:scale-95">
-          <img className="w-16 h-16" src={Help.src}/>
+        <a href="/help" className="flex justify-center items-center w-14 h-14 bg-white border-5 border-primary rounded-full  active:scale-95 ">
+          <img className="w-10 h-10" src={Help.src}/>
         </a>
         { recommendationDone &&
         <button 

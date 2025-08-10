@@ -542,7 +542,7 @@ INSERT INTO public.materia (codigo, nombre, uc, electiva, horas_estudio, id_depa
    ('0743706T', 'Arquitectura Contemporánea', 2, TRUE, 0,13,21,''),
 --Arquitectura - Semestre VIII
    ('0719801T', 'Proyecto VIII', 6, FALSE, 0,13,24,''),
-   ('0523801T', 'Topografia', 3, FALSE, 0, 1, 1,''),
+   ('0523801T', 'Topografia', 3, TRUE, 0, 1, 1,''),
 --Arquitectura - Semestre IX
    ('0700901T', 'Pasantía', 12, FALSE, 0,13,1,''),
 --Arquitectura - Semestre X
